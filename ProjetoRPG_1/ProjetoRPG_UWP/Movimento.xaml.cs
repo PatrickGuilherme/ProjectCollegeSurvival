@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,6 +18,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
+using System.Timers;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x416
 
@@ -29,72 +30,114 @@ namespace ProjetoRPG_UWP
     
     public sealed partial class Movimento : Page
     {
+        private bool MoveUp;
+        private bool MoveDown;
+        private bool MoveLeft;
+        private bool MoveRight;
+        private Timer MovementTimer = new Timer { Interval = 50 };
+
         public Movimento()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            MovementTimer.Elapsed += movementTimer_Elapsed;
         }
 
-        protected override async void OnKeyDown(KeyRoutedEventArgs e)
+        private void movementTimer_Elapsed(object sender, EventArgs e)
         {
-            base.OnKeyDown(e);
+            DoMovement();
+        }
+
+        private void DoMovement()
+        {
+            if (MoveLeft) Left();
+            if (MoveRight) Right();
+            if (MoveUp) Up();
+            if (MoveDown) Down();
+        }
+
+        protected override void OnKeyDown(KeyRoutedEventArgs e)
+        {
+            //base.OnKeyDown(e);
             if (e.Key == Windows.System.VirtualKey.Down)
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
-                    CoreDispatcherPriority.Normal,
-                    Down // O Método a ser chamado
-                );
+                MoveDown = true;
             }
             else if (e.Key == Windows.System.VirtualKey.Up)
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
-                    CoreDispatcherPriority.Normal,
-                    Up // O Método a ser chamado
-                );
+                MoveUp = true;
             }
             else if (e.Key == Windows.System.VirtualKey.Right)
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
-                    CoreDispatcherPriority.Normal,
-                    Right // O Método a ser chamado
-                );
+                MoveRight = true;
             }
             else if (e.Key == Windows.System.VirtualKey.Left)
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
-                    CoreDispatcherPriority.Normal,
-                    Left // O Método a ser chamado
-                );
+                MoveLeft = true;
+            }
+
+            DoMovement();
+            MovementTimer.Start();
+        }
+
+        protected override void OnKeyUp(KeyRoutedEventArgs e) 
+        {
+            if (e.Key == Windows.System.VirtualKey.Down)
+            {
+                MoveDown = false;
+            }
+            else if (e.Key == Windows.System.VirtualKey.Up)
+            {
+                MoveUp = false;
+            }
+            else if (e.Key == Windows.System.VirtualKey.Right)
+            {
+                MoveRight = false;
+            }
+            else if (e.Key == Windows.System.VirtualKey.Left)
+            {
+                MoveLeft = false;
+            }
+
+            if (!(MoveUp || MoveDown || MoveLeft || MoveRight))
+            {
+                MovementTimer.Stop();
             }
         }
 
         private async void Left()
         {
-            // Manipular o componente de Interface
-            ImgPlayerTranslateTransform.X -= 10;
-            //Canvas.SetLeft(ImgBestFriend, Canvas.GetLeft(ImgBestFriend) - 5);
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, LeftPlayer);
         }
-
         private async void Down()
         {
-            // Manipular o componente de Interface
-            ImgPlayerTranslateTransform.Y += 10;
-            //Canvas.SetTop(ImgBestFriend, Canvas.GetTop(ImgBestFriend) + 5);
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, DownPlayer);
         }
 
         private async void Up()
         {
-            // Manipular o componente de Interface
-            ImgPlayerTranslateTransform.Y -= 10; 
-            // Canvas.SetTop(ImgBestFriend, Canvas.GetTop(ImgBestFriend) - 5);
-
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, UpPlayer);
         }
 
         private async void Right()
         {
-            // Manipular o componente de Interface
-            ImgPlayerTranslateTransform.X += 10;
-            //Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 5);
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, RightPlayer);
+        }
 
+        private void UpPlayer() 
+        {
+            Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 10);
+        }
+        private void DownPlayer()
+        {
+            Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 10);
+        }
+        private void RightPlayer()
+        {
+            Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 10);
+        }
+        private void LeftPlayer()
+        {
+            Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) - 10);
         }
     }
 
