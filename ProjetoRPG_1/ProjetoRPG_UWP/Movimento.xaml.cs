@@ -34,7 +34,7 @@ namespace ProjetoRPG_UWP
         private bool MoveDown;
         private bool MoveLeft;
         private bool MoveRight;
-        private Timer MovementTimer = new Timer { Interval = 50 };
+        private Timer MovementTimer = new Timer { Interval = 20 };
 
         public Movimento()
         {
@@ -125,19 +125,19 @@ namespace ProjetoRPG_UWP
 
         private void UpPlayer() 
         {
-            Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 10);
+            Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 5);
         }
         private void DownPlayer()
         {
-            Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 10);
+            Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 5);
         }
         private void RightPlayer()
         {
-            Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 10);
+            Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 5);
         }
         private void LeftPlayer()
         {
-            Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) - 10);
+            Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) - 5);
         }
     }
 
