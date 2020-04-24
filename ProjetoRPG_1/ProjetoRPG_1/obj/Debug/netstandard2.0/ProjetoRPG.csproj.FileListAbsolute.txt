@@ -1,0 +1,9 @@
+C:\Users\be301\source\repos\ProjetoRPG_1\ProjetoRPG_1\bin\Debug\netstandard2.0\ProjetoRPG.deps.json
+C:\Users\be301\source\repos\ProjetoRPG_1\ProjetoRPG_1\bin\Debug\netstandard2.0\ProjetoRPG.dll
+C:\Users\be301\source\repos\ProjetoRPG_1\ProjetoRPG_1\bin\Debug\netstandard2.0\ProjetoRPG.pdb
+C:\Users\be301\source\repos\ProjetoRPG_1\ProjetoRPG_1\obj\Debug\netstandard2.0\ProjetoRPG.csprojAssemblyReference.cache
+C:\Users\be301\source\repos\ProjetoRPG_1\ProjetoRPG_1\obj\Debug\netstandard2.0\ProjetoRPG.csproj.CoreCompileInputs.cache
+C:\Users\be301\source\repos\ProjetoRPG_1\ProjetoRPG_1\obj\Debug\netstandard2.0\ProjetoRPG.AssemblyInfoInputs.cache
+C:\Users\be301\source\repos\ProjetoRPG_1\ProjetoRPG_1\obj\Debug\netstandard2.0\ProjetoRPG.AssemblyInfo.cs
+C:\Users\be301\source\repos\ProjetoRPG_1\ProjetoRPG_1\obj\Debug\netstandard2.0\ProjetoRPG.dll
+C:\Users\be301\source\repos\ProjetoRPG_1\ProjetoRPG_1\obj\Debug\netstandard2.0\ProjetoRPG.pdb
