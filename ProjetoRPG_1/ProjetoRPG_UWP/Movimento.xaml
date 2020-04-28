@@ -15,7 +15,7 @@
 
         <Button x:Name="Auxilio"
                 Content="AJUDA"/>
-        <Image x:Name="ImgPlayer" Source="/Assets/stick.png" Canvas.Left="301" Canvas.Top="327" Height="73" Width="73">
+        <Image x:Name="ImgPlayer" Source="/Assets/stick.png" Canvas.Left="10" Canvas.Top="37" Height="73" Width="73">
             <Image.RenderTransform>
                 <TranslateTransform x:Name="ImgPlayerTranslateTransform" />
             </Image.RenderTransform>
