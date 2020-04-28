@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,6 +34,8 @@ namespace ProjetoRPG_UWP
         private void BtnWorker_Click(object sender, RoutedEventArgs e)
         {
             Worker player = new Worker();
+            player.posicaoX = 1;
+            player.posicaoY = 1;
             player.Life = 300;
             player.Energia = 500;
             player.Animo = 20;
@@ -43,6 +45,8 @@ namespace ProjetoRPG_UWP
         private void BtnExpert_Click(object sender, RoutedEventArgs e)
         {
             Expert player = new Expert();
+            player.posicaoX = 1;
+            player.posicaoY = 1;
             player.Life = 400;
             player.Energia = 400;
             player.Animo = 15;
@@ -52,6 +56,8 @@ namespace ProjetoRPG_UWP
         private void BtnCheater_Click(object sender, RoutedEventArgs e)
         {
             Cheater player = new Cheater();
+            player.posicaoX = 1;
+            player.posicaoY = 1;
             player.Life = 500;
             player.Energia = 300;
             player.Animo = 17;
