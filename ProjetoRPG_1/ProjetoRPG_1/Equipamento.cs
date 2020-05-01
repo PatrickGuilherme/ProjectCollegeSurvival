@@ -62,5 +62,8 @@ namespace ProjetoRPG {
             this.BuffAnimo = BuffAnimo;
             this.BuffPersistencia = BuffPersistencia;
         }
+        public Equipamento() {
+
+        }
     }
 }
