@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using ProjetoRPG;
 
 namespace TesteRPG
 {
@@ -32,3 +33,4 @@ namespace TesteRPG
         }
     }
 }
+
