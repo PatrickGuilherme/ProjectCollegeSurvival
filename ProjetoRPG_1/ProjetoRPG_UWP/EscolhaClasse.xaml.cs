@@ -33,35 +33,41 @@ namespace ProjetoRPG_UWP
         }
         private void BtnWorker_Click(object sender, RoutedEventArgs e)
         {
-            Worker player = new Worker();
-            player.posicaoX = 1;
-            player.posicaoY = 1;
-            player.Life = 300;
-            player.Energia = 500;
-            player.Animo = 20;
-            player.Persistencia = 15;
+            Worker player = new Worker
+            {
+                posicaoX = 35,
+                posicaoY = 10,
+                Life = 300,
+                Energia = 500,
+                Animo = 20,
+                Persistencia = 15
+            };
             this.Frame.Navigate(typeof(Movimento), player);
         }
         private void BtnExpert_Click(object sender, RoutedEventArgs e)
         {
-            Expert player = new Expert();
-            player.posicaoX = 1;
-            player.posicaoY = 1;
-            player.Life = 400;
-            player.Energia = 400;
-            player.Animo = 15;
-            player.Persistencia = 20;
+            Expert player = new Expert
+            {
+                posicaoX = 35,
+                posicaoY = 10,
+                Life = 400,
+                Energia = 400,
+                Animo = 15,
+                Persistencia = 20
+            };
             this.Frame.Navigate(typeof(Movimento), player);
         }
         private void BtnCheater_Click(object sender, RoutedEventArgs e)
         {
-            Cheater player = new Cheater();
-            player.posicaoX = 1;
-            player.posicaoY = 1;
-            player.Life = 500;
-            player.Energia = 300;
-            player.Animo = 17;
-            player.Persistencia = 18;
+            Cheater player = new Cheater
+            {
+                posicaoX = 35,
+                posicaoY = 10,
+                Life = 500,
+                Energia = 300,
+                Animo = 17,
+                Persistencia = 18
+            };
             this.Frame.Navigate(typeof(Movimento), player);
         }
     }
