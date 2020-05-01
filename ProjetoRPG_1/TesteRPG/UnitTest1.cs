@@ -10,9 +10,25 @@ namespace TesteRPG
         }
 
         [Test]
-        public void Test1()
+        public void EquipamentoNivel_Maior()
         {
-            Assert.Pass();
+            int nivel = 1;
+            int niveleqp = 2;
+            Worker wk = new Worker();
+            Equipamento ep = new Equipamento();
+            wk.Nivel = nivel;
+            ep.NivelRequerido = niveleqp;
+            Assert.IsFalse(wk.EquiparEquipamento(ep));
+        }
+        [Test]
+        public void EquipametoNivel_MenorIgual() {
+            int nivel = 2;
+            int nivelequipamento = 1;
+            Worker wk = new Worker();
+            Equipamento ep = new Equipamento();
+            wk.Nivel = nivel;
+            ep.NivelRequerido = nivelequipamento;
+            Assert.IsTrue(wk.EquiparEquipamento(ep));
         }
     }
 }
