@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjetoRPG
@@ -10,8 +11,6 @@ namespace ProjetoRPG
         //evento subir de nivel ao inves de um metodo abstrato
         public int Conhecimento { get; set; }
         public int Nivel { get; set; }
-        public double posicaoX { get; set; }
-        public double posicaoY { get; set; }
         public List<Habilidade> habilidades { get; set; }
         public Inventario inventario { get; set; }//Jota transformou o inventario em varios lists, logo vou precisar mudar os metodos que usam inventario
 
@@ -63,6 +62,7 @@ namespace ProjetoRPG
             {
                 if(mapaJogo[(int)Math.Floor(newPy), (int)Math.Floor(newPx)] == null)
                 {
+                    Debug.WriteLine("{0}  {1}", newPx, newPy);
                     return true;
                 }
             }

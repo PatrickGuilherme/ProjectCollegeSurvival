@@ -11,5 +11,6 @@ namespace ProjetoRPG
         public bool O { get; set; }
         public int Linha { get; set; }
         public int Coluna { get; set; }
+        public int[] Deslocamento { get; set; }
     }
 }
