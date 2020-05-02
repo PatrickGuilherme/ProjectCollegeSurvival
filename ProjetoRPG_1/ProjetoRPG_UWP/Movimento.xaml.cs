@@ -34,12 +34,13 @@ namespace ProjetoRPG_UWP
         private object jogador;
         private object objBlock = new Object();
         private bool MoveUp;
+        private double PosicaoX = 20, PosicaoY = 2, PosicaoAux;
         private bool MoveDown;
         private bool MoveLeft;
         private bool MoveRight;
         private Timer MovementTimer = new Timer { Interval = 20 };
         private Mapa GeradorMapa = new Mapa();
-        private GameObject[,] Mapa = new GameObject[46, 351];
+        private GameObject[,] Mapa = new GameObject[9, 132];
 
         public Movimento()
         {
@@ -135,78 +136,81 @@ namespace ProjetoRPG_UWP
 
         private void UpPlayer() 
         {
-            if (PlayerAuxiliar.PodeMover(Mapa, (double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador), (double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador) - 1))
+            if (PlayerAuxiliar.PodeMover(Mapa, PosicaoX, PosicaoY - 0.084))
             {
                 Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 5);
-                jogador.GetType().GetProperty("posicaoY").SetValue(jogador, Math.Round((double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador) - 0.20, 2));
+                PosicaoY = Math.Round(PosicaoY - 0.084, 5);
             }
-            PosicaoMatrizX.Text = Math.Floor((double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador)).ToString();
-            PosicaoMatrizY.Text = Math.Floor((double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador)).ToString();
+            else if(Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].Deslocamento != null)
+            {
+                PosicaoAux = Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].Deslocamento[0];
+                PosicaoX = Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].Deslocamento[1];
+                PosicaoY = PosicaoAux;
+                Canvas.SetLeft(ImgPlayer, 100 * ((PosicaoX - Math.Floor(PosicaoX / 12) * 12)));
+                Canvas.SetTop(ImgPlayer, 70 * ((PosicaoY - 0.084) - Math.Floor((PosicaoY - 0.084) / 9) * 9));
+            }
+            PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
         }
         private void DownPlayer()
         {
-            if (PlayerAuxiliar.PodeMover(Mapa, (double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador), (double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador) + 1))
+            if (PlayerAuxiliar.PodeMover(Mapa, PosicaoX, PosicaoY + 0.084))
             {
                 Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 5);
-                jogador.GetType().GetProperty("posicaoY").SetValue(jogador, Math.Round((double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador) + 0.20, 2));
+                PosicaoY  = Math.Round(PosicaoY + 0.084, 5);
             }
-            PosicaoMatrizX.Text = Math.Floor((double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador)).ToString();
-            PosicaoMatrizY.Text = Math.Floor((double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador)).ToString();
+            else if (Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].Deslocamento != null)
+            {
+                PosicaoAux = Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].Deslocamento[0];
+                PosicaoX = Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].Deslocamento[1];
+                PosicaoY = PosicaoAux;
+                Canvas.SetLeft(ImgPlayer, 100 * ((PosicaoX - Math.Floor(PosicaoX / 12) * 12)));
+                Canvas.SetTop(ImgPlayer, 70 * ((PosicaoY + 0.084) - Math.Floor((PosicaoY + 0.084) / 9) * 9));
+            }
+            PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
         }
         private void RightPlayer()
         {
-            if (PlayerAuxiliar.PodeMover(Mapa, (double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador) + 1, (double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador)))
+            if (PlayerAuxiliar.PodeMover(Mapa, PosicaoX + 0.050, PosicaoY))
             {
                 Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 5);
-                jogador.GetType().GetProperty("posicaoX").SetValue(jogador, Math.Round((double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador) + 0.20, 2));
+                PosicaoX = Math.Round(PosicaoX + 0.050, 5);
             }
-            PosicaoMatrizX.Text = Math.Floor((double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador)).ToString();
-            PosicaoMatrizY.Text = Math.Floor((double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador)).ToString();
-
+            else if (Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].Deslocamento != null)
+            {
+                PosicaoAux = Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].Deslocamento[0];
+                PosicaoX = Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].Deslocamento[1];
+                PosicaoY = PosicaoAux;
+                Canvas.SetLeft(ImgPlayer, 100 * (((PosicaoX + 0.050) - Math.Floor((PosicaoX + 0.050) / 12) * 12)));
+                Canvas.SetTop(ImgPlayer, 70 * (PosicaoY - Math.Floor(PosicaoY / 9) * 9));
+            }
+            PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
         }
         private void LeftPlayer()
         {
-            if(PlayerAuxiliar.PodeMover(Mapa, (double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador) - 1, (double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador))) 
+            if(PlayerAuxiliar.PodeMover(Mapa, PosicaoX - 0.050, PosicaoY)) 
             {
                 Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) - 5);
-                jogador.GetType().GetProperty("posicaoX").SetValue(jogador, Math.Round((double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador) - 0.20, 2));
+                PosicaoX = Math.Round(PosicaoX - 0.050, 5);
             }
-            PosicaoMatrizX.Text = Math.Floor((double)jogador.GetType().GetProperty("posicaoX").GetValue(jogador)).ToString();
-            PosicaoMatrizY.Text = Math.Floor((double)jogador.GetType().GetProperty("posicaoY").GetValue(jogador)).ToString();
-
+            else if (Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].Deslocamento != null)
+            {
+                PosicaoAux = Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].Deslocamento[0];
+                PosicaoX = Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].Deslocamento[1];
+                PosicaoY = PosicaoAux;
+                Canvas.SetLeft(ImgPlayer, 100 * (((PosicaoX - 0.050) - Math.Floor((PosicaoX - 0.050) / 12) * 12)));
+                Canvas.SetTop(ImgPlayer, 70 * (PosicaoY - Math.Floor(PosicaoY / 9) * 9));
+            }
+            PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            jogador = e.Parameter; // get parameter
-
-            //Type tp = param.GetType();
-
-            //if (tp.Equals(typeof(Worker)))
-            //{
-            //    Worker player = new Worker();
-            //    player.Life = 300;
-            //    player.Energia = 500;
-            //    player.Animo = 20;
-            //    player.Persistencia = 15;
-            //}
-            //else if (tp.Equals(typeof(Expert)))
-            //{
-            //    Expert player = new Expert();
-            //    player.Life = 400;
-            //    player.Energia = 400;
-            //    player.Animo = 15;
-            //    player.Persistencia = 20;
-            //}
-            //else
-            //{
-            //    Cheater player = new Cheater();
-            //    player.Life = 500;
-            //    player.Energia = 300;
-            //    player.Animo = 17;
-            //    player.Persistencia = 18;
-            //}
+            jogador = e.Parameter;
         }
     }
 

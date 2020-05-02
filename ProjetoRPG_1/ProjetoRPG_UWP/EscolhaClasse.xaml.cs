@@ -35,8 +35,6 @@ namespace ProjetoRPG_UWP
         {
             Worker player = new Worker
             {
-                posicaoX = 35,
-                posicaoY = 10,
                 Life = 300,
                 Energia = 500,
                 Animo = 20,
@@ -48,8 +46,6 @@ namespace ProjetoRPG_UWP
         {
             Expert player = new Expert
             {
-                posicaoX = 35,
-                posicaoY = 10,
                 Life = 400,
                 Energia = 400,
                 Animo = 15,
@@ -61,8 +57,6 @@ namespace ProjetoRPG_UWP
         {
             Cheater player = new Cheater
             {
-                posicaoX = 35,
-                posicaoY = 10,
                 Life = 500,
                 Energia = 300,
                 Animo = 17,

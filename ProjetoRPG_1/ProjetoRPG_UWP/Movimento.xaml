@@ -9,17 +9,19 @@
     Width="1280" Height="720"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas>
+    <Canvas Width="1280" Height="720">
         <TextBlock x:Name="PosicaoMatrizX" Text="0" Canvas.Left="118" Canvas.Top="110" FontSize="30"/>
         <TextBlock x:Name="PosicaoMatrizY" Text="0" Canvas.Left="118" Canvas.Top="150" FontSize="30"/>
         <TextBlock x:Name="PosicaoMonstro" Text="..." Canvas.Left="118" Canvas.Top="190" FontSize="30"/>
 
         <Button x:Name="Auxilio"
                 Content="AJUDA"/>
-        <Image x:Name="ImgPlayer" Source="/Assets/stick.png" Canvas.Top="324" Height="73" Width="73" Canvas.Left="604">
+
+        <Image x:Name="ImgPlayer" Source="/Assets/stick.png" Height="70" Width="100" Canvas.Left="800" Canvas.Top="140">
             <Image.RenderTransform>
                 <TranslateTransform x:Name="ImgPlayerTranslateTransform" />
             </Image.RenderTransform>
         </Image>
+
     </Canvas>
 </Page>
