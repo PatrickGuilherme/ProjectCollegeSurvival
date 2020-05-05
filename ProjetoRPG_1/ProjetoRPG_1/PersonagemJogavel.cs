@@ -5,15 +5,12 @@ using System.Text;
 
 namespace ProjetoRPG
 {
-    //quando um personagem andar verificar se ele vai encontrar um inimigo
     public abstract class PersonagemJogavel: Personagem
     {
-        //evento subir de nivel ao inves de um metodo abstrato
         public int Conhecimento { get; set; }
         public int Nivel { get; set; }
         public List<Habilidade> habilidades { get; set; }
-        public Inventario inventario { get; set; }//Jota transformou o inventario em varios lists, logo vou precisar mudar os metodos que usam inventario
-
+        public Inventario inventario { get; set; }
         public List<Equipamento> EquipamentosEquipados { get; }
         
         public bool EquiparEquipamento(Equipamento equipamento) {
@@ -41,7 +38,6 @@ namespace ProjetoRPG
             }
             return false;
         }
-
         public bool ColetarItem(Item item)
         {
             if(this.inventario != null)
@@ -69,7 +65,7 @@ namespace ProjetoRPG
             return false;
         }
 
-        public abstract void LevelUp(); //FALTA ISSO
+        public abstract void LevelUp();
 
         public void UsarItem(Item item, Personagem personagemInimigo)
         {

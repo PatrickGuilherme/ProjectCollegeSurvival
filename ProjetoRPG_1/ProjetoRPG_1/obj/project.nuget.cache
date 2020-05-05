@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "V4lkXhwj7SnxcIMJz+Fp5m6IE7ZRkoAhghKHA/luUNlbiHYWyM62C49IEO3/dR1l3o9nd2RoAhmNTcGM5NAUZA==",
+  "dgSpecHash": "NlhQ4E+63xKqNfc/MBrlWk0SN5PM0mC53ELWvVSjaN6apHFKC4vSnu4OixJqApmveV+Wn5IzKbEdvpJu1IeL4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\be301\\source\\repos\\ProjetoRPG_1\\ProjetoRPG_1\\ProjetoRPG.csproj",
+  "projectFilePath": "D:\\development\\projects\\ProjectCollegeSurvival\\ProjetoRPG_1\\ProjetoRPG_1\\ProjetoRPG.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\be301\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\be301\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }
