@@ -67,7 +67,47 @@ namespace ProjetoRPG
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Corte de papel";
             habilidade.Descricao = "Ataque normal do personagem, utiliza folhas de papel afiadas e atira elas no inimigo.";
+            habilidade.NivelRequerido = 1;
+            habilidade.GastoEnergia = 0;
             habilidade.Dano = 10;
+            habilidade.BuffLife = 0;
+            habilidade.BuffAnimo = 0;
+            habilidade.BuffPersistencia = 0;
+            habilidade.Usada = false;
+            habilidade.Ativa = false;
+            this.Habilidades.Add(habilidade);
+            return true;
+        }
+
+        private void ForcaDoOdio()
+        {
+            Habilidade habilidade = new Habilidade();
+            habilidade.Nome = "Força do Ódio";
+            habilidade.Descricao = "Aumenta o status de ânimo durante 1 turno em combate.";
+            habilidade.NivelRequerido = 2;
+            habilidade.GastoEnergia = 50;
+            habilidade.Dano = 0;
+            habilidade.BuffLife = 0;
+            habilidade.BuffAnimo = 15;
+            habilidade.BuffPersistencia = 0;
+            habilidade.Usada = false;
+            habilidade.Ativa = false;
+            this.Habilidades.Add(habilidade);
+        }
+        private void Persuadir()
+        {
+            Habilidade habilidade = new Habilidade();
+            habilidade.Nome = "Persuadir";
+            habilidade.Descricao = "Desabilita uma habilidade do inimigo";
+            habilidade.NivelRequerido = 3;
+            habilidade.GastoEnergia = 100;
+            habilidade.Dano = 0;
+            habilidade.BuffLife = 0;
+            habilidade.BuffAnimo = 0;
+            habilidade.BuffPersistencia = 0;
+            habilidade.Usada = false;
+            habilidade.Ativa = false;
+            this.Habilidades.Add(habilidade);
         }
 
         public override bool UsarHabilidade()

@@ -11,7 +11,7 @@ namespace ProjetoRPG
         public int Nivel { get; set; }
         public List<Habilidade> habilidades { get; set; }
         public Inventario inventario { get; set; }
-        public List<Equipamento> EquipamentosEquipados { get; }
+        public List<Equipamento> EquipamentosEquipados { set; get; }
         
         public bool EquiparEquipamento(Equipamento equipamento) {
             if (this.EquipamentosEquipados != null)
