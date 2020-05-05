@@ -23,16 +23,15 @@ namespace ProjetoRPG
 
         public override void LevelUp()
         {
-            if (this.Conhecimento >= 100 && this.Nivel <= 1)
-            {
-                this.Nivel++;
-                this.Conhecimento = this.Conhecimento - 100;
-                this.Life = 100;
-            }
-            else if (this.Conhecimento >= 240 && this.Nivel <= 2)
+
+            if (this.Conhecimento >= 240 && this.Nivel <= 2)
             {
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 240;
+                this.Life = 400;
+                this.Energia = 500;
+                this.Animo = 25;
+
             }
             else if (this.Conhecimento >= 408 && this.Nivel <= 3)
             {
