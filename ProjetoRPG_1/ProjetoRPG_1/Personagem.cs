@@ -22,7 +22,7 @@ namespace ProjetoRPG
 
         public abstract int calculoDano(Personagem inimigo,int dano);//dano é sempre negativo
 
-        public abstract bool UsarHabilidade();
+        public abstract bool UsarHabilidade(string nomeHabilidade);
         
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace ProjetoRPG
@@ -32,6 +33,7 @@ namespace ProjetoRPG
                 this.Energia = 600;
                 this.Animo = 25;
                 this.Persistencia = 20;
+                this.ForcaDoOdio();
             }
             else if (this.Conhecimento >= 408 && this.Nivel <= 3)
             {
@@ -41,6 +43,7 @@ namespace ProjetoRPG
                 this.Energia = 700;
                 this.Animo = 28;
                 this.Persistencia = 23;
+                Persuadir();
             }
             else if (this.Conhecimento >= 610 && this.Nivel <= 4)
             {
@@ -110,9 +113,9 @@ namespace ProjetoRPG
             this.Habilidades.Add(habilidade);
         }
 
-        public override bool UsarHabilidade()
+        public override bool UsarHabilidade(string nomeHabilidade)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
