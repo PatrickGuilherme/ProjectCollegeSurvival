@@ -64,7 +64,10 @@ namespace ProjetoRPG
 
         public override bool StartHabilidade()
         {
-            return true;
+            Habilidade habilidade = new Habilidade();
+            habilidade.Nome = "Corte de papel";
+            habilidade.Descricao = "Ataque normal do personagem, utiliza folhas de papel afiadas e atira elas no inimigo.";
+            habilidade.Dano = 10;
         }
 
         public override bool UsarHabilidade()

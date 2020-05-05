@@ -16,7 +16,7 @@ namespace ProjetoRPG
         public bool EquiparEquipamento(Equipamento equipamento) {
             if (this.EquipamentosEquipados != null)
             {
-                if (this.EquipamentosEquipados.Count < 3 && EquipamentosEquipados != null && equipamento.NivelRequerido >= this.Nivel)
+                if (this.EquipamentosEquipados.Count < 3 && EquipamentosEquipados != null && this.Nivel >= equipamento.NivelRequerido)
                 {
                     bool permisionInsert = true;
 
