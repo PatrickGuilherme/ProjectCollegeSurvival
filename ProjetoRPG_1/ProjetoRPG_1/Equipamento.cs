@@ -7,17 +7,17 @@ namespace ProjetoRPG {
         public string Tipo { get; set; }
         List<Equipamento> eq = new List<Equipamento>();
         
-          public void calcBoostEquipamento(Equipamento equipamento) {
+           public void calcBoostEquipamento(Equipamento equipamento) {
             adcionarEquipamento();
             foreach (var item in eq) {
                 if (equipamento.Nome.Equals(item.Nome)) {
                     //Verrifica se o nome do equipamento passado por parametro é igual a de algum equipamento a lista
                     if(item.BuffEnergia != 0) { // Se o BuffEnergia for diferente de zero retorna-se o valor por sem(porcentagen)
-                        
+                        equipamento.BuffPersistencia = 0;
                         equipamento.BuffEnergia = item.BuffEnergia * 100;
                     }
                     else if(item.BuffPersistencia != 0) {// Se o BuffPersistencia for diferente de zero retorna-se o valor por sem(porcentagen)
-                        
+                        equipamento.BuffEnergia = 0;
                         equipamento.BuffPersistencia = item.BuffPersistencia * 100;
                     }
                    
