@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using ProjetoRPG;
+using System.Collections.Generic;
 
 namespace TesteRPG
 {
@@ -28,6 +29,7 @@ namespace TesteRPG
             Worker wk = new Worker();
             Equipamento ep = new Equipamento();
             wk.Nivel = nivel;
+            wk.EquipamentosEquipados = new List<Equipamento>();
             ep.NivelRequerido = nivelequipamento;
             Assert.IsTrue(wk.EquiparEquipamento(ep));
         }
