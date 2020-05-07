@@ -6,20 +6,6 @@ namespace ProjetoRPG
 {
     public class Cheater : PersonagemJogavel
     {
-        public override bool Atacar(Personagem inimigo, int dano)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override int calculoDano(Personagem inimigo, int dano)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Defender()
-        {
-            throw new NotImplementedException();
-        }
 
         public override void LevelUp()
         {
@@ -31,7 +17,7 @@ namespace ProjetoRPG
             throw new NotImplementedException();
         }
 
-        public override bool UsarHabilidade()
+        public override bool UsarHabilidade(Habilidade habilidade)
         {
             throw new NotImplementedException();
         }

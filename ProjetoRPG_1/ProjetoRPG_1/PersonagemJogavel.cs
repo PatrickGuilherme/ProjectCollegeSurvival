@@ -32,6 +32,10 @@ namespace ProjetoRPG
                     if (permisionInsert)
                     {
                         EquipamentosEquipados.Add(equipamento);
+                        this.Persistencia += equipamento.BuffPersistencia;
+                        this.Animo += equipamento.BuffAnimo;
+                        this.Energia += equipamento.BuffEnergia;
+                        this.Life += equipamento.BuffLife;
                         return true;
                     }
                 }
@@ -67,7 +71,7 @@ namespace ProjetoRPG
 
         public abstract void LevelUp();
 
-        public void UsarItem(Item item, Personagem personagemInimigo)
+        public void UsarItem(Item item)
         {
             if(this.inventario != null)
             {
@@ -76,10 +80,6 @@ namespace ProjetoRPG
                 this.Life += item.BuffLife;
                 this.Persistencia += item.BuffPersistencia;
 
-                if (personagemInimigo != null)
-                {
-                    this.Atacar(personagemInimigo, item.Dano * -1);
-                }
                 this.DescartarItem(item);
             }
         }
@@ -102,6 +102,10 @@ namespace ProjetoRPG
         {
             if(this.EquipamentosEquipados != null)
             {
+                this.Persistencia -= equipamento.BuffPersistencia;
+                this.Animo -= equipamento.BuffAnimo;
+                this.Energia -= equipamento.BuffEnergia;
+                this.Life -= equipamento.BuffLife;
                 this.EquipamentosEquipados.Remove(equipamento);
             }
         }

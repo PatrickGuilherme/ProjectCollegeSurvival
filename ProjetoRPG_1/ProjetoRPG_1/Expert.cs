@@ -7,28 +7,7 @@ namespace ProjetoRPG
 
     public class Expert : PersonagemJogavel
     {
-        public override bool Atacar(Personagem inimigo, int dano)
-        {
-            if (inimigo == null || inimigo.Life <= 0)
-            {
-                return true;
-            }
-            return false;
-        }
 
-        public override int calculoDano(Personagem inimigo, int dano)
-        {
-            if (Atacar(inimigo, dano))
-            {
-                if (dano - inimigo.Persistencia < 0) return dano - inimigo.Persistencia;
-            }
-            return 0;
-        }
-
-        public override bool Defender()
-        {
-            throw new NotImplementedException();
-        }
 
         public override void LevelUp()
         {
@@ -121,17 +100,9 @@ namespace ProjetoRPG
             this.Habilidades.Add(habilidade);
         } //NIVEL 4
 
-        public override bool UsarHabilidade(string nomeHabilidade)
+        public override bool UsarHabilidade(Habilidade habilidade)
         {
-            foreach (Habilidade habilidade in Habilidades)
-            {
-                if (habilidade.Nome == nomeHabilidade) 
-                {
-                    ///aqui vai o tratamento da habilidade
-                    return true;
-                }
-            }
-            return false;
+            throw new NotImplementedException();
         }
     }
 }

@@ -6,27 +6,13 @@ namespace ProjetoRPG
 {
     public class Lapain : Monstro
     {
-        public override bool Atacar(Personagem inimigo, int dano)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override int calculoDano(Personagem inimigo, int dano)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Defender()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public override bool StartHabilidade()
         {
             throw new NotImplementedException();
         }
 
-        public override bool UsarHabilidade()
+        public override bool UsarHabilidade(Habilidade habilidade)
         {
             throw new NotImplementedException();
         }

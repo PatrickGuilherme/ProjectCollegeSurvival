@@ -7,21 +7,6 @@ namespace ProjetoRPG
 {
     public class Worker : PersonagemJogavel
     {
-        public override bool Atacar(Personagem inimigo, int dano)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override int calculoDano(Personagem inimigo, int dano)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Defender()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void LevelUp()
         {
 
@@ -77,7 +62,7 @@ namespace ProjetoRPG
             habilidade.BuffAnimo = 0;
             habilidade.BuffPersistencia = 0;
             habilidade.Usada = false;
-            habilidade.Ativa = false;
+            habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
             return true;
         }
@@ -94,7 +79,7 @@ namespace ProjetoRPG
             habilidade.BuffAnimo = 15;
             habilidade.BuffPersistencia = 0;
             habilidade.Usada = false;
-            habilidade.Ativa = false;
+            habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
         }
         private void Persuadir()
@@ -109,13 +94,28 @@ namespace ProjetoRPG
             habilidade.BuffAnimo = 0;
             habilidade.BuffPersistencia = 0;
             habilidade.Usada = false;
-            habilidade.Ativa = false;
+            habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
         }
 
-        public override bool UsarHabilidade(string nomeHabilidade)
+        public Habilidade DesativarHabilidadeInimigo(List<Habilidade> habilidadesInimigo)
         {
-            return true;
+            Random randNum = new Random();
+            int qtdHabilidades = habilidadesInimigo.Count;
+            int PDesabilit = 0;
+            while(PDesabilit <= 0 || PDesabilit > qtdHabilidades)
+            {
+                randNum = new Random();
+                PDesabilit = randNum.Next(1, qtdHabilidades);
+            }
+                
+            habilidadesInimigo[PDesabilit].Ativa = false;
+            return habilidadesInimigo[PDesabilit];
+        }
+
+        public override bool UsarHabilidade(Habilidade habilidade)
+        {
+            throw new NotImplementedException();
         }
     }
 }
