@@ -42,9 +42,24 @@ namespace ProjetoRPG
             }
             return false;
         }
+
+        public bool DesequiparEquipamento(Equipamento equipamento)
+        {
+            if (this.EquipamentosEquipados != null)
+            {
+                this.Persistencia -= equipamento.BuffPersistencia;
+                this.Animo -= equipamento.BuffAnimo;
+                this.Energia -= equipamento.BuffEnergia;
+                this.Life -= equipamento.BuffLife;
+                this.EquipamentosEquipados.Remove(equipamento);
+                return true;
+            }
+            return false;
+        }
+
         public bool ColetarItem(Item item)
         {
-            if(this.inventario != null)
+            if (this.inventario != null)
             {
                 int tamanhoInventario = 18; // 15 ITENS E 3 EQUIPAMENTOS EQUIPADOS QUE TEM QUE ESTA NO INVENTARIO
                 if (this.inventario.Itens.Count < tamanhoInventario)
@@ -56,22 +71,7 @@ namespace ProjetoRPG
             return false;
         }
 
-        public bool PodeMover(GameObject[,] mapaJogo, double newPx, double newPy)
-        {
-            if (mapaJogo != null)
-            {
-                if(mapaJogo[(int)Math.Floor(newPy), (int)Math.Floor(newPx)] == null)
-                {
-                    Debug.WriteLine("{0}  {1}", newPx, newPy);
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public abstract void LevelUp();
-
-        public void UsarItem(Item item)
+        public bool UsarItem(Item item, Personagem inimigo)//se for usar um item basta chamar essa função (nessa funcao caso o item cause dano sera chamado nessa funcao o ataque)
         {
             if(this.inventario != null)
             {
@@ -80,10 +80,16 @@ namespace ProjetoRPG
                 this.Life += item.BuffLife;
                 this.Persistencia += item.BuffPersistencia;
 
+                if(inimigo != null && item.Dano > 0)
+                {
+                    atacar(inimigo, item, null);
+                }
                 this.DescartarItem(item);
+                return true;
             }
+            return false;
         }
-
+   
         public bool DescartarItem(Item item)
         {
             if(this.inventario != null)
@@ -98,16 +104,35 @@ namespace ProjetoRPG
             return false;
         }
 
-        public  void DesequiparEquipamento(Equipamento equipamento)
+        public void DesativarEfeitoItem(Item item)
         {
-            if(this.EquipamentosEquipados != null)
-            {
-                this.Persistencia -= equipamento.BuffPersistencia;
-                this.Animo -= equipamento.BuffAnimo;
-                this.Energia -= equipamento.BuffEnergia;
-                this.Life -= equipamento.BuffLife;
-                this.EquipamentosEquipados.Remove(equipamento);
-            }
+            this.Animo -= item.BuffAnimo;
+            this.Energia -= item.BuffEnergia;
+            this.Life -= item.BuffLife;
+            this.Persistencia -= item.BuffPersistencia;
         }
+
+        public void DesativarEfeitoHabilidade(Habilidade habilidade)//quando terminar de usar a habilidade chame essa funcao
+        {
+            this.Animo -= habilidade.BuffAnimo;
+            this.Life -= habilidade.BuffLife;
+            this.Persistencia -= habilidade.BuffPersistencia;
+            habilidade.Usada = false;
+        }
+
+        public bool PodeMover(GameObject[,] mapaJogo, double newPx, double newPy)
+        {
+            if (mapaJogo != null)
+            {
+                if (mapaJogo[(int)Math.Floor(newPy), (int)Math.Floor(newPx)] == null)
+                {
+                    Debug.WriteLine("{0}  {1}", newPx, newPy);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public abstract void LevelUp();
     }
 }

@@ -15,25 +15,92 @@ namespace ProjetoRPG
         public List<Habilidade> Habilidades { get; set; }
         
         //atacar recebe o inimigo, o nome do item ou o nome da habilidade
-        public int atacar(Personagem inimigo,string nomeItem, string nomeHabilidade)
+        public int atacar(Personagem inimigo, Item item, Habilidade habilidade)
+        {   
+            //Verifica se há um inimigo para atacar
+            if(inimigo != null)
+            {
+                //Calcular dano do item
+                int danoInfligido = 0;
+                if (item != null)
+                {
+                    if (item.Dano > 0)
+                    {
+                        danoInfligido = calculoDano(inimigo, item.Dano);
+                    }
+                }
+
+                //Calcular dano da habilidade
+                else if (habilidade != null)
+                {
+                    if (habilidade.Dano > 0)
+                    {
+                        danoInfligido = calculoDano(inimigo, habilidade.Dano);
+                    }
+                    //verifica se a habiliidade é do tipo de imcapacitar habilidade
+                    if (habilidade.DesativaHabilidade)
+                    {
+                        return DesativarHabilidadeInimigo(inimigo.Habilidades);//retorna a posicao da habilidade desativada (nunca retorn 0)
+                    }
+                }
+
+                //Aplicar dano no inimigo
+                if (danoInfligido > 0)
+                {
+                    inimigo.Life -= danoInfligido;
+                    return 0;//significa que foi bem sucedido e que foi uma habilidade ou item causador de dano
+                }
+            }
+            return -1;
+        }
+
+        public int DesativarHabilidadeInimigo(List<Habilidade> habilidadesInimigo)
         {
-            //SE O ATACANTE FOR UM MONSTRO É SÓ NÃO PASSAR O nomeItem
-            //OBS: SE A HABILIDADE OU ITEM TIVER DANO, ELE DEVE SER REALIZADO AQUI, OS METODOS DE USARHABILIDADE E USARITEM destinam-se a outros efeitos sem ser o de dano 
-            //procura a habilidade ou item passado e aplica seus efeitos no inimigo ou no proprio jogador
-            //depois descarta o item ou marca a habilidade como usada
-            //se a habilidade tiver relação com incapacitar habilidade do inimigo (faz os procedimentos dela aqui ou em um metodo que seja chamado aqui)
-            //retorna 1 ou 0; em caso de erro
-            return 1;
+            Random randNum;
+            int qtdHabilidades = habilidadesInimigo.Count;
+            int PDesabilit = 0;
+
+            //enquanto a posicao for  < 0 || e a posicao for >= qtdHabilidades;
+            
+            while (PDesabilit <= 0  || PDesabilit >= qtdHabilidades)
+            {
+                randNum = new Random();
+                PDesabilit = randNum.Next(1, qtdHabilidades -1);
+            }
+
+            //Não inclui a habilidade basica (que esta na posicao 1)
+            if (PDesabilit >= 1)
+            {
+                habilidadesInimigo[PDesabilit].Ativa = false;
+                return PDesabilit;//retorna a posicao da habilidade do inimigo desativada
+            }
+            return -1;
         }
 
         public int calculoDano(Personagem inimigo, int dano) 
-        {
-            return 1;
+        {   
+            //O dano é da habilidade ou do item
+            int danoTotal = dano + this.Animo;
+            int defesaInimigo = inimigo.Persistencia;
+            int danoInfligido = 0;
+
+            //O dano é maior que a defesa
+            if (danoTotal >= defesaInimigo)
+            {
+                danoInfligido = danoTotal - defesaInimigo;
+            }
+
+            // A defesa é maior que o dano
+            else
+            {
+                danoInfligido = defesaInimigo - danoTotal;
+            }
+
+            return danoInfligido;
         }
 
         public abstract bool StartHabilidade();
         
-       
         public abstract bool UsarHabilidade(Habilidade habilidade);
         
     }

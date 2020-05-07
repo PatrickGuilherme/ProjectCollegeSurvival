@@ -61,6 +61,7 @@ namespace ProjetoRPG
             habilidade.BuffLife = 0;
             habilidade.BuffAnimo = 0;
             habilidade.BuffPersistencia = 0;
+            habilidade.DesativaHabilidade = false;
             habilidade.Usada = false;
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
@@ -78,10 +79,12 @@ namespace ProjetoRPG
             habilidade.BuffLife = 0;
             habilidade.BuffAnimo = 15;
             habilidade.BuffPersistencia = 0;
+            habilidade.DesativaHabilidade = false;
             habilidade.Usada = false;
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
         }
+        
         private void Persuadir()
         {
             Habilidade habilidade = new Habilidade();
@@ -93,29 +96,20 @@ namespace ProjetoRPG
             habilidade.BuffLife = 0;
             habilidade.BuffAnimo = 0;
             habilidade.BuffPersistencia = 0;
+            habilidade.DesativaHabilidade = true;
             habilidade.Usada = false;
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
         }
 
-        public Habilidade DesativarHabilidadeInimigo(List<Habilidade> habilidadesInimigo)
+        public override bool UsarHabilidade(Habilidade habilidade)// se for atacar com uma habilidade chame essa funcao depois chama a funcao de ataque
         {
-            Random randNum = new Random();
-            int qtdHabilidades = habilidadesInimigo.Count;
-            int PDesabilit = 0;
-            while(PDesabilit <= 0 || PDesabilit > qtdHabilidades)
-            {
-                randNum = new Random();
-                PDesabilit = randNum.Next(1, qtdHabilidades);
-            }
-                
-            habilidadesInimigo[PDesabilit].Ativa = false;
-            return habilidadesInimigo[PDesabilit];
+            this.Animo += habilidade.BuffAnimo;
+            this.Life += habilidade.BuffLife;
+            this.Persistencia += habilidade.BuffPersistencia;
+            habilidade.Usada = true;
+            return true;
         }
 
-        public override bool UsarHabilidade(Habilidade habilidade)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

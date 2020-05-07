@@ -11,5 +11,10 @@ namespace ProjetoRPG
         {
             throw new NotImplementedException();
         }
+
+        public override bool UsarHabilidade(Habilidade habilidade)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
