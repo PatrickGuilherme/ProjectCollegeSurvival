@@ -22,7 +22,7 @@ namespace TesteRPG
             ep.NivelRequerido = niveleqp;
             Assert.IsFalse(wk.EquiparEquipamento(ep));
         }
-        [Test]
+         [Test]
         public void EquipametoNivel_MenorIgual() {
             int nivel = 2;
             int nivelequipamento = 1;
@@ -31,6 +31,11 @@ namespace TesteRPG
             wk.Nivel = nivel;
             wk.EquipamentosEquipados = new List<Equipamento>();
             ep.NivelRequerido = nivelequipamento;
+            Assert.IsTrue(wk.EquiparEquipamento(ep));
+
+            ep.NivelRequerido = 2;
+            wk.Nivel = 2;
+            wk.EquipamentosEquipados = new List<Equipamento>();
             Assert.IsTrue(wk.EquiparEquipamento(ep));
         }
     }
