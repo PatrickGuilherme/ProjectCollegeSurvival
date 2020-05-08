@@ -5,13 +5,17 @@ namespace ProjetoRPG
 {
     public abstract class Personagem
     {
-
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public int Life { get; set; }
+        public int MaxLife { get; set; }
         public int Energia { get; set; }
+        public int MaxEnergia { get; set; }
         public int Animo { get; set; }
+        public int MaxAnimo { get; set; }
         public int Persistencia { get; set; }
+        public int MaxPersistencia { get; set; }
+
         public List<Habilidade> Habilidades { get; set; }
         
         //atacar recebe o inimigo, o nome do item ou o nome da habilidade

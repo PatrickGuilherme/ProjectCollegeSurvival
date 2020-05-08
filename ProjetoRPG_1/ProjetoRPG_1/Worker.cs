@@ -110,6 +110,5 @@ namespace ProjetoRPG
             habilidade.Usada = true;
             return true;
         }
-
     }
 }
