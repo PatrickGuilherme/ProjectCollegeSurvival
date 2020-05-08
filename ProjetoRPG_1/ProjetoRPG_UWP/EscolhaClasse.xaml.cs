@@ -35,10 +35,16 @@ namespace ProjetoRPG_UWP
         {
             Worker player = new Worker
             {
+                Nome = "João None",
+                Descricao = "",
                 Life = 300,
                 Energia = 500,
                 Animo = 20,
-                Persistencia = 15
+                Persistencia = 15,
+                inventario = new Inventario()
+                {
+                    Itens = new List<Item>()
+                }
             };
             this.Frame.Navigate(typeof(Movimento), player);
         }
@@ -49,7 +55,11 @@ namespace ProjetoRPG_UWP
                 Life = 400,
                 Energia = 400,
                 Animo = 15,
-                Persistencia = 20
+                Persistencia = 20,
+                inventario = new Inventario()
+                {
+                    Itens = new List<Item>()
+                }
             };
             this.Frame.Navigate(typeof(Movimento), player);
         }
@@ -60,7 +70,11 @@ namespace ProjetoRPG_UWP
                 Life = 500,
                 Energia = 300,
                 Animo = 17,
-                Persistencia = 18
+                Persistencia = 18,
+                inventario = new Inventario()
+                {
+                    Itens = new List<Item>()
+                }
             };
             this.Frame.Navigate(typeof(Movimento), player);
         }

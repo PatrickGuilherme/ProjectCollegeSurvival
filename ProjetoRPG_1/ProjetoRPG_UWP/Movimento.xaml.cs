@@ -19,6 +19,7 @@ using Windows.UI.Core;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using System.Timers;
+using System.Diagnostics;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x416
 
@@ -31,6 +32,7 @@ namespace ProjetoRPG_UWP
     public sealed partial class Movimento : Page
     {
         private Worker PlayerAuxiliar = new Worker();
+        private PersonagemJogavel PersonagemAuxiliar;
         private object jogador;
         private object objBlock = new Object();
         private bool MoveUp;
@@ -149,6 +151,12 @@ namespace ProjetoRPG_UWP
                 Canvas.SetLeft(ImgPlayer, 100 * ((PosicaoX - Math.Floor(PosicaoX / 12) * 12)));
                 Canvas.SetTop(ImgPlayer, 70 * ((PosicaoY - 0.084) - Math.Floor((PosicaoY - 0.084) / 9) * 9));
             }
+            else if (Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].I != null)
+            {
+                PersonagemAuxiliar.ColetarItem(Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].I);
+                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", PersonagemAuxiliar.inventario.Itens.Count);
+                Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)] = null;
+            }
             PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
             PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
         }
@@ -166,6 +174,12 @@ namespace ProjetoRPG_UWP
                 PosicaoY = PosicaoAux;
                 Canvas.SetLeft(ImgPlayer, 100 * ((PosicaoX - Math.Floor(PosicaoX / 12) * 12)));
                 Canvas.SetTop(ImgPlayer, 70 * ((PosicaoY + 0.084) - Math.Floor((PosicaoY + 0.084) / 9) * 9));
+            }
+            else if (Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].I != null)
+            {
+                PersonagemAuxiliar.ColetarItem(Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].I);
+                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", PersonagemAuxiliar.inventario.Itens.Count);
+                Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)] = null;
             }
             PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
             PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
@@ -185,6 +199,12 @@ namespace ProjetoRPG_UWP
                 Canvas.SetLeft(ImgPlayer, 100 * (((PosicaoX + 0.050) - Math.Floor((PosicaoX + 0.050) / 12) * 12)));
                 Canvas.SetTop(ImgPlayer, 70 * (PosicaoY - Math.Floor(PosicaoY / 9) * 9));
             }
+            else if (Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].I != null)
+            {
+                PersonagemAuxiliar.ColetarItem(Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].I);
+                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", PersonagemAuxiliar.inventario.Itens.Count);
+                Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)] = null;
+            }
             PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
             PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
         }
@@ -203,6 +223,12 @@ namespace ProjetoRPG_UWP
                 Canvas.SetLeft(ImgPlayer, 100 * (((PosicaoX - 0.050) - Math.Floor((PosicaoX - 0.050) / 12) * 12)));
                 Canvas.SetTop(ImgPlayer, 70 * (PosicaoY - Math.Floor(PosicaoY / 9) * 9));
             }
+            else if (Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].I != null)
+            {
+                PersonagemAuxiliar.ColetarItem(Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].I);
+                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", PersonagemAuxiliar.inventario.Itens.Count);
+                Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)] = null;
+            }
             PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
             PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
         }
@@ -211,6 +237,20 @@ namespace ProjetoRPG_UWP
         {
             base.OnNavigatedTo(e);
             jogador = e.Parameter;
+            Debug.WriteLine(jogador.ToString());
+            if(jogador.GetType() == typeof(Worker))
+            {
+                jogador = Convert.ChangeType(jogador, typeof(Worker));
+                PersonagemAuxiliar = (Worker)jogador;
+            }
+            else if (jogador.GetType() == typeof(Expert))
+            {
+                jogador = Convert.ChangeType(jogador, typeof(Expert));
+            }
+            else 
+            {
+                jogador = Convert.ChangeType(jogador, typeof(Cheater));
+            }
         }
     }
 
