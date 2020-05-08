@@ -25,6 +25,7 @@ namespace ProjetoRPG
 
             LoadingDeslocamentosMapa(Map);
             //LoadingEnemiesMapa(Map);
+            LoadingItensMapa(Map);
             return Map;
         }
 
@@ -165,6 +166,17 @@ namespace ProjetoRPG
             }  //Aculo
            
 
+            return Map;
+        }
+
+        private GameObject[,] LoadingItensMapa(GameObject[,] Map) 
+        {
+            //ISSO AQUI É UM TESTE !!
+            ItemPrimario item = new ItemPrimario();
+            item.Nome = "TESTE";
+            GameObject teste = new GameObject();
+            teste.I = item;
+            Map[3, 3] = teste;
             return Map;
         }
     }
