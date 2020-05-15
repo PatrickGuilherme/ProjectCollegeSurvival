@@ -9,7 +9,6 @@ namespace ProjetoRPG
     {
         public int Conhecimento { get; set; }
         public int Nivel { get; set; }
-        public List<Habilidade> habilidades { get; set; }
         public Inventario inventario { get; set; }
         public List<Equipamento> EquipamentosEquipados { set; get; }
         

@@ -51,16 +51,17 @@ namespace ProjetoRPG
                 //Aplicar dano no inimigo
                 if (danoInfligido > 0)
                 {
-                    inimigo.Life -= danoInfligido;
-                    return 0;//significa que foi bem sucedido e que foi uma habilidade ou item causador de dano
+                    //inimigo.Life -= danoInfligido;
+                    return danoInfligido;//significa que foi bem sucedido e que foi uma habilidade ou item causador de dano
                 }
             }
-            return -1;
+            return 0; // o retorno -1 está aumentando a vida do inimigo
         }
 
         public int DesativarHabilidadeInimigo(List<Habilidade> habilidadesInimigo)
         {
             Random randNum;
+            
             int qtdHabilidades = habilidadesInimigo.Count;
             int PDesabilit = 0;
 
@@ -94,11 +95,12 @@ namespace ProjetoRPG
                 danoInfligido = danoTotal - defesaInimigo;
             }
 
-            // A defesa é maior que o dano
-            else
-            {
-                danoInfligido = defesaInimigo - danoTotal;
-            }
+            // A defesa é maior que o dano(Não faz sentido - ass: Jota)
+            //else
+            //{
+            //    //danoInfligido = defesaInimigo - danoTotal;
+
+            //}
 
             return danoInfligido;
         }

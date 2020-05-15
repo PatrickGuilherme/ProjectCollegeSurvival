@@ -10,7 +10,7 @@ namespace ProjetoRPG
         public override void LevelUp()
         {
 
-            if (this.Conhecimento >= 240 && this.Nivel <= 2)
+            if (this.Conhecimento >= 240 && this.Nivel < 2)
             {
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 240;
@@ -20,7 +20,7 @@ namespace ProjetoRPG
                 this.Persistencia = 20;
                 this.ForcaDoOdio();
             }
-            else if (this.Conhecimento >= 408 && this.Nivel <= 3)
+            else if (this.Conhecimento >= 408 && this.Nivel < 3)
             {
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 408;
@@ -30,7 +30,7 @@ namespace ProjetoRPG
                 this.Persistencia = 23;
                 Persuadir();
             }
-            else if (this.Conhecimento >= 610 && this.Nivel <= 4)
+            else if (this.Conhecimento >= 610 && this.Nivel < 4)
             {
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 610;
@@ -39,7 +39,7 @@ namespace ProjetoRPG
                 this.Animo = 30;
                 this.Persistencia = 25;
             }
-            else if (this.Conhecimento >= 852 && this.Nivel <= 5)
+            else if (this.Conhecimento >= 852 && this.Nivel < 5)
             {
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 852;

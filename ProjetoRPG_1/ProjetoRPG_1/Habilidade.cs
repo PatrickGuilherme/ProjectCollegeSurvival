@@ -22,5 +22,9 @@ namespace ProjetoRPG
         {
             throw new NotImplementedException();
         }
+        override
+        public string ToString(){
+            return this.Nome;
+        }
     }
 }
