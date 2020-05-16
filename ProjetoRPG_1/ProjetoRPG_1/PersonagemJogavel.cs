@@ -7,6 +7,8 @@ namespace ProjetoRPG
 {
     public abstract class PersonagemJogavel: Personagem
     {
+        public double PosicaoX { get; set; }
+        public double PosicaoY { get; set; }
         public int Conhecimento { get; set; }
         public int Nivel { get; set; }
         public Inventario inventario { get; set; }

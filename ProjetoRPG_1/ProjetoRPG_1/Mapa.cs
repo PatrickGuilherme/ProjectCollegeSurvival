@@ -24,7 +24,7 @@ namespace ProjetoRPG
              {G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G}};
 
             LoadingDeslocamentosMapa(Map);
-            //LoadingEnemiesMapa(Map);
+            LoadingEnemiesMapa(Map);
             LoadingItensMapa(Map);
             return Map;
         }
@@ -83,13 +83,12 @@ namespace ProjetoRPG
         {
             var random = new Random();
             int posicaoY, posicaoX;
-
             for (int i = 0; i < 12; i++)
             {
                 while (true)
                 {
                     posicaoY = random.Next(9);
-                    posicaoX = random.Next(107,131);
+                    posicaoX = random.Next(107, 131);
                     if (Map[posicaoY, posicaoX] == null) break;
                 }
                 GameObject GridMonstro = new GameObject();
@@ -101,6 +100,7 @@ namespace ProjetoRPG
                     Energia = 150,
                     Persistencia = 10
                 };
+                GridGasefic.Habilidades = new List<Habilidade>();
                 GridMonstro.M = GridGasefic;
                 Map[posicaoY, posicaoX] = GridMonstro;
             } //Gasefic
@@ -121,6 +121,7 @@ namespace ProjetoRPG
                     Energia = 200,
                     Persistencia = 25
                 };
+                GridMintost.Habilidades = new List<Habilidade>();
                 GridMonstro.M = GridMintost;
                 Map[posicaoY, posicaoX] = GridMonstro;
             } //Mintost
@@ -141,6 +142,7 @@ namespace ProjetoRPG
                     Energia = 250,
                     Persistencia = 20
                 };
+                GridMinlapa.Habilidades = new List<Habilidade>();
                 GridMonstro.M = GridMinlapa;
                 Map[posicaoY, posicaoX] = GridMonstro;
             } //Minlapa
@@ -161,10 +163,11 @@ namespace ProjetoRPG
                     Energia = 300,
                     Persistencia = 25
                 };
+                GridAculo.Habilidades = new List<Habilidade>();
                 GridMonstro.M = GridAculo;
                 Map[posicaoY, posicaoX] = GridMonstro;
             }  //Aculo
-           
+
 
             return Map;
         }

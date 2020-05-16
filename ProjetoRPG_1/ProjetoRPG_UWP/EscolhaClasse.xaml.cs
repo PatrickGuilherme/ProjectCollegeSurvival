@@ -35,37 +35,25 @@ namespace ProjetoRPG_UWP {
                 Life = 300,
                 Energia = 500,
                 Animo = 20,
+                Nivel = 1,
+                Conhecimento = 0,
                 Persistencia = 15,
+                PosicaoX = 19,
+                PosicaoY = 2,
                 inventario = new Inventario() {
                     Itens = new List<Item>()
                 },
-                Nivel = 1,
-                Conhecimento = 4000,
-               
-        };
-           
-            player.Habilidades = new List<Habilidade>();
-            
-            player.StartHabilidade();
-            player.LevelUp();
-            player.LevelUp();
-            Worker monstro = new Worker {
-                Nome = "Monstro",
-                Descricao = "",
-                Life = 160,
-                Energia = 754,
-                Animo = 20,
-                Persistencia = 15,
-                inventario = new Inventario() {
-                    Itens = new List<Item>()
-                }
-            };
-            //monstro.Habilidades = new List<Habilidade>();
-            var myList = new List<Personagem>() {
+                Habilidades = new List<Habilidade>()
+                };
+            Mapa Mapa = new Mapa();
+            Mapa.MapaJogo = new GameObject[9, 132];
+            Mapa.MapaJogo = Mapa.ConstruirMapa(Mapa.MapaJogo);
+            var ListaParametros = new List<object>() {
                 player,
-                monstro
+                Mapa
             };
-            this.Frame.Navigate(typeof(Combate), myList);
+            player.StartHabilidade();
+            this.Frame.Navigate(typeof(Movimento), ListaParametros);
         }
         private void BtnExpert_Click(object sender, RoutedEventArgs e) {
             Expert player = new Expert {
@@ -73,23 +61,49 @@ namespace ProjetoRPG_UWP {
                 Energia = 400,
                 Animo = 15,
                 Persistencia = 20,
+                PosicaoX = 19,
+                PosicaoY = 2,
+                Nivel = 1,
+                Conhecimento = 0,
                 inventario = new Inventario() {
                     Itens = new List<Item>()
-                }
-            };
-            this.Frame.Navigate(typeof(Movimento), player);
+                },
+                Habilidades = new List<Habilidade>()
+                };
+            Mapa Mapa = new Mapa();
+            Mapa.MapaJogo = new GameObject[9, 132];
+            Mapa.MapaJogo = Mapa.ConstruirMapa(Mapa.MapaJogo);
+            var ListaParametros = new List<object>() {
+                    player,
+                    Mapa
+                };
+            player.StartHabilidade();
+            this.Frame.Navigate(typeof(Movimento), ListaParametros);
         }
         private void BtnCheater_Click(object sender, RoutedEventArgs e) {
             Cheater player = new Cheater {
                 Life = 500,
                 Energia = 300,
                 Animo = 17,
+                Nivel = 1,
+                Conhecimento = 0,
+                PosicaoX = 19,
+                PosicaoY = 2,
                 Persistencia = 18,
                 inventario = new Inventario() {
                     Itens = new List<Item>()
-                }
+                },
+                Habilidades = new List<Habilidade>()
             };
-            this.Frame.Navigate(typeof(Movimento), player);
+            Mapa Mapa = new Mapa();
+            Mapa.MapaJogo = new GameObject[9, 132];
+            Mapa.MapaJogo = Mapa.ConstruirMapa(Mapa.MapaJogo);
+            var ListaParametros = new List<object>() {
+                    player,
+                    Mapa
+                };
+            player.StartHabilidade();
+            this.Frame.Navigate(typeof(Movimento), ListaParametros);
         }
     }
 }

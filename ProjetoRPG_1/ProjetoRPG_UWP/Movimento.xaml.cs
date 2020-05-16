@@ -32,22 +32,20 @@ namespace ProjetoRPG_UWP
     public sealed partial class Movimento : Page
     {
         private Worker PlayerAuxiliar = new Worker();
-        private PersonagemJogavel PersonagemAuxiliar;
-        private object jogador;
+        private PersonagemJogavel jogador;
+        private Mapa Mapa;
         private object objBlock = new Object();
         private bool MoveUp;
-        private double PosicaoX = 20, PosicaoY = 2, PosicaoAux;
+        private double PosicaoAux;
         private bool MoveDown;
         private bool MoveLeft;
         private bool MoveRight;
         private Timer MovementTimer = new Timer { Interval = 20 };
-        private Mapa GeradorMapa = new Mapa();
-        private GameObject[,] Mapa = new GameObject[9, 132];
+        
 
         public Movimento()
         {
             InitializeComponent();
-            Mapa = GeradorMapa.ConstruirMapa(Mapa);
             MovementTimer.Elapsed += MovementTimer_Elapsed;
         }
 
@@ -138,119 +136,176 @@ namespace ProjetoRPG_UWP
 
         private void UpPlayer() 
         {
-            if (PlayerAuxiliar.PodeMover(Mapa, PosicaoX, PosicaoY - 0.084))
+            if (PlayerAuxiliar.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY - 0.084))
             {
                 Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 5);
-                PosicaoY = Math.Round(PosicaoY - 0.084, 5);
+                jogador.PosicaoY = Math.Round(jogador.PosicaoY - 0.084, 5);
             }
-            else if(Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].Deslocamento != null)
+            else if(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
             {
-                PosicaoAux = Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].Deslocamento[0];
-                PosicaoX = Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].Deslocamento[1];
-                PosicaoY = PosicaoAux;
-                Canvas.SetLeft(ImgPlayer, 100 * ((PosicaoX - Math.Floor(PosicaoX / 12) * 12)));
-                Canvas.SetTop(ImgPlayer, 70 * ((PosicaoY - 0.084) - Math.Floor((PosicaoY - 0.084) / 9) * 9));
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
+                jogador.PosicaoY = PosicaoAux;
+                AtualizarImagem(0, -0.084);
             }
-            else if (Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].I != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].I != null)
             {
-                PersonagemAuxiliar.ColetarItem(Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)].I);
-                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", PersonagemAuxiliar.inventario.Itens.Count);
-                Mapa[(int)Math.Floor(PosicaoY - 0.084), (int)Math.Floor(PosicaoX)] = null;
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].I);
+                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", jogador.inventario.Itens.Count);
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)] = null;
             }
-            PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
-            PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].M != null)
+            {
+                var ListaParametros = new List<Personagem>() {
+                    jogador,
+                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].M
+                };
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)] = null;
+                MoveUp = false;
+                MoveDown = false;
+                MoveLeft = false;
+                MoveRight = false;
+                Frame.Navigate(typeof(Combate), ListaParametros);
+            }
+            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
         }
         private void DownPlayer()
         {
-            if (PlayerAuxiliar.PodeMover(Mapa, PosicaoX, PosicaoY + 0.084))
+            if (PlayerAuxiliar.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY + 0.084))
             {
                 Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 5);
-                PosicaoY  = Math.Round(PosicaoY + 0.084, 5);
+                jogador.PosicaoY  = Math.Round(jogador.PosicaoY + 0.084, 5);
             }
-            else if (Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].Deslocamento != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
             {
-                PosicaoAux = Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].Deslocamento[0];
-                PosicaoX = Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].Deslocamento[1];
-                PosicaoY = PosicaoAux;
-                Canvas.SetLeft(ImgPlayer, 100 * ((PosicaoX - Math.Floor(PosicaoX / 12) * 12)));
-                Canvas.SetTop(ImgPlayer, 70 * ((PosicaoY + 0.084) - Math.Floor((PosicaoY + 0.084) / 9) * 9));
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
+                jogador.PosicaoY = PosicaoAux;
+                AtualizarImagem(0, 0.084);
             }
-            else if (Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].I != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].I != null)
             {
-                PersonagemAuxiliar.ColetarItem(Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)].I);
-                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", PersonagemAuxiliar.inventario.Itens.Count);
-                Mapa[(int)Math.Floor(PosicaoY + 0.084), (int)Math.Floor(PosicaoX)] = null;
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].I);
+                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", jogador.inventario.Itens.Count);
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)] = null;
             }
-            PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
-            PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].M != null)
+            {
+                var ListaParametros = new List<Personagem>() {
+                    jogador,
+                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].M
+                };
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)] = null;
+                MoveUp = false;
+                MoveDown = false;
+                MoveLeft = false;
+                MoveRight = false;
+                Frame.Navigate(typeof(Combate), ListaParametros);
+            }
+            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
         }
         private void RightPlayer()
         {
-            if (PlayerAuxiliar.PodeMover(Mapa, PosicaoX + 0.050, PosicaoY))
+            if (PlayerAuxiliar.PodeMover(Mapa.MapaJogo, jogador.PosicaoX + 0.050, jogador.PosicaoY))
             {
                 Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 5);
-                PosicaoX = Math.Round(PosicaoX + 0.050, 5);
+                jogador.PosicaoX = Math.Round(jogador.PosicaoX + 0.050, 5);
             }
-            else if (Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].Deslocamento != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].Deslocamento != null)
             {
-                PosicaoAux = Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].Deslocamento[0];
-                PosicaoX = Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].Deslocamento[1];
-                PosicaoY = PosicaoAux;
-                Canvas.SetLeft(ImgPlayer, 100 * (((PosicaoX + 0.050) - Math.Floor((PosicaoX + 0.050) / 12) * 12)));
-                Canvas.SetTop(ImgPlayer, 70 * (PosicaoY - Math.Floor(PosicaoY / 9) * 9));
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].Deslocamento[0];
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].Deslocamento[1];
+                jogador.PosicaoY = PosicaoAux;
+                AtualizarImagem(0.050, 0);
             }
-            else if (Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].I != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].I != null)
             {
-                PersonagemAuxiliar.ColetarItem(Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)].I);
-                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", PersonagemAuxiliar.inventario.Itens.Count);
-                Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX + 0.050)] = null;
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].I);
+                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", jogador.inventario.Itens.Count);
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)] = null;
             }
-            PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
-            PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].M != null)
+            {
+                var ListaParametros = new List<Personagem>() {
+                jogador,
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].M
+                };
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)] = null;
+                MoveUp = false;
+                MoveDown = false;
+                MoveLeft = false;
+                MoveRight = false;
+                Frame.Navigate(typeof(Combate), ListaParametros);
+            }
+            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
         }
         private void LeftPlayer()
         {
-            if(PlayerAuxiliar.PodeMover(Mapa, PosicaoX - 0.050, PosicaoY)) 
+            if(PlayerAuxiliar.PodeMover(Mapa.MapaJogo, jogador.PosicaoX - 0.050, jogador.PosicaoY)) 
             {
                 Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) - 5);
-                PosicaoX = Math.Round(PosicaoX - 0.050, 5);
+                jogador.PosicaoX = Math.Round(jogador.PosicaoX - 0.050, 5);
             }
-            else if (Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].Deslocamento != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].Deslocamento != null)
             {
-                PosicaoAux = Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].Deslocamento[0];
-                PosicaoX = Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].Deslocamento[1];
-                PosicaoY = PosicaoAux;
-                Canvas.SetLeft(ImgPlayer, 100 * (((PosicaoX - 0.050) - Math.Floor((PosicaoX - 0.050) / 12) * 12)));
-                Canvas.SetTop(ImgPlayer, 70 * (PosicaoY - Math.Floor(PosicaoY / 9) * 9));
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].Deslocamento[0];
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].Deslocamento[1];
+                jogador.PosicaoY = PosicaoAux;
+                AtualizarImagem(-0.050, 0);
             }
-            else if (Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].I != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].I != null)
             {
-                PersonagemAuxiliar.ColetarItem(Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)].I);
-                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", PersonagemAuxiliar.inventario.Itens.Count);
-                Mapa[(int)Math.Floor(PosicaoY), (int)Math.Floor(PosicaoX - 0.050)] = null;
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].I);
+                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", jogador.inventario.Itens.Count);
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)] = null;
             }
-            PosicaoMatrizX.Text = Math.Floor(PosicaoX).ToString();
-            PosicaoMatrizY.Text = Math.Floor(PosicaoY).ToString();
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].M != null)
+            {
+                var ListaParametros = new List<Personagem>() {
+                jogador,
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].M
+                };
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)] = null;
+                MoveUp = false;
+                MoveDown = false;
+                MoveLeft = false;
+                MoveRight = false;
+                Frame.Navigate(typeof(Combate), ListaParametros);
+            }
+            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
+        }
+
+        private void AtualizarImagem(double X, double Y) 
+        {
+            Canvas.SetLeft(ImgPlayer, 100 * (((jogador.PosicaoX + X) - Math.Floor((jogador.PosicaoX + X) / 12) * 12)));
+            Canvas.SetTop(ImgPlayer, 70 * ((jogador.PosicaoY + Y) - Math.Floor((jogador.PosicaoY + Y) / 9) * 9));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            jogador = e.Parameter;
+            var ListParametros = e.Parameter as List<object>;
+            jogador = ListParametros.ElementAt<object>(0) as PersonagemJogavel;
+            Mapa = ListParametros.ElementAt<object>(1) as Mapa;
+
             Debug.WriteLine(jogador.ToString());
             if(jogador.GetType() == typeof(Worker))
             {
-                jogador = Convert.ChangeType(jogador, typeof(Worker));
-                PersonagemAuxiliar = (Worker)jogador;
+                jogador = (Worker)jogador;
             }
             else if (jogador.GetType() == typeof(Expert))
             {
-                jogador = Convert.ChangeType(jogador, typeof(Expert));
+                jogador = (Expert)jogador;
             }
             else 
             {
-                jogador = Convert.ChangeType(jogador, typeof(Cheater));
+                jogador = (Cheater)jogador;
             }
+            AtualizarImagem(0, 0);
         }
     }
 

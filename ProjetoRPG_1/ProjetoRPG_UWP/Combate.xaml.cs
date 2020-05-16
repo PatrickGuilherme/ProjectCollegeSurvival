@@ -20,6 +20,7 @@ namespace ProjetoRPG_UWP {
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
+
     public sealed partial class Combate : Page {
         PersonagemJogavel jogador;
         Personagem monstro;
@@ -31,28 +32,23 @@ namespace ProjetoRPG_UWP {
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             base.OnNavigatedTo(e);
 
-            var myList = e.Parameter as List<Personagem>;
-            jogador = myList.ElementAt<Personagem>(0) as PersonagemJogavel;
-            monstro = myList.ElementAt<Personagem>(1);
-            if (jogador.GetType() == typeof(Worker)) {
+            var ListParametros = e.Parameter as List<Personagem>;
+            jogador = ListParametros.ElementAt<Personagem>(0) as PersonagemJogavel;
+            monstro = ListParametros.ElementAt<Personagem>(1);
+            if (jogador.GetType() == typeof(Worker)) 
+            {
                 jogador = (Worker)jogador;
             }
-            else if (jogador.GetType() == typeof(Expert)) {
+            else if (jogador.GetType() == typeof(Expert)) 
+            {
                 jogador = (Expert)jogador;
             }
-            else {
+            else 
+            {
                 jogador = (Cheater)jogador;
             }
+            monstro = (Monstro)monstro;
 
-            if (monstro.GetType() == typeof(Worker)) {
-                monstro = (Worker)monstro;
-            }
-            else if (monstro.GetType() == typeof(Expert)) {
-                monstro = (Expert)monstro;
-            }
-            else {
-                monstro = (Cheater)monstro;
-            }
             int i = 0;
             jogador.Habilidades.ForEach(delegate (Habilidade habilidade) {
                 if (i != 0) {
@@ -67,7 +63,6 @@ namespace ProjetoRPG_UWP {
 
             monstro.Life -= jogador.atacar(monstro, null, jogador.Habilidades.ElementAt<Habilidade>(0));
 
-            //monstro.Life -= 10;
             AtualizarTexto();
             if (monstro.Life <= 0) {
                 Frame.GoBack();
@@ -87,7 +82,6 @@ namespace ProjetoRPG_UWP {
             Energia.Text = "Energia: " + jogador.Energia;
             VidaM.Text = "Vida: " + monstro.Life.ToString();
             EnergiaM.Text = "Energia: " + monstro.Energia;
-            
         }
     }
 }
