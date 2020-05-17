@@ -8,6 +8,10 @@ namespace ProjetoRPG
     {
         public List<ItemPrimario> ItensPreRequesito { get; }
         public List<ItemPrimario> ListaAuxiliar { get; }
+        public ItemSecundario()
+        {
+
+        }
         public bool vericarItemPreRequesito(List<ItemPrimario> listaItem)
         {
             foreach (var item in ItensPreRequesito)
@@ -83,6 +87,12 @@ namespace ProjetoRPG
         {
             this.Nome = Nome;
             addItem(Nome);
+        }
+        
+        override
+        public string ToString()
+        {
+            return this.Nome;
         }
 
     }

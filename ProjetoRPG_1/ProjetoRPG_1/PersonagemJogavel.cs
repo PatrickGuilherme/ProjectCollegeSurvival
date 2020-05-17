@@ -72,7 +72,7 @@ namespace ProjetoRPG
             return false;
         }
 
-        public bool UsarItem(Item item, Personagem inimigo)//se for usar um item basta chamar essa função (nessa funcao caso o item cause dano sera chamado nessa funcao o ataque)
+        public bool UsarItem(Item item)
         {
             if(this.inventario != null)
             {
@@ -80,11 +80,6 @@ namespace ProjetoRPG
                 this.Energia += item.BuffEnergia;
                 this.Life += item.BuffLife;
                 this.Persistencia += item.BuffPersistencia;
-
-                if(inimigo != null && item.Dano > 0)
-                {
-                    atacar(inimigo, item, null);
-                }
                 this.DescartarItem(item);
                 return true;
             }

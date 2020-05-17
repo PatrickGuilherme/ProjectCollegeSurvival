@@ -151,7 +151,6 @@ namespace ProjetoRPG_UWP
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].I != null)
             {
                 jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].I);
-                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", jogador.inventario.Itens.Count);
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)] = null;
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.084), (int)Math.Floor(jogador.PosicaoX)].M != null)
@@ -187,7 +186,6 @@ namespace ProjetoRPG_UWP
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].I != null)
             {
                 jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].I);
-                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", jogador.inventario.Itens.Count);
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)] = null;
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.084), (int)Math.Floor(jogador.PosicaoX)].M != null)
@@ -223,7 +221,6 @@ namespace ProjetoRPG_UWP
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].I != null)
             {
                 jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].I);
-                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", jogador.inventario.Itens.Count);
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)] = null;
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].M != null)
@@ -259,7 +256,6 @@ namespace ProjetoRPG_UWP
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].I != null)
             {
                 jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].I);
-                Debug.WriteLine("QUANTIDADE DE ITENS ENCONTRADOS = {0}", jogador.inventario.Itens.Count);
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)] = null;
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].M != null)
@@ -306,6 +302,13 @@ namespace ProjetoRPG_UWP
                 jogador = (Cheater)jogador;
             }
             AtualizarImagem(0, 0);
+            /*AREA DE TESTE*/
+            Debug.WriteLine("ITENS ECONTRADOS: " + jogador.inventario.Itens.Count) ;
+            Debug.WriteLine("LIFE: " + jogador.Life);
+            Debug.WriteLine("ENERGIA: " + jogador.Energia);
+            Debug.WriteLine("CONHECIMENTO: " + jogador.Conhecimento);
+            Debug.WriteLine("NIVEL: " + jogador.Nivel);
+            /*===========*/
         }
     }
 

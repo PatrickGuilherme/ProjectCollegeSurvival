@@ -23,18 +23,34 @@ namespace ProjetoRPG_UWP {
 
     public sealed partial class Combate : Page {
         PersonagemJogavel jogador;
-        Personagem monstro;
+        Monstro monstro;
+
         public Combate() {
             this.InitializeComponent();
             Ataque.Click += Btn_Ataque;
             Lancar_Habilidade.Click += Btn_Habilidade;
+            Inventario.Click += Btn_Inventario;
         }
+
+        private void Btn_Inventario(object sender, RoutedEventArgs e)
+        {
+            if(ListaI.SelectedValue != null) {
+                Item item = ListaI.SelectedItem as ItemSecundario;
+                jogador.UsarItem(item);
+                monstro.Life -= jogador.atacar(monstro, item, null);
+                AtualizarTexto();
+                ListaI.Items.Remove(item);
+                checkLife();
+            }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             base.OnNavigatedTo(e);
 
             var ListParametros = e.Parameter as List<Personagem>;
             jogador = ListParametros.ElementAt<Personagem>(0) as PersonagemJogavel;
-            monstro = ListParametros.ElementAt<Personagem>(1);
+            monstro = ListParametros.ElementAt<Personagem>(1) as Monstro;
+            
             if (jogador.GetType() == typeof(Worker)) 
             {
                 jogador = (Worker)jogador;
@@ -47,34 +63,65 @@ namespace ProjetoRPG_UWP {
             {
                 jogador = (Cheater)jogador;
             }
-            monstro = (Monstro)monstro;
-
+            
             int i = 0;
+            jogador.inventario.GetItemSecundarios().ForEach(delegate (ItemSecundario itemSecundario)
+            {
+                ListaI.Items.Add(itemSecundario);
+            });
+
             jogador.Habilidades.ForEach(delegate (Habilidade habilidade) {
                 if (i != 0) {
                     ListaH.Items.Add(habilidade);
                 }
                 i++;
             });
+
+            /*AREA DE TESTE*/
+            monstro.ConhecimentoDrop = 250;
+            Item item = new ItemPrimario();
+            item.Nome = "EAI MEN!!!";
+            monstro.ItemDrop = item;
+            /*============*/
+
             AtualizarTexto();
         }
 
         private void Btn_Ataque(object sender, RoutedEventArgs e) {
-
             monstro.Life -= jogador.atacar(monstro, null, jogador.Habilidades.ElementAt<Habilidade>(0));
-
             AtualizarTexto();
-            if (monstro.Life <= 0) {
+            checkLife();
+        }
+        private void checkLife()
+        {
+            //monstro morto jogador vivo
+            if (monstro.Life <= 0 && jogador.Life > 0)
+            {
+                if (monstro.ItemDrop != null)
+                {
+                    jogador.ColetarItem(monstro.ItemDrop);
+                }
+                jogador.Conhecimento += monstro.ConhecimentoDrop;
+                jogador.LevelUp();
                 Frame.GoBack();
+                
+            }
+            //jogador morto monstro vivo
+            else if(jogador.Life <= 0)
+            {
+                //criar tela ou mensagem de personagem morto (game over)
             }
         }
         private void Btn_Habilidade(object sender, RoutedEventArgs e) {
-            Habilidade hbl = ListaH.SelectedItem as Habilidade;
-            monstro.Life -= jogador.atacar(monstro, null, hbl);
-            jogador.Energia -= hbl.GastoEnergia;
-            AtualizarTexto();
-            if (monstro.Life <= 0) {
-                Frame.GoBack();
+            if (ListaH.SelectedValue != null)
+            {
+                Habilidade hbl = ListaH.SelectedItem as Habilidade;
+                //verificar se o usuario tem a energia para usar a habilidade
+                monstro.Life -= jogador.atacar(monstro, null, hbl);
+                
+                jogador.Energia -= hbl.GastoEnergia;
+                AtualizarTexto();
+                checkLife();
             }
         }
         private void AtualizarTexto() {
@@ -82,6 +129,7 @@ namespace ProjetoRPG_UWP {
             Energia.Text = "Energia: " + jogador.Energia;
             VidaM.Text = "Vida: " + monstro.Life.ToString();
             EnergiaM.Text = "Energia: " + monstro.Energia;
+
         }
     }
 }

@@ -29,6 +29,12 @@ namespace ProjetoRPG_UWP {
             BtnExpert.Click += BtnExpert_Click;
         }
         private void BtnWorker_Click(object sender, RoutedEventArgs e) {
+            ItemSecundario itsec = new ItemSecundario();
+            itsec.BuffLife = 10;
+            itsec.BuffAnimo = 10;
+            itsec.Nome = "TESTE DE ITEM";
+            itsec.Dano = 99;
+
             Worker player = new Worker {
                 Nome = "João None",
                 Descricao = "",
@@ -45,6 +51,8 @@ namespace ProjetoRPG_UWP {
                 },
                 Habilidades = new List<Habilidade>()
                 };
+            player.inventario.Itens.Add(itsec);
+
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];
             Mapa.MapaJogo = Mapa.ConstruirMapa(Mapa.MapaJogo);
