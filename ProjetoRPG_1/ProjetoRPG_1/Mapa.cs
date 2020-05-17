@@ -101,6 +101,7 @@ namespace ProjetoRPG
                     Persistencia = 10
                 };
                 GridGasefic.Habilidades = new List<Habilidade>();
+                GridGasefic.StartHabilidade();
                 GridMonstro.M = GridGasefic;
                 Map[posicaoY, posicaoX] = GridMonstro;
             } //Gasefic

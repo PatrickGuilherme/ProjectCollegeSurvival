@@ -39,6 +39,7 @@ namespace ProjetoRPG
                 {
                     if (habilidade.Dano > 0)
                     {
+                        
                         danoInfligido = calculoDano(inimigo, habilidade.Dano);
                     }
                     //verifica se a habiliidade é do tipo de imcapacitar habilidade

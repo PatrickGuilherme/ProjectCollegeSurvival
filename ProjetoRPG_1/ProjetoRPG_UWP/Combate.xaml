@@ -21,7 +21,7 @@
         <TextBlock  Text="TextBlock"  x:Name="Energia" FontSize="25"  Canvas.Left="69" Canvas.Top="56"/>
         <TextBlock  Text="TextBlock"  FontSize="25" Canvas.Left="840" Canvas.Top="56" x:Name="EnergiaM"/>
         <TextBlock  Text="TextBlock"  FontSize="25"  Canvas.Top="56" Canvas.Left="1014" x:Name="VidaM"/>
-        <Button Content="Defesa" Canvas.Left="243" Canvas.Top="530" Height="70" Width="140" />
+        <Button Content="Defesa" Canvas.Left="243" Canvas.Top="530" Height="70" Width="140" x:Name="Defesa" />
         <ComboBox Canvas.Left="50" Canvas.Top="400" Width="193" x:Name="ListaH"/>
     </Canvas>
 
