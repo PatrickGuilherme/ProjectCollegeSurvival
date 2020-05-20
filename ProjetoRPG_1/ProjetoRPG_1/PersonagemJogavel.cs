@@ -122,7 +122,7 @@ namespace ProjetoRPG
             {
                 if (mapaJogo[(int)Math.Floor(newPy), (int)Math.Floor(newPx)] == null)
                 {
-                    Debug.WriteLine("{0}  {1}", newPx, newPy);
+                    //Debug.WriteLine(newPx + "  " + newPy);
                     return true;
                 }
             }

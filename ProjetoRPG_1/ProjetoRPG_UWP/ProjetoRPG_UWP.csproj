@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Combate.xaml.cs">
+      <DependentUpon>Combate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -136,8 +139,35 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Aculo.png" />
+    <Content Include="Assets\Cheater\Down.gif" />
+    <Content Include="Assets\Cheater\IdleDown.png" />
+    <Content Include="Assets\Cheater\IdleLeft.png" />
+    <Content Include="Assets\Cheater\IdleRight.png" />
+    <Content Include="Assets\Cheater\IdleUp.png" />
+    <Content Include="Assets\Cheater\Left.gif" />
+    <Content Include="Assets\Cheater\Right.gif" />
+    <Content Include="Assets\Cheater\Up.gif" />
+    <Content Include="Assets\Expert\Battle_Fubica.png" />
+    <Content Include="Assets\Expert\Down.gif" />
+    <Content Include="Assets\Expert\IdleDown.png" />
+    <Content Include="Assets\Expert\IdleLeft.png" />
+    <Content Include="Assets\Expert\IdleRight.png" />
+    <Content Include="Assets\Expert\IdleUp.png" />
+    <Content Include="Assets\Expert\Left.gif" />
+    <Content Include="Assets\Expert\Right.gif" />
+    <Content Include="Assets\Expert\Up.gif" />
     <Content Include="Assets\Landscape_1.png" />
+    <Content Include="Assets\Monstro.png" />
     <Content Include="Assets\stick.png" />
+    <Content Include="Assets\Worker\Down.gif" />
+    <Content Include="Assets\Worker\IdleDown.png" />
+    <Content Include="Assets\Worker\IdleLeft.png" />
+    <Content Include="Assets\Worker\IdleRight.png" />
+    <Content Include="Assets\Worker\IdleUp.png" />
+    <Content Include="Assets\Worker\Left.gif" />
+    <Content Include="Assets\Worker\Right.gif" />
+    <Content Include="Assets\Worker\Up.gif" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -152,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Combate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -182,6 +216,7 @@
       <Name>ProjetoRPG</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

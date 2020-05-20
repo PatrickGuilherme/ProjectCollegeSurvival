@@ -6,18 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Width="1280" Height="720"
+    Width="1366" Height="696"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas Width="1280" Height="720">
+    <Canvas Width="1366" Height="696" x:Name="canvas">
         <TextBlock x:Name="PosicaoMatrizX" Text="0" Canvas.Left="12" Canvas.Top="55" FontSize="30"/>
         <TextBlock x:Name="PosicaoMatrizY" Text="0" Canvas.Left="12" Canvas.Top="95" FontSize="30"/>
         <TextBlock x:Name="PosicaoMonstro" Text="..." Canvas.Left="12" Canvas.Top="135" FontSize="30"/>
 
-        <Button x:Name="Auxilio"
-                Content="AJUDA"/>
+        <Button x:Name="Auxilio" Content="AJUDA"/>
 
-        <Image x:Name="ImgPlayer" Source="/Assets/stick.png" Height="70" Width="100" Canvas.Left="800" Canvas.Top="140">
+        <Image x:Name="ImgPlayer" Source="/Assets/stick.png" Height="73" Width="26" Canvas.Left="800" Canvas.Top="140">
             <Image.RenderTransform>
                 <TranslateTransform x:Name="ImgPlayerTranslateTransform" />
             </Image.RenderTransform>

@@ -24,7 +24,7 @@ namespace ProjetoRPG
              {G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G}};
 
             LoadingDeslocamentosMapa(Map);
-            LoadingEnemiesMapa(Map);
+            // LoadingEnemiesMapa(Map);
             LoadingItensMapa(Map);
             return Map;
         }
@@ -123,6 +123,7 @@ namespace ProjetoRPG
                     Persistencia = 25
                 };
                 GridMintost.Habilidades = new List<Habilidade>();
+                //GridMintost.StartHabilidade();
                 GridMonstro.M = GridMintost;
                 Map[posicaoY, posicaoX] = GridMonstro;
             } //Mintost
@@ -144,6 +145,7 @@ namespace ProjetoRPG
                     Persistencia = 20
                 };
                 GridMinlapa.Habilidades = new List<Habilidade>();
+                //GridMinlapa.StartHabilidade();
                 GridMonstro.M = GridMinlapa;
                 Map[posicaoY, posicaoX] = GridMonstro;
             } //Minlapa
@@ -165,6 +167,7 @@ namespace ProjetoRPG
                     Persistencia = 25
                 };
                 GridAculo.Habilidades = new List<Habilidade>();
+                //GridAculo.StartHabilidade();
                 GridMonstro.M = GridAculo;
                 Map[posicaoY, posicaoX] = GridMonstro;
             }  //Aculo
