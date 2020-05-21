@@ -51,8 +51,6 @@ namespace ProjetoRPG_UWP
             InitializeComponent();
             MovementTimer.Elapsed += MovementTimer_Elapsed;
             Auxilio.Click += Btn_Auxilio;
-            ImgPlayer.HorizontalAlignment = HorizontalAlignment.Center;
-            ImgPlayer.VerticalAlignment = VerticalAlignment.Center;
         }
 
         private void Btn_Auxilio(object sender, RoutedEventArgs e) 
@@ -305,9 +303,9 @@ namespace ProjetoRPG_UWP
         private void AtualizarImagem() 
         {
             //1200x630 - 100px 70px
-            Canvas.SetLeft(ImgPlayer, 100 * (jogador.PosicaoX - Math.Floor((jogador.PosicaoX) / 12) * 12));
+            Canvas.SetLeft(ImgPlayer, 100 * (jogador.PosicaoX - Math.Floor((jogador.PosicaoX) / 12) * 12) + 166);
             /*Essa função ta errada(?)*/ 
-            Canvas.SetTop(ImgPlayer, 70 * jogador.PosicaoY - (jogador.PosicaoY - 1)*20);
+            Canvas.SetTop(ImgPlayer, 70 * jogador.PosicaoY - (jogador.PosicaoY - 1)*20 + 66);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
