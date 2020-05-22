@@ -15,7 +15,9 @@ namespace ProjetoRPG
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 240;
                 this.Life = 400;
+                this.MaxLife = 400;
                 this.Energia = 600;
+                this.MaxEnergia = 600;
                 this.Animo = 25;
                 this.Persistencia = 20;
                 this.ForcaDoOdio();
@@ -25,7 +27,9 @@ namespace ProjetoRPG
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 408;
                 this.Life = 500;
+                this.MaxLife = 500;
                 this.Energia = 700;
+                this.MaxEnergia = 700;
                 this.Animo = 28;
                 this.Persistencia = 23;
                 Persuadir();
@@ -35,7 +39,9 @@ namespace ProjetoRPG
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 610;
                 this.Life = 600;
+                this.MaxLife = 600;
                 this.Energia = 800;
+                this.MaxEnergia = 800;
                 this.Animo = 30;
                 this.Persistencia = 25;
             }
@@ -44,7 +50,9 @@ namespace ProjetoRPG
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 852;
                 this.Life = 700;
+                this.MaxLife = 700;
                 this.Energia = 900;
+                this.MaxEnergia = 900;
                 this.Animo = 40;
                 this.Persistencia = 35;
             }
@@ -76,7 +84,7 @@ namespace ProjetoRPG
             habilidade.NivelRequerido = 2;
             habilidade.GastoEnergia = 50;
             habilidade.Dano = 0;
-            habilidade.BuffLife = 0;
+            habilidade.BuffLife = 100;
             habilidade.BuffAnimo = 15;
             habilidade.BuffPersistencia = 0;
             habilidade.DesativaHabilidade = false;
@@ -89,9 +97,9 @@ namespace ProjetoRPG
         {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Persuadir";
-            habilidade.Descricao = "Desabilita uma habilidade do inimigo";
+            habilidade.Descricao = "Pule um turno e zoe a cara do inimigo com um blue bull";
             habilidade.NivelRequerido = 3;
-            habilidade.GastoEnergia = 100;
+            habilidade.GastoEnergia = this.MaxEnergia/2;
             habilidade.Dano = 0;
             habilidade.BuffLife = 0;
             habilidade.BuffAnimo = 0;
@@ -104,11 +112,16 @@ namespace ProjetoRPG
 
         public override bool UsarHabilidade(Habilidade habilidade)// se for atacar com uma habilidade chame essa funcao depois chama a funcao de ataque
         {
-            this.Animo += habilidade.BuffAnimo;
-            this.Life += habilidade.BuffLife;
-            this.Persistencia += habilidade.BuffPersistencia;
-            habilidade.Usada = true;
-            return true;
+            if (habilidade.GastoEnergia <= this.Energia) 
+            {
+                this.Animo += habilidade.BuffAnimo;
+                this.Life += habilidade.BuffLife;
+                if (this.MaxLife < this.Life) this.Life = this.MaxLife;  
+                this.Persistencia += habilidade.BuffPersistencia;
+                habilidade.Usada = true;
+                return true;
+            }
+            return false;
         }
     }
 }

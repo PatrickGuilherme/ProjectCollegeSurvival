@@ -34,12 +34,12 @@ namespace ProjetoRPG_UWP
     
     public sealed partial class Movimento : Page
     {
-        private Worker PlayerAuxiliar = new Worker();
+        //private Worker jogador = new Worker();
         private PersonagemJogavel jogador;
         private Mapa Mapa;
         private object objBlock = new Object();
         private bool MoveUp;
-        private double PosicaoAux;
+        private double PosicaoAux, VMatrizY = 0.10, VMatrizX = 0.050;
         private bool MoveDown;
         private bool MoveLeft;
         private bool MoveRight;
@@ -169,32 +169,33 @@ namespace ProjetoRPG_UWP
 
         private void UpPlayer() 
         {
-            if (PlayerAuxiliar.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY - 0.10))
+            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY - VMatrizY))
             {
                 Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 5);
-                jogador.PosicaoY = Math.Round(jogador.PosicaoY - 0.10, 4);
+                jogador.PosicaoY = Math.Round(jogador.PosicaoY - VMatrizY, 4);
             }
-            else if(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.10), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
+            else if(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
             {
                 Debug.WriteLine(Canvas.GetTop(ImgPlayer));
                 Debug.WriteLine(Canvas.GetLeft(ImgPlayer));
-                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.10), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
-                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.10), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[2]+".png"));
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
                 jogador.PosicaoY = PosicaoAux;
                 AtualizarImagem();
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.10), (int)Math.Floor(jogador.PosicaoX)].I != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I != null)
             {
-                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.10), (int)Math.Floor(jogador.PosicaoX)].I);
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.10), (int)Math.Floor(jogador.PosicaoX)] = null;
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I);
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.10), (int)Math.Floor(jogador.PosicaoX)].M != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M != null)
             {
                 var ListaParametros = new List<Personagem>() {
                     jogador,
-                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.10), (int)Math.Floor(jogador.PosicaoX)].M
+                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M
                 };
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - 0.10), (int)Math.Floor(jogador.PosicaoX)] = null;
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
                 CancelarMovimento();
                 Frame.Navigate(typeof(Combate), ListaParametros);
             }
@@ -203,32 +204,33 @@ namespace ProjetoRPG_UWP
         }
         private void DownPlayer()
         {
-            if (PlayerAuxiliar.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY + 0.10))
+            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY + VMatrizY))
             {
                 Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 5);
-                jogador.PosicaoY  = Math.Round(jogador.PosicaoY + 0.10, 4);
+                jogador.PosicaoY  = Math.Round(jogador.PosicaoY + VMatrizY, 4);
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.10), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
             {
                 Debug.WriteLine(Canvas.GetTop(ImgPlayer));
                 Debug.WriteLine(Canvas.GetLeft(ImgPlayer));
-                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.10), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
-                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.10), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[2] + ".png"));
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
                 jogador.PosicaoY = PosicaoAux;
                 AtualizarImagem();
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.10), (int)Math.Floor(jogador.PosicaoX)].I != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I != null)
             {
-                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.10), (int)Math.Floor(jogador.PosicaoX)].I);
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.10), (int)Math.Floor(jogador.PosicaoX)] = null;
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I);
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.10), (int)Math.Floor(jogador.PosicaoX)].M != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M != null)
             {
                 var ListaParametros = new List<Personagem>() {
                     jogador,
-                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.10), (int)Math.Floor(jogador.PosicaoX)].M
+                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M
                 };
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + 0.10), (int)Math.Floor(jogador.PosicaoX)] = null;
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
                 CancelarMovimento();
                 Frame.Navigate(typeof(Combate), ListaParametros);
             }
@@ -237,30 +239,31 @@ namespace ProjetoRPG_UWP
         }
         private void RightPlayer()
         {
-            if (PlayerAuxiliar.PodeMover(Mapa.MapaJogo, jogador.PosicaoX + 0.050, jogador.PosicaoY))
+            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX + VMatrizX, jogador.PosicaoY))
             {
                 Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 5);
-                jogador.PosicaoX = Math.Round(jogador.PosicaoX + 0.050, 4);
+                jogador.PosicaoX = Math.Round(jogador.PosicaoX + VMatrizX, 4);
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].Deslocamento != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento != null)
             {
-                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].Deslocamento[0];
-                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].Deslocamento[1];
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[2] + ".png"));
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[0];
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[1];
                 jogador.PosicaoY = PosicaoAux;
                 AtualizarImagem();
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].I != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].I != null)
             {
-                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].I);
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)] = null;
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].I);
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)] = null;
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].M != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].M != null)
             {
                 var ListaParametros = new List<Personagem>() {
                 jogador,
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)].M
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].M
                 };
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + 0.050)] = null;
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)] = null;
                 CancelarMovimento();
                 Frame.Navigate(typeof(Combate), ListaParametros);
             }
@@ -269,30 +272,31 @@ namespace ProjetoRPG_UWP
         }
         private void LeftPlayer()
         {
-            if (PlayerAuxiliar.PodeMover(Mapa.MapaJogo, jogador.PosicaoX - 0.050, jogador.PosicaoY)) 
+            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX - VMatrizX, jogador.PosicaoY)) 
             {
                 Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) - 5);
-                jogador.PosicaoX = Math.Round(jogador.PosicaoX - 0.050, 4);
+                jogador.PosicaoX = Math.Round(jogador.PosicaoX - VMatrizX, 4);
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].Deslocamento != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento != null)
             {
-                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].Deslocamento[0];
-                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].Deslocamento[1];
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[2] + ".png"));
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[0];
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[1];
                 jogador.PosicaoY = PosicaoAux;
                 AtualizarImagem();
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].I != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].I != null)
             {
-                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].I);
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)] = null;
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].I);
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)] = null;
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].M != null)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].M != null)
             {
                 var ListaParametros = new List<Personagem>() {
                 jogador,
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)].M
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].M
                 };
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - 0.050)] = null;
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)] = null;
                 CancelarMovimento();
                 Frame.Navigate(typeof(Combate), ListaParametros);
             }
@@ -302,10 +306,11 @@ namespace ProjetoRPG_UWP
 
         private void AtualizarImagem() 
         {
+            //ImgPlayerTranslateTransform.X = 100 * (jogador.PosicaoX - Math.Floor((jogador.PosicaoX) / 12) * 12) + 83;
             //1200x630 - 100px 70px
-            Canvas.SetLeft(ImgPlayer, 100 * (jogador.PosicaoX - Math.Floor((jogador.PosicaoX) / 12) * 12) + 166);
-            /*Essa função ta errada(?)*/ 
-            Canvas.SetTop(ImgPlayer, 70 * jogador.PosicaoY - (jogador.PosicaoY - 1)*20 + 66);
+            Canvas.SetLeft(ImgPlayer, 100 * (jogador.PosicaoX - Math.Floor(jogador.PosicaoX/12) * 12));
+            /*Essa função ta errada(?)*/
+            Canvas.SetTop(ImgPlayer, 70 * jogador.PosicaoY - (jogador.PosicaoY - 1)*20);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -328,6 +333,7 @@ namespace ProjetoRPG_UWP
             {
                 jogador = (Cheater)jogador;
             }
+            
             AtualizarImagem();
             /*AREA DE TESTE*/
             Debug.WriteLine("TAMANHO PAGINA: " + Window.Current.Bounds.Height);

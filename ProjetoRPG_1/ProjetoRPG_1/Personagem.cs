@@ -43,10 +43,10 @@ namespace ProjetoRPG
                         danoInfligido = calculoDano(inimigo, habilidade.Dano);
                     }
                     //verifica se a habiliidade é do tipo de imcapacitar habilidade
-                    if (habilidade.DesativaHabilidade)
-                    {
-                        return DesativarHabilidadeInimigo(inimigo.Habilidades);//retorna a posicao da habilidade desativada (nunca retorn 0)
-                    }
+                    //if (habilidade.DesativaHabilidade)
+                    //{
+                    //    return DesativarHabilidadeInimigo(inimigo.Habilidades);//retorna a posicao da habilidade desativada (nunca retorn 0)
+                    //}
                 }
 
                 //Aplicar dano no inimigo
@@ -59,29 +59,29 @@ namespace ProjetoRPG
             return 0; // o retorno -1 está aumentando a vida do inimigo
         }
 
-        public int DesativarHabilidadeInimigo(List<Habilidade> habilidadesInimigo)
-        {
-            Random randNum;
+        //public int DesativarHabilidadeInimigo(List<Habilidade> habilidadesInimigo)
+        //{
+        //    Random randNum;
             
-            int qtdHabilidades = habilidadesInimigo.Count;
-            int PDesabilit = 0;
+        //    int qtdHabilidades = habilidadesInimigo.Count;
+        //    int PDesabilit = 0;
 
-            //enquanto a posicao for  < 0 || e a posicao for >= qtdHabilidades;
+        //    //enquanto a posicao for  < 0 || e a posicao for >= qtdHabilidades;
             
-            while (PDesabilit <= 0  || PDesabilit >= qtdHabilidades)
-            {
-                randNum = new Random();
-                PDesabilit = randNum.Next(1, qtdHabilidades -1);
-            }
+        //    while (PDesabilit <= 0  || PDesabilit >= qtdHabilidades)
+        //    {
+        //        randNum = new Random();
+        //        PDesabilit = randNum.Next(1, qtdHabilidades -1);
+        //    }
 
-            //Não inclui a habilidade basica (que esta na posicao 1)
-            if (PDesabilit >= 1)
-            {
-                habilidadesInimigo[PDesabilit].Ativa = false;
-                return PDesabilit;//retorna a posicao da habilidade do inimigo desativada
-            }
-            return -1;
-        }
+        //    //Não inclui a habilidade basica (que esta na posicao 1)
+        //    if (PDesabilit >= 1)
+        //    {
+        //        habilidadesInimigo[PDesabilit].Ativa = false;
+        //        return PDesabilit;//retorna a posicao da habilidade do inimigo desativada
+        //    }
+        //    return 0;
+        //}
 
         public int calculoDano(Personagem inimigo, int dano) 
         {   

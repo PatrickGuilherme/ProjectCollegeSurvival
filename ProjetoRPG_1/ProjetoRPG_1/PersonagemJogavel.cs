@@ -79,6 +79,7 @@ namespace ProjetoRPG
                 this.Animo += item.BuffAnimo;
                 this.Energia += item.BuffEnergia;
                 this.Life += item.BuffLife;
+                if (this.MaxLife < this.Life) this.Life = this.MaxLife;
                 this.Persistencia += item.BuffPersistencia;
                 this.DescartarItem(item);
                 return true;

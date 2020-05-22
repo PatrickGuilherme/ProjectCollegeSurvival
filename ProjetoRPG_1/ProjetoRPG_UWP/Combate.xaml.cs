@@ -24,18 +24,25 @@ namespace ProjetoRPG_UWP {
     /// </summary>
 
     public sealed partial class Combate : Page {
-        PersonagemJogavel jogador;
-        Monstro monstro;
-        int rand;
+        private PersonagemJogavel jogador;
+        private Monstro monstro;
+        private int rand, contPersistencia = 0, contAnimo = 0;
 
         public Combate() {
             this.InitializeComponent();
             Ataque.Click += Btn_Ataque;
+            ListaH.SelectionChanged += ComboBox_SelectionChanged;
             Lancar_Habilidade.Click += Btn_Habilidade;
             Inventario.Click += Btn_Inventario;
             Defesa.Click += Btn_Defesa;
         }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Habilidade hbl = ListaH.SelectedItem as Habilidade;
+            Descricao.Text = hbl.Descricao;
+        }
+    
         private void Btn_Inventario(object sender, RoutedEventArgs e)
         {
             if(ListaI.SelectedValue != null) {
@@ -116,9 +123,10 @@ namespace ProjetoRPG_UWP {
                     jogador.ColetarItem(monstro.ItemDrop);
                 }
                 jogador.Conhecimento += monstro.ConhecimentoDrop;
+                jogador.Animo -= contAnimo;
+                jogador.Persistencia -= contPersistencia;
                 jogador.LevelUp();
                 Frame.GoBack();
-                
             }
             //jogador morto monstro vivo
             else if(jogador.Life <= 0)
@@ -131,14 +139,21 @@ namespace ProjetoRPG_UWP {
             {
                 Habilidade hbl = ListaH.SelectedItem as Habilidade;
                 //verificar se o usuario tem a energia para usar a habilidade
-                jogador.UsarHabilidade(hbl);
-                rand = InteligenciaAtacando(rand);
-                monstro.Life -= jogador.atacar(monstro, null, hbl);               
-                jogador.Energia -= hbl.GastoEnergia;
+
+                if (jogador.UsarHabilidade(hbl))
+                {
+                    contAnimo += hbl.BuffAnimo;
+                    contPersistencia += hbl.BuffPersistencia;
+                    if (!hbl.DesativaHabilidade) 
+                    {
+                        rand = InteligenciaAtacando(rand);
+                        Debug.WriteLine("PERDEU PLEBA");
+                    } 
+                    monstro.Life -= jogador.atacar(monstro, null, hbl);
+                    jogador.Energia -= hbl.GastoEnergia;
+                }
                 AtualizarTexto();
                 checkLife();
-                
-
             }
         }
         private void AtualizarTexto() {
@@ -164,7 +179,6 @@ namespace ProjetoRPG_UWP {
             {
                 if(numRandom < 5)
                 {
-
                     monstro.UsarHabilidade(monstro.Habilidades[0]);
                     jogador.Life -= monstro.atacar(jogador, null, monstro.Habilidades[0]);
                     Debug.WriteLine("Ele atacou com poder 1");

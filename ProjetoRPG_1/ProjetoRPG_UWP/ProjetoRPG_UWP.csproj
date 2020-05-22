@@ -139,6 +139,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\2.png" />
     <Content Include="Assets\Aculo.png" />
     <Content Include="Assets\Cheater\Down.gif" />
     <Content Include="Assets\Cheater\IdleDown.png" />
@@ -158,6 +159,7 @@
     <Content Include="Assets\Expert\Right.gif" />
     <Content Include="Assets\Expert\Up.gif" />
     <Content Include="Assets\Landscape_1.png" />
+    <Content Include="Assets\mesa.jpg" />
     <Content Include="Assets\Monstro.png" />
     <Content Include="Assets\stick.png" />
     <Content Include="Assets\Worker\Down.gif" />
