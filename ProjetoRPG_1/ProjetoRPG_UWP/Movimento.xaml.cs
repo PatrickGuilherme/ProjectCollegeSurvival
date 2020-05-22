@@ -39,7 +39,7 @@ namespace ProjetoRPG_UWP
         private Mapa Mapa;
         private object objBlock = new Object();
         private bool MoveUp;
-        private double PosicaoAux, VMatrizY = 0.10, VMatrizX = 0.050;
+        private double PosicaoAux, VMatrizY = 0.08571, VMatrizX = 0.050;
         private bool MoveDown;
         private bool MoveLeft;
         private bool MoveRight;
@@ -171,7 +171,7 @@ namespace ProjetoRPG_UWP
         {
             if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY - VMatrizY))
             {
-                Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 5);
+                Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 6);
                 jogador.PosicaoY = Math.Round(jogador.PosicaoY - VMatrizY, 4);
             }
             else if(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
@@ -206,7 +206,7 @@ namespace ProjetoRPG_UWP
         {
             if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY + VMatrizY))
             {
-                Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 5);
+                Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 6);
                 jogador.PosicaoY  = Math.Round(jogador.PosicaoY + VMatrizY, 4);
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
@@ -306,11 +306,10 @@ namespace ProjetoRPG_UWP
 
         private void AtualizarImagem() 
         {
-            //ImgPlayerTranslateTransform.X = 100 * (jogador.PosicaoX - Math.Floor((jogador.PosicaoX) / 12) * 12) + 83;
             //1200x630 - 100px 70px
-            Canvas.SetLeft(ImgPlayer, 100 * (jogador.PosicaoX - Math.Floor(jogador.PosicaoX/12) * 12));
+            Canvas.SetLeft(ImgPlayer, 100 * (jogador.PosicaoX - Math.Floor(jogador.PosicaoX/12) * 12) + 1);
             /*Essa função ta errada(?)*/
-            Canvas.SetTop(ImgPlayer, 70 * jogador.PosicaoY - (jogador.PosicaoY - 1)*20);
+            Canvas.SetTop(ImgPlayer, 70 * jogador.PosicaoY + 1);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
