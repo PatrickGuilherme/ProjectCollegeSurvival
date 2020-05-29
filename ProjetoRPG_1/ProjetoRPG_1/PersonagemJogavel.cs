@@ -13,6 +13,7 @@ namespace ProjetoRPG
         public int Nivel { get; set; }
         public Inventario inventario { get; set; }
         public List<Equipamento> EquipamentosEquipados { set; get; }
+        public Craft MenuCraft { set; get; }
         
         public bool EquiparEquipamento(Equipamento equipamento) {
             if (this.EquipamentosEquipados != null)
@@ -66,6 +67,7 @@ namespace ProjetoRPG
                 if (this.inventario.Itens.Count < tamanhoInventario)
                 {
                     this.inventario.Itens.Add(item);
+                    
                     return true;
                 }
             }

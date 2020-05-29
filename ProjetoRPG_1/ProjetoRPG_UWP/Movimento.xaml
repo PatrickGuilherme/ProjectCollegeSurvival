@@ -14,18 +14,13 @@
         <TextBlock x:Name="PosicaoMatrizX" Text="0" Canvas.Left="12" Canvas.Top="55" FontSize="30"/>
         <TextBlock x:Name="PosicaoMatrizY" Text="0" Canvas.Left="12" Canvas.Top="95" FontSize="30"/>
         <TextBlock x:Name="PosicaoMonstro" Text="..." Canvas.Left="12" Canvas.Top="135" FontSize="30"/>
-        <Border BorderThickness="2" BorderBrush="Black" Canvas.Left="83" Canvas.Top="33">
-            <Canvas Width="1200" Height="630" Canvas.Left="83" Canvas.Top="33" x:Name="canvas">
-                <Image x:Name="background" Source="/Assets/asd.png"/>
 
-                <Button x:Name="Auxilio" Content="AJUDA" Canvas.Left="-68" Canvas.Top="-21"/>
-                <Image x:Name="ImgPlayer"  Source="/Assets/stick.png" Height="70" Width="100">
-                    <Image.RenderTransform>
-                        <TranslateTransform x:Name="ImgPlayerTranslateTransform" />
-                    </Image.RenderTransform>
-                </Image>
+        <Canvas Width="1300" Height="696" Canvas.Left="33"  x:Name="canvas">
+            <Image x:Name="background" Source="/Assets/2Mapa.png" />
 
-            </Canvas>
-        </Border>
+            <Button x:Name="Auxilio" Content="AJUDA" Canvas.Left="-68" Canvas.Top="-21"/>
+            <Image x:Name="ImgPlayer" KeyUp="ImgPlayer_KeyUp"  KeyDown="ImgPlayer_KeyDown" Source="/Assets/stick.png" Height="70" Width="100"/>
+
+        </Canvas>
     </Canvas>
 </Page>

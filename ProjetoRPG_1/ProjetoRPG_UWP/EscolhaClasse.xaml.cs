@@ -40,6 +40,7 @@ namespace ProjetoRPG_UWP {
                 Descricao = "",
                 Life = 300,
                 Energia = 500,
+                MenuCraft = new Craft(),
                 MaxEnergia = 500,
                 MaxLife = 300,
                 Animo = 20,
@@ -57,7 +58,7 @@ namespace ProjetoRPG_UWP {
 
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];
-            Mapa.MapaJogo = Mapa.ConstruirMapa(Mapa.MapaJogo);
+            Mapa.ConstruirMapa();
             var ListaParametros = new List<object>() {
                 player,
                 Mapa
@@ -72,6 +73,7 @@ namespace ProjetoRPG_UWP {
                 Animo = 15,
                 MaxEnergia = 400,
                 MaxLife = 400,
+                MenuCraft = new Craft(),
                 Persistencia = 20,
                 PosicaoX = 19,
                 PosicaoY = 2,
@@ -84,7 +86,7 @@ namespace ProjetoRPG_UWP {
                 };
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];
-            Mapa.MapaJogo = Mapa.ConstruirMapa(Mapa.MapaJogo);
+            Mapa.ConstruirMapa();
             var ListaParametros = new List<object>() {
                     player,
                     Mapa
@@ -97,6 +99,7 @@ namespace ProjetoRPG_UWP {
                 Life = 500,
                 Energia = 300,
                 MaxEnergia = 300,
+                MenuCraft = new Craft(),
                 MaxLife = 500,
                 Animo = 17,
                 Nivel = 1,
@@ -111,7 +114,7 @@ namespace ProjetoRPG_UWP {
             };
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];
-            Mapa.MapaJogo = Mapa.ConstruirMapa(Mapa.MapaJogo);
+            Mapa.ConstruirMapa();
             var ListaParametros = new List<object>() {
                     player,
                     Mapa

@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="ProjetoRPG_UWP.MenuCraft"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetoRPG_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Canvas Width="1366" Height="696">
+        <Button x:Name="Btn_Voltar" Height="100" Width="100" Canvas.Left="10" Content="Voltar" FontSize="20" Canvas.Top="10"/>
+        <Button x:Name="Craftar"  Height="100" Width="100" Canvas.Left="633" Content="CRAFT" FontSize="20" Canvas.Top="483"/>
+        <ComboBox x:Name="ListaCraft" Height="60" Width="367" Canvas.Left="500" Canvas.Top="348"/>
+
+    </Canvas>
+</Page>

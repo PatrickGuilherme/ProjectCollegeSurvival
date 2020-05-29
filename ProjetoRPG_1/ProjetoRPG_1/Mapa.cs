@@ -8,10 +8,10 @@ namespace ProjetoRPG
     {
         public GameObject[,] MapaJogo { get; set; }
 
-        public GameObject[,] ConstruirMapa(GameObject[,] Map)
+        public void ConstruirMapa()
         {
             GameObject G = new GameObject { O = true };
-
+            GameObject[,] Map;
             Map = new GameObject[9, 132]
             {{G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G},
              {G,G,G,G,G,G,G,G,G,G,G,G,G,null,null,null,null,null,null,null,G,G,G,G,G,null,null,null,null,null,null,null,null,null,null,G,G,G,G,G,G,G,null,null,G,null,null,G,G,null,null,null,null,null,null,null,G,G,G,G,G,G,null,null,null,null,null,null,null,null,null,G,G,G,G,G,G,null,G,G,G,G,G,G,G,null,null,G,G,G,G,G,G,G,null,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,null,G,null,null,null,G,G,G,G,null,G,null,G,null,null,null,G,G,G},
@@ -26,7 +26,7 @@ namespace ProjetoRPG
             LoadingDeslocamentosMapa(Map);
             LoadingEnemiesMapa(Map);
             LoadingItensMapa(Map);
-            return Map;
+            this.MapaJogo = Map;
         }
 
         private GameObject[,] LoadingDeslocamentosMapa(GameObject[,] Map) 
@@ -180,10 +180,15 @@ namespace ProjetoRPG
         {
             //ISSO AQUI É UM TESTE !!
             ItemPrimario item = new ItemPrimario();
-            item.Nome = "TESTE";
+            item.Nome = "Agua";
             GameObject teste = new GameObject();
             teste.I = item;
             Map[3, 3] = teste;
+            ItemPrimario item2 = new ItemPrimario();
+            item2.Nome = "Po";
+            GameObject teste2 = new GameObject();
+            teste2.I = item2;
+            Map[3, 4] = teste2;
             return Map;
         }
     }

@@ -22,7 +22,7 @@ namespace TesteRPG
             ep.NivelRequerido = niveleqp;
             Assert.IsFalse(wk.EquiparEquipamento(ep));
         }
-         [Test]
+        [Test]
         public void EquipametoNivel_MenorIgual() {
             int nivel = 2;
             int nivelequipamento = 1;
@@ -37,6 +37,16 @@ namespace TesteRPG
             wk.Nivel = 2;
             wk.EquipamentosEquipados = new List<Equipamento>();
             Assert.IsTrue(wk.EquiparEquipamento(ep));
+        }
+        [Test]
+        public void PodeMover_PosicaoIndisponivel() 
+        {
+            Worker wk = new Worker();
+            wk.PosicaoX = 0;
+            wk.PosicaoY = 0;
+            Mapa GeradorMapa = new Mapa();
+            GeradorMapa.ConstruirMapa();
+            Assert.IsFalse(wk.PodeMover(GeradorMapa.MapaJogo, wk.PosicaoY, wk.PosicaoY));
         }
     }
 }

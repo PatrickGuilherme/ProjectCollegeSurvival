@@ -6,69 +6,78 @@ namespace ProjetoRPG
 {
     public class ItemSecundario : Item
     {
-        public List<ItemPrimario> ItensPreRequesito { get; }
-        public List<ItemPrimario> ListaAuxiliar { get; }
+        public List<ItemPrimario> ItensPreRequesito { get; set; }
+        public List<ItemPrimario> ListaAuxiliar { get; set; }
         public ItemSecundario()
         {
 
         }
         public bool vericarItemPreRequesito(List<ItemPrimario> listaItem)
         {
-            foreach (var item in ItensPreRequesito)
+            foreach (var item in listaItem)
             {
-                if (!listaItem.Contains(item))
+                foreach(var item2 in ItensPreRequesito)
                 {
-                    foreach (var item2 in ListaAuxiliar)
+                    if (item.Nome != item2.Nome)
                     {
-                        listaItem.Add(item2);
+                        foreach (var item3 in ListaAuxiliar)
+                        {
+                            listaItem.Add(item3);
+                        }
+                        //return false;
                     }
-                    return false;
+                    else
+                    {
+                        ListaAuxiliar.Add(item);
+                        listaItem.Remove(item);
+                    }
                 }
-                else
-                {
-                    ListaAuxiliar.Add(item);
-                    listaItem.Remove(item);
-                }
-
             }
             return true;
         }
         public void addItem(string nome)
         {
-            int qtd;
+            int qtd = 0;
             ItemPrimario[] i = new ItemPrimario[4];
+
+            for(int j = 0; j < 4; j++) 
+            {
+                i[j] = new ItemPrimario();
+            }
+
             if (nome.Equals("BLUE BULL"))
             {
                 i[0].Nome = "Garrafa vazia";
                 i[1].Nome = "Agua";
                 i[2].Nome = "Substancia quimica";
-
+                qtd = 3;
             }
             else if (nome.Equals("SUNBLEY"))
             {
                 i[0].Nome = "Pao";
                 i[1].Nome = "Pao";
                 i[2].Nome = "Pombo";
+                qtd = 3;
             }
             else if (nome.Equals("CAFÉ"))
             {
                 i[0].Nome = "Agua";
                 i[1].Nome = "Po";
-
+                qtd = 2;
             }
             else if (nome.Equals("NOTAS DE AULA"))
             {
                 i[0].Nome = "Papel";
                 i[1].Nome = "Giz";
-
+                qtd = 2;
             }
             else if (nome.Equals("CALCULADORA"))
             {
-                i[0].Nome = "Vidraria";
+                i[0].Nome = "Mecanismo Eletrônico";
                 i[1].Nome = "Substancia quimica";
                 i[2].Nome = "Substancia quimica";
                 i[3].Nome = "Substancia quimica";
-
+                qtd = 4;
             }
             else if (nome.Equals("MINI SOL"))
             {
@@ -76,8 +85,9 @@ namespace ProjetoRPG
                 i[1].Nome = "Substancia quimica";
                 i[2].Nome = "Substancia quimica";
                 i[3].Nome = "Substancia quimica";
+                qtd = 4;
             }
-            qtd = i.Length;
+            //qtd = i.Length;
             for (int x = 0; x < qtd; x++)
             {
                 this.ItensPreRequesito.Add(i[x]);

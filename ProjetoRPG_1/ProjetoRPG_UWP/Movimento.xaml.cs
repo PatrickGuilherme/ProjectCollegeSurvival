@@ -23,6 +23,7 @@ using System.Diagnostics;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Drawing;
+using Windows.UI.Popups;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x416
 
@@ -39,10 +40,12 @@ namespace ProjetoRPG_UWP
         private Mapa Mapa;
         private object objBlock = new Object();
         private bool MoveUp;
+        private string Diretorio;
         private double PosicaoAux, VMatrizY = 0.08571, VMatrizX = 0.050;
         private bool MoveDown;
         private bool MoveLeft;
         private bool MoveRight;
+        private bool ImagemDown = false, ImagemUp = false, ImagemLeft = false, ImagemRight = false;
         private Timer MovementTimer = new Timer { Interval = 20 };
         
 
@@ -51,15 +54,24 @@ namespace ProjetoRPG_UWP
             InitializeComponent();
             MovementTimer.Elapsed += MovementTimer_Elapsed;
             Auxilio.Click += Btn_Auxilio;
+            KeyDown += ImgPlayer_KeyDown;
+            KeyUp += ImgPlayer_KeyUp;
+        }
+
+        private async void Mensagem(string Mensagem, string Titulo)
+        {
+            var dialog = new MessageDialog(Mensagem, Titulo);
+            var result = await dialog.ShowAsync();
         }
 
         private void Btn_Auxilio(object sender, RoutedEventArgs e) 
         {
-            Debug.WriteLine("POSIÇÃO X:  " + Canvas.GetLeft(ImgPlayer));
-            Debug.WriteLine("POSIÇÃO Y:  " + Canvas.GetTop(ImgPlayer));
-            Debug.WriteLine("POSIÇÃO X:  " + jogador.PosicaoX);
-            Debug.WriteLine("POSIÇÃO Y:  " + jogador.PosicaoY);
+            //Debug.WriteLine("POSIÇÃO X:  " + Canvas.GetLeft(ImgPlayer));
+            //Debug.WriteLine("POSIÇÃO Y:  " + Canvas.GetTop(ImgPlayer));
+            //Debug.WriteLine("POSIÇÃO X:  " + jogador.PosicaoX);
+            //Debug.WriteLine("POSIÇÃO Y:  " + jogador.PosicaoY);
 
+            this.Frame.Navigate(typeof(MenuCraft), jogador);
         }
 
         private void MovementTimer_Elapsed(object sender, EventArgs e)
@@ -178,7 +190,7 @@ namespace ProjetoRPG_UWP
             {
                 Debug.WriteLine(Canvas.GetTop(ImgPlayer));
                 Debug.WriteLine(Canvas.GetLeft(ImgPlayer));
-                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[2]+".png"));
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[2]+"Mapa.png"));
                 PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
                 jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
                 jogador.PosicaoY = PosicaoAux;
@@ -187,6 +199,7 @@ namespace ProjetoRPG_UWP
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I != null)
             {
                 jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I);
+                Mensagem("Pegou item:" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I.Nome, "Tai");
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M != null)
@@ -213,7 +226,7 @@ namespace ProjetoRPG_UWP
             {
                 Debug.WriteLine(Canvas.GetTop(ImgPlayer));
                 Debug.WriteLine(Canvas.GetLeft(ImgPlayer));
-                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[2] + ".png"));
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[2] + "Mapa.png"));
                 PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
                 jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
                 jogador.PosicaoY = PosicaoAux;
@@ -222,6 +235,7 @@ namespace ProjetoRPG_UWP
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I != null)
             {
                 jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I);
+                Mensagem("Pegou item:" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I.Nome, "Tai");
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M != null)
@@ -246,7 +260,7 @@ namespace ProjetoRPG_UWP
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento != null)
             {
-                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[2] + ".png"));
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[2] + "Mapa.png"));
                 PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[0];
                 jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[1];
                 jogador.PosicaoY = PosicaoAux;
@@ -255,6 +269,7 @@ namespace ProjetoRPG_UWP
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].I != null)
             {
                 jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].I);
+                Mensagem("Pegou item:" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].I.Nome, "Tai");
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)] = null;
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].M != null)
@@ -279,7 +294,7 @@ namespace ProjetoRPG_UWP
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento != null)
             {
-                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[2] + ".png"));
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[2] + "Mapa.png"));
                 PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[0];
                 jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[1];
                 jogador.PosicaoY = PosicaoAux;
@@ -288,6 +303,7 @@ namespace ProjetoRPG_UWP
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].I != null)
             {
                 jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].I);
+                Mensagem("Pegou item:" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].I.Nome, "Tai");
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)] = null;
             }
             else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].M != null)
@@ -302,6 +318,51 @@ namespace ProjetoRPG_UWP
             }
             PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
             PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
+        }
+
+        private void ImgPlayer_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Down)
+            {
+                if (!ImagemDown)
+                {
+                    ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Down.gif"));
+                    ImagemDown = true;
+                }
+            }
+            else if (e.Key == Windows.System.VirtualKey.Up)
+            {
+                if (!ImagemUp)
+                {
+                    ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Up.gif"));
+                    ImagemUp = true;
+                }
+            }
+            else if (e.Key == Windows.System.VirtualKey.Right)
+            {
+                if (!ImagemRight)
+                {
+                    ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Right.gif"));
+                    ImagemRight = true;
+                }
+            }
+            else if (e.Key == Windows.System.VirtualKey.Left)
+            {
+                if (!ImagemLeft) 
+                {
+                    ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Left.gif"));
+                    ImagemLeft = true;
+                }
+               
+            }
+        }
+
+        private void ImgPlayer_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Up && ImagemUp) ImagemUp = false;
+            else if (e.Key == Windows.System.VirtualKey.Down && ImagemDown) ImagemDown = false;
+            else if (e.Key == Windows.System.VirtualKey.Right && ImagemRight) ImagemRight = false;
+            else if (e.Key == Windows.System.VirtualKey.Left && ImagemLeft) ImagemLeft = false;
         }
 
         private void AtualizarImagem() 
@@ -323,14 +384,17 @@ namespace ProjetoRPG_UWP
             if(jogador.GetType() == typeof(Worker))
             {
                 jogador = (Worker)jogador;
+                Diretorio = "Worker";
             }
             else if (jogador.GetType() == typeof(Expert))
             {
                 jogador = (Expert)jogador;
+                Diretorio = "Expert";
             }
             else 
             {
                 jogador = (Cheater)jogador;
+                Diretorio = "Cheater";
             }
             
             AtualizarImagem();
