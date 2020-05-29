@@ -40,7 +40,7 @@ namespace ProjetoRPG_UWP {
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Habilidade hbl = ListaH.SelectedItem as Habilidade;
-            Descricao.Text = hbl.Descricao;
+            //Descricao.Text = hbl.Descricao;
         }
     
         private void Btn_Inventario(object sender, RoutedEventArgs e)
