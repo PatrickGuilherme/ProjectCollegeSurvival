@@ -189,6 +189,11 @@ namespace ProjetoRPG
             GameObject teste2 = new GameObject();
             teste2.I = item2;
             Map[3, 4] = teste2;
+            ItemPrimario item3 = new ItemPrimario();
+            item3.Nome = "Pombo";
+            GameObject teste3 = new GameObject();
+            teste3.I = item3;
+            Map[3, 5] = teste3;
             return Map;
         }
     }

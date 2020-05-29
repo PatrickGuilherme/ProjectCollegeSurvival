@@ -32,7 +32,12 @@ namespace ProjetoRPG_UWP
             this.InitializeComponent();
             Craftar.Click += Btn_Craftar;
             InstaciarItemsSecundarios();
-            
+            Voltar.Click += Btn_Voltar;
+        }
+
+        private void Btn_Voltar(object sender, RoutedEventArgs e) 
+        {
+            Frame.GoBack();
         }
 
         private void Btn_Craftar(object sender, RoutedEventArgs e) 
@@ -44,7 +49,7 @@ namespace ProjetoRPG_UWP
 
                 if(jogador.MenuCraft.Craftar(jogador.inventario, item)) 
                 {
-                    MensagemErro("Querido usuário, parabéns. Você criou um novo item. Cuide bem!", "Congratulações!");
+                    MensagemErro("Querido usuário, parabéns. Você criou um novo item. Cuide bem dele!", "Congratulações!");
                 }
                 else MensagemErro("Querido, usuário, que pena. Você ta pobre em items.", "Deu ruim, pai...");
             }

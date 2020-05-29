@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProjetoRPG
@@ -14,27 +15,34 @@ namespace ProjetoRPG
         }
         public bool vericarItemPreRequesito(List<ItemPrimario> listaItem)
         {
-            foreach (var item in listaItem)
+            foreach (var item in ItensPreRequesito)
             {
-                foreach(var item2 in ItensPreRequesito)
+                if (!ContemItem(listaItem, item))
                 {
-                    if (item.Nome != item2.Nome)
+                    foreach (var item2 in ListaAuxiliar)
                     {
-                        foreach (var item3 in ListaAuxiliar)
-                        {
-                            listaItem.Add(item3);
-                        }
-                        //return false;
+                        listaItem.Add(item2);
                     }
-                    else
-                    {
-                        ListaAuxiliar.Add(item);
-                        listaItem.Remove(item);
-                    }
+                    return false;
+                }
+                else
+                {
+                    ListaAuxiliar.Add(item);
+                    listaItem.Remove(item);
                 }
             }
             return true;
         }
+
+        private bool ContemItem(List<ItemPrimario> listaItem, Item item) 
+        {
+            foreach(var i in listaItem)
+            {
+                if (i.Nome == item.Nome) return true;
+            }
+            return false;
+        }
+
         public void addItem(string nome)
         {
             int qtd = 0;

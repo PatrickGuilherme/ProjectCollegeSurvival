@@ -16,7 +16,7 @@
         <TextBlock x:Name="PosicaoMonstro" Text="..." Canvas.Left="12" Canvas.Top="135" FontSize="30"/>
 
         <Canvas Width="1300" Height="696" Canvas.Left="33"  x:Name="canvas">
-            <Image x:Name="background" Source="/Assets/2Mapa.png" />
+            <Image x:Name="background"/>
 
             <Button x:Name="Auxilio" Content="AJUDA" Canvas.Left="-68" Canvas.Top="-21"/>
             <Image x:Name="ImgPlayer" KeyUp="ImgPlayer_KeyUp"  KeyDown="ImgPlayer_KeyDown" Source="/Assets/stick.png" Height="70" Width="100"/>

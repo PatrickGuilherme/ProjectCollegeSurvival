@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ProjetoRPG
@@ -16,7 +17,7 @@ namespace ProjetoRPG
             {
                 foreach (ItemPrimario item in itemSecundario.ItensPreRequesito)
                 { //remoção dos itens primarios utilizados
-                    inventario.Itens.Remove(item);
+                    RemoverItem(inventario, item);
                 }
                 inventario.Itens.Add((Item)itemSecundario); // adicão do item secundario produzido
                 return true;
@@ -25,6 +26,15 @@ namespace ProjetoRPG
             {
                 return false;
                 //num funcionou
+            }
+        }
+        private void RemoverItem(Inventario inventario, ItemPrimario item) 
+        {
+            int cont = 0;
+            foreach(var i in inventario.Itens.ToList()) 
+            {
+                if (i.Nome == item.Nome) inventario.Itens.RemoveAt(cont);
+                cont++;
             }
         }
     }
