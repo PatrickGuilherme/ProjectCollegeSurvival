@@ -10,7 +10,7 @@ namespace ProjetoRPG
 
         public void ConstruirMapa()
         {
-            GameObject G = new GameObject { O = true };
+            GameObject G = new GameObject { Ocupado = true };
             GameObject[,] Map;
             Map = new GameObject[9, 132]
             {{G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G},
@@ -102,7 +102,7 @@ namespace ProjetoRPG
                 };
                 GridGasefic.Habilidades = new List<Habilidade>();
                 GridGasefic.StartHabilidade();
-                GridMonstro.M = GridGasefic;
+                GridMonstro.Monstro = GridGasefic;
                 Map[posicaoY, posicaoX] = GridMonstro;
             } //Gasefic
             for (int i = 0; i < 14; i++)
@@ -124,7 +124,7 @@ namespace ProjetoRPG
                 };
                 GridMintost.Habilidades = new List<Habilidade>();
                 //GridMintost.StartHabilidade();
-                GridMonstro.M = GridMintost;
+                GridMonstro.Monstro = GridMintost;
                 Map[posicaoY, posicaoX] = GridMonstro;
             } //Mintost
             for (int i = 0; i < 10; i++)
@@ -146,7 +146,7 @@ namespace ProjetoRPG
                 };
                 GridMinlapa.Habilidades = new List<Habilidade>();
                 //GridMinlapa.StartHabilidade();
-                GridMonstro.M = GridMinlapa;
+                GridMonstro.Monstro = GridMinlapa;
                 Map[posicaoY, posicaoX] = GridMonstro;
             } //Minlapa
             for (int i = 0; i < 4; i++)
@@ -168,7 +168,7 @@ namespace ProjetoRPG
                 };
                 GridAculo.Habilidades = new List<Habilidade>();
                 //GridAculo.StartHabilidade();
-                GridMonstro.M = GridAculo;
+                GridMonstro.Monstro = GridAculo;
                 Map[posicaoY, posicaoX] = GridMonstro;
             }  //Aculo
 
@@ -182,17 +182,17 @@ namespace ProjetoRPG
             ItemPrimario item = new ItemPrimario();
             item.Nome = "Agua";
             GameObject teste = new GameObject();
-            teste.I = item;
+            teste.Item = item;
             Map[3, 3] = teste;
             ItemPrimario item2 = new ItemPrimario();
             item2.Nome = "Po";
             GameObject teste2 = new GameObject();
-            teste2.I = item2;
+            teste2.Item = item2;
             Map[3, 4] = teste2;
             ItemPrimario item3 = new ItemPrimario();
             item3.Nome = "Pombo";
             GameObject teste3 = new GameObject();
-            teste3.I = item3;
+            teste3.Item = item3;
             Map[3, 5] = teste3;
             return Map;
         }

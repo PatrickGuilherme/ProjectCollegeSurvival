@@ -4,11 +4,10 @@ namespace ProjetoRPG
 {
     public class GameObject
     {
-        public Personagem P { get; set; }
-
-        public Monstro M { get; set; }
-        public Item I { get; set; }
-        public bool O { get; set; }
+        public Personagem Personagem { get; set; }
+        public Monstro Monstro { get; set; }
+        public Item Item { get; set; }
+        public bool Ocupado { get; set; }
         public int Linha { get; set; }
         public int Coluna { get; set; }
         public int[] Deslocamento { get; set; }

@@ -35,7 +35,6 @@ namespace ProjetoRPG_UWP
     
     public sealed partial class Movimento : Page
     {
-        //private Worker jogador = new Worker();
         private PersonagemJogavel jogador;
         private Mapa Mapa;
         private object objBlock = new Object();
@@ -49,6 +48,7 @@ namespace ProjetoRPG_UWP
         private Timer MovementTimer = new Timer { Interval = 20 };
         
 
+        //Chamadas 
         public Movimento()
         {
             InitializeComponent();
@@ -58,6 +58,7 @@ namespace ProjetoRPG_UWP
             KeyUp += ImgPlayer_KeyUp;
         }
 
+        //Exibição de mensagens de aviso
         private async void Mensagem(string Mensagem, string Titulo)
         {
             var dialog = new MessageDialog(Mensagem, Titulo);
@@ -74,11 +75,13 @@ namespace ProjetoRPG_UWP
             this.Frame.Navigate(typeof(MenuCraft), jogador);
         }
 
+        //Evita o delay da execução dos eventos de movimento
         private void MovementTimer_Elapsed(object sender, EventArgs e)
         {
             DoMovement();
         }
 
+        //Inicia as threads na direção pressionada
         private void DoMovement()
         {
             if (MoveLeft)
@@ -99,9 +102,10 @@ namespace ProjetoRPG_UWP
             }
         }
 
+        //Tecla continua pressionada
         protected override void OnKeyDown(KeyRoutedEventArgs e)
         {
-            //base.OnKeyDown(e);
+            
             if (e.Key == Windows.System.VirtualKey.Down)
             {
                 MoveDown = true;
@@ -110,6 +114,7 @@ namespace ProjetoRPG_UWP
             {
                 MoveUp = true;
             }
+
             else if (e.Key == Windows.System.VirtualKey.Right)
             {
                 MoveRight = true;
@@ -127,6 +132,7 @@ namespace ProjetoRPG_UWP
             MovementTimer.Start();
         }
 
+        //Tecla para de ser pressionada
         protected override void OnKeyUp(KeyRoutedEventArgs e) 
         {
             if (e.Key == Windows.System.VirtualKey.Down)
@@ -152,25 +158,31 @@ namespace ProjetoRPG_UWP
             }
         }
 
+        //Inicia a thread do movimento Left
         private async void Left()
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, LeftPlayer);
         }
+
+        //Inicia a thread do movimento Down
         private async void Down()
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, DownPlayer);
         }
 
+        //Inicia a thread do movimento Up
         private async void Up()
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, UpPlayer);
         }
 
+        //Inicia a thread do movimento Right
         private async void Right()
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, RightPlayer);
         }
 
+        //Impede o movimento quando outro evento (mensagem ou inimigo)
         private void CancelarMovimento()
         {
             MoveUp = false;
@@ -179,151 +191,253 @@ namespace ProjetoRPG_UWP
             MoveRight = false;
         }
 
+        //Move a imagem do personagem
         private void UpPlayer() 
         {
+            //Encontra uma posição null que ele pode mover
             if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY - VMatrizY))
             {
-                Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 6);
-                jogador.PosicaoY = Math.Round(jogador.PosicaoY - VMatrizY, 4);
+                Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) - 6);//muda a imagem do personagem
+                jogador.PosicaoY = Math.Round(jogador.PosicaoY - VMatrizY, 4);//muda o y da matriz da posição do jogador
             }
+            //Ponto de deslocamento de area (tamanho padrão: 12x9)
             else if(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
             {
                 Debug.WriteLine(Canvas.GetTop(ImgPlayer));
                 Debug.WriteLine(Canvas.GetLeft(ImgPlayer));
+                
+                //Muda o background do mapa quando muda a região 
                 background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[2]+"Mapa.png"));
+                
+                //Auxiliar para armazenar o novo valor da posição "X" ou "Y" 
                 PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
+                
+                //Altera a posição do jogador na matriz
                 jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
                 jogador.PosicaoY = PosicaoAux;
+
+                //Atualiza a imagem do personagem de acordo com a direção que ele vai
                 AtualizarImagem();
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I != null)
+            //Quando ele encotra um item na matriz
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Item != null)
             {
-                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I);
+                //Coleta o item do mapa 
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Item);
+                
+                //Impede o movimento do personagem enquando a mensagem estiver ativa 
                 CancelarMovimento();
-                Mensagem("Pegou item:" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I.Nome, "Tai");
+                Mensagem("Item: " + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Item.Nome, "Novo Item adquirido");
+                
+                //Retira o item do mapa
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
             }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M != null)
+            //Se ele encontrar um monstro numa posição do mapa
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Monstro != null)
             {
+                //Cria uma lista que contem o jogador e o monstro
                 var ListaParametros = new List<Personagem>() {
                     jogador,
-                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M
+                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Monstro
                 };
+
+                //Elimina o monstro no mapa
                 Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY - VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
+                
+                //Cancela os movimento enquanto esta vai para a tela de combate
                 CancelarMovimento();
                 Frame.Navigate(typeof(Combate), ListaParametros);
             }
-            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
-            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
-        }
-        private void DownPlayer()
-        {
-            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY + VMatrizY))
-            {
-                Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 6);
-                jogador.PosicaoY  = Math.Round(jogador.PosicaoY + VMatrizY, 4);
-            }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
-            {
-                Debug.WriteLine(Canvas.GetTop(ImgPlayer));
-                Debug.WriteLine(Canvas.GetLeft(ImgPlayer));
-                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[2] + "Mapa.png"));
-                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
-                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
-                jogador.PosicaoY = PosicaoAux;
-                AtualizarImagem();
-            }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I != null)
-            {
-                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I);
-                CancelarMovimento();
-                Mensagem("Pegou item:" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].I.Nome, "Tai");
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
-            }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M != null)
-            {
-                var ListaParametros = new List<Personagem>() {
-                    jogador,
-                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].M
-                };
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
-                CancelarMovimento();
-                Frame.Navigate(typeof(Combate), ListaParametros);
-            }
-            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
-            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
-        }
-        private void RightPlayer()
-        {
-            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX + VMatrizX, jogador.PosicaoY))
-            {
-                Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 5);
-                jogador.PosicaoX = Math.Round(jogador.PosicaoX + VMatrizX, 4);
-            }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento != null)
-            {
-                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[2] + "Mapa.png"));
-                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[0];
-                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[1];
-                jogador.PosicaoY = PosicaoAux;
-                AtualizarImagem();
-            }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].I != null)
-            {
-                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].I);
-                CancelarMovimento();
-                Mensagem("Pegou item:" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].I.Nome, "Tai");
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)] = null;
-            }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].M != null)
-            {
-                var ListaParametros = new List<Personagem>() {
-                jogador,
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].M
-                };
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)] = null;
-                CancelarMovimento();
-                Frame.Navigate(typeof(Combate), ListaParametros);
-            }
-            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
-            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
-        }
-        private void LeftPlayer()
-        {
-            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX - VMatrizX, jogador.PosicaoY)) 
-            {
-                Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) - 5);
-                jogador.PosicaoX = Math.Round(jogador.PosicaoX - VMatrizX, 4);
-            }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento != null)
-            {
-                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[2] + "Mapa.png"));
-                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[0];
-                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[1];
-                jogador.PosicaoY = PosicaoAux;
-                AtualizarImagem();
-            }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].I != null)
-            {
-                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].I);
-                CancelarMovimento();
-                Mensagem("Pegou item:" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].I.Nome, "Tai");
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)] = null;
-            }
-            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].M != null)
-            {
-                var ListaParametros = new List<Personagem>() {
-                jogador,
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].M
-                };
-                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)] = null;
-                CancelarMovimento();
-                Frame.Navigate(typeof(Combate), ListaParametros);
-            }
+
+            //Exibição da posição do personagem na tela de movimento
             PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
             PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
         }
 
+        //Move a imagem do personagem
+        private void DownPlayer()
+        {
+            //Encontra uma posição null que ele pode mover
+            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX, jogador.PosicaoY + VMatrizY))
+            {
+                Canvas.SetTop(ImgPlayer, Canvas.GetTop(ImgPlayer) + 6);//muda a imagem do personagem
+                jogador.PosicaoY  = Math.Round(jogador.PosicaoY + VMatrizY, 4);//muda o y da matriz da posição do jogador
+            }
+            //Ponto de deslocamento de area (tamanho padrão: 12x9)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento != null)
+            {
+                Debug.WriteLine(Canvas.GetTop(ImgPlayer));
+                Debug.WriteLine(Canvas.GetLeft(ImgPlayer));
+
+                //Muda o background do mapa quando muda a região 
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[2] + "Mapa.png"));
+                
+                //Auxiliar para armazenar o novo valor da posição "X" ou "Y" 
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[0];
+
+                //Altera a posição do jogador na matriz
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Deslocamento[1];
+                jogador.PosicaoY = PosicaoAux;
+
+                //Atualiza a imagem do personagem de acordo com a direção que ele vai
+                AtualizarImagem();
+            }
+            //Quando ele encotra um item na matriz
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Item != null)
+            {
+                //Coleta o item do mapa 
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Item);
+                
+                //Impede o movimento do personagem enquando a mensagem estiver ativa 
+                CancelarMovimento();
+                Mensagem("Item: " + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Item.Nome, "Novo Item adquirido");
+
+                //Retira o item do mapa
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
+            }
+            //Se ele encontrar um monstro numa posição do mapa
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Monstro != null)
+            {
+                //Cria uma lista que contem o jogador e o monstro
+                var ListaParametros = new List<Personagem>() {
+                    jogador,
+                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)].Monstro
+                };
+
+                //Elimina o monstro no mapa
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY + VMatrizY), (int)Math.Floor(jogador.PosicaoX)] = null;
+
+                //Cancela os movimento enquanto esta vai para a tela de combate
+                CancelarMovimento();
+                Frame.Navigate(typeof(Combate), ListaParametros);
+            }
+
+            //Exibição da posição do personagem na tela de movimento
+            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
+        }
+       
+        //Move a imagem do personagem
+        private void RightPlayer()
+        {
+            //Encontra uma posição null que ele pode mover
+            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX + VMatrizX, jogador.PosicaoY))
+            {
+                Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 5);//muda a imagem do personagem
+                jogador.PosicaoX = Math.Round(jogador.PosicaoX + VMatrizX, 4);//muda o y da matriz da posição do jogador
+            }
+            //Ponto de deslocamento de area (tamanho padrão: 12x9)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento != null)
+            {
+                //Muda o background do mapa quando muda a região 
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[2] + "Mapa.png"));
+
+                //Auxiliar para armazenar o novo valor da posição "X" ou "Y" 
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[0];
+
+                //Altera a posição do jogador na matriz
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Deslocamento[1];
+                jogador.PosicaoY = PosicaoAux;
+
+                //Atualiza a imagem do personagem de acordo com a direção que ele vai
+                AtualizarImagem();
+            }
+            //Quando ele encotra um item na matriz
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Item != null)
+            {
+                //Coleta o item do mapa 
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Item);
+
+                //Impede o movimento do personagem enquando a mensagem estiver ativa 
+                CancelarMovimento();
+                Mensagem("Item: " + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Item.Nome, "Novo Item adquirido");
+
+                //Retira o item do mapa
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)] = null;
+            }
+            //Se ele encontrar um monstro numa posição do mapa
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Monstro != null)
+            {
+                //Cria uma lista que contem o jogador e o monstro
+                var ListaParametros = new List<Personagem>() {
+                    jogador,
+                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)].Monstro
+                };
+
+                //Elimina o monstro no mapa
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX + VMatrizX)] = null;
+
+                //Cancela os movimento enquanto esta vai para a tela de combate
+                CancelarMovimento();
+                Frame.Navigate(typeof(Combate), ListaParametros);
+            }
+
+            //Exibição da posição do personagem na tela de movimento
+            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
+        }
+        
+        //Move a imagem do personagem
+        private void LeftPlayer()
+        {
+            //Encontra uma posição null que ele pode mover
+            if (jogador.PodeMover(Mapa.MapaJogo, jogador.PosicaoX - VMatrizX, jogador.PosicaoY)) 
+            {
+                Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) - 5);//muda a imagem do personagem
+                jogador.PosicaoX = Math.Round(jogador.PosicaoX - VMatrizX, 4);//muda o y da matriz da posição do jogador
+            }
+            //Ponto de deslocamento de area (tamanho padrão: 12x9)
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento != null)
+            {
+                //Muda o background do mapa quando muda a região 
+                background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[2] + "Mapa.png"));
+
+                //Auxiliar para armazenar o novo valor da posição "X" ou "Y" 
+                PosicaoAux = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[0];
+
+                //Altera a posição do jogador na matriz
+                jogador.PosicaoX = Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Deslocamento[1];
+                jogador.PosicaoY = PosicaoAux;
+
+                //Atualiza a imagem do personagem de acordo com a direção que ele vai
+                AtualizarImagem();
+            }
+            //Quando ele encotra um item na matriz
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Item != null)
+            {
+                //Coleta o item do mapa 
+                jogador.ColetarItem(Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Item);
+
+                //Impede o movimento do personagem enquando a mensagem estiver ativa 
+                CancelarMovimento();
+                Mensagem("Item: " + Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Item.Nome, "Novo Item adquirido");
+
+                //Retira o item do mapa
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)] = null;
+            }
+            //Se ele encontrar um monstro numa posição do mapa
+            else if (Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Monstro != null)
+            {
+                //Cria uma lista que contem o jogador e o monstro
+                var ListaParametros = new List<Personagem>() {
+                    jogador,
+                    Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)].Monstro
+                };
+
+                //Elimina o monstro no mapa
+                Mapa.MapaJogo[(int)Math.Floor(jogador.PosicaoY), (int)Math.Floor(jogador.PosicaoX - VMatrizX)] = null;
+
+                //Cancela os movimento enquanto esta vai para a tela de combate
+                CancelarMovimento();
+                Frame.Navigate(typeof(Combate), ListaParametros);
+            }
+
+            //Exibição da posição do personagem na tela de movimento
+            PosicaoMatrizX.Text = Math.Floor(jogador.PosicaoX).ToString();
+            PosicaoMatrizY.Text = Math.Floor(jogador.PosicaoY).ToString();
+        }
+
+        //Muda a imagem do player
         private void ImgPlayer_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Down)
@@ -361,6 +475,7 @@ namespace ProjetoRPG_UWP
             }
         }
 
+        //Muda a imagem do player
         private void ImgPlayer_KeyUp(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Up && ImagemUp) ImagemUp = false;
@@ -369,14 +484,15 @@ namespace ProjetoRPG_UWP
             else if (e.Key == Windows.System.VirtualKey.Left && ImagemLeft) ImagemLeft = false;
         }
 
+        //Calcula a posição da imagem do personagem a ser exibida na tela
         private void AtualizarImagem() 
         {
             //1200x630 - 100px 70px
             Canvas.SetLeft(ImgPlayer, 100 * (jogador.PosicaoX - Math.Floor(jogador.PosicaoX/12) * 12) + 1);
-            /*Essa função ta errada(?)*/
             Canvas.SetTop(ImgPlayer, 70 * jogador.PosicaoY + 1);
         }
 
+        //Recebe os parametros (player) vindo de outra tela
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
