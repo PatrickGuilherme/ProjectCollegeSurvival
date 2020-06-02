@@ -15,12 +15,35 @@
         <TextBlock x:Name="PosicaoMatrizY" Text="0" Canvas.Left="12" Canvas.Top="95" FontSize="30"/>
         <TextBlock x:Name="PosicaoMonstro" Text="..." Canvas.Left="12" Canvas.Top="135" FontSize="30"/>
 
-        <Canvas Width="1300" Height="696" Canvas.Left="33"  x:Name="canvas">
+        <Canvas Width="1300" Height="696" Canvas.Left="33" x:Name="canvas">
+            <Popup x:Name="Status" 
+                    IsOpen="False" 
+                    IsLightDismissEnabled="True"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"               
+                    HorizontalOffset="400"
+                    VerticalOffset="148"
+                    LightDismissOverlayMode="Off">
+                    
+                <Canvas>
+                    <Border Background="Black" BorderBrush="Yellow" BorderThickness="3" Width="500" Height="200">
+                        <Canvas>
+                            <ProgressBar Canvas.Left="250" Canvas.Top="5" Width="200" Height="25" x:Name="StatusVida" Foreground="Red" IsIndeterminate="False"/>
+                            <ProgressBar Canvas.Left="250" Canvas.Top="35" Width="200" Height="25" x:Name="StatusEnergia" Foreground="Blue" IsIndeterminate="False"/>
+                            <TextBlock Canvas.Left="250" Canvas.Top="65" Width="200" Height="25" Foreground="White" x:Name="StatusAnimo"/>
+                            <TextBlock Canvas.Left="250" Canvas.Top="85" Width="200" Height="25" Foreground="White" x:Name="StatusPersistencia"/>
+                            <TextBlock Canvas.Left="250" Canvas.Top="115" Width="200" Height="25" Foreground="White" x:Name="StatusConhecimento"/>
+                            <TextBlock Canvas.Left="250" Canvas.Top="160" Width="200" Height="25" FontSize="20" FontStyle="Oblique" Foreground="White" x:Name="StatusNome"/>
+                            <Image  x:Name="PlayerFace" Height="185" Width="200" HorizontalAlignment="Left"/>
+                        </Canvas>
+                    </Border>
+                    
+                </Canvas>
+            </Popup>
+            
             <Image x:Name="background"/>
-
             <Button x:Name="Auxilio" Content="AJUDA" Canvas.Left="-68" Canvas.Top="-21"/>
             <Image x:Name="ImgPlayer" KeyUp="ImgPlayer_KeyUp"  KeyDown="ImgPlayer_KeyDown" Source="/Assets/stick.png" Height="70" Width="100"/>
-
+            
         </Canvas>
     </Canvas>
 </Page>

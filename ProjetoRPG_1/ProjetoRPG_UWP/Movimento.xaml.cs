@@ -80,7 +80,24 @@ namespace ProjetoRPG_UWP
         //Evento ao pressionar e soltar as teclas
         protected override void OnKeyUp(KeyRoutedEventArgs e)
         {
-            if (e.Key == Windows.System.VirtualKey.Down)
+            if (e.Key == Windows.System.VirtualKey.Z)
+            {
+                StatusVida.Maximum = jogador.MaxLife;
+                StatusVida.Value = jogador.Life;
+                StatusEnergia.Maximum = jogador.MaxEnergia;
+                StatusEnergia.Value = jogador.Energia;
+
+                StatusAnimo.Text = "Ânimo: " + jogador.Animo;
+                StatusPersistencia.Text = "Persistência: " + jogador.Persistencia;
+                StatusConhecimento.Text = "Conhecimento: " + jogador.Conhecimento + "   Nivel: " + jogador.Nivel;
+                StatusNome.Text = jogador.Nome;
+                Status.IsOpen = true;
+            }
+            else if (e.Key == Windows.System.VirtualKey.C)
+            {
+                this.Frame.Navigate(typeof(MenuCraft), jogador);
+            }
+            else if (e.Key == Windows.System.VirtualKey.Down)
             {
                 MoveDown = false;
             }
@@ -106,7 +123,7 @@ namespace ProjetoRPG_UWP
         //Evento ao pressionar continuamente as teclas
         protected override void OnKeyDown(KeyRoutedEventArgs e)
         {
-
+            Status.IsOpen = false;
             if (e.Key == Windows.System.VirtualKey.Down)
             {
                 MoveDown = true;
@@ -484,9 +501,7 @@ namespace ProjetoRPG_UWP
             //Debug.WriteLine("POSIÇÃO X:  " + Canvas.GetLeft(ImgPlayer));
             //Debug.WriteLine("POSIÇÃO Y:  " + Canvas.GetTop(ImgPlayer));
             //Debug.WriteLine("POSIÇÃO X:  " + jogador.PosicaoX);
-            //Debug.WriteLine("POSIÇÃO Y:  " + jogador.PosicaoY);
-
-            this.Frame.Navigate(typeof(MenuCraft), jogador);
+            //Debug.WriteLine("POSIÇÃO Y:  " + jogador.PosicaoY
         }
 
         //Evita o delay da execução dos eventos de movimento
@@ -522,6 +537,7 @@ namespace ProjetoRPG_UWP
             }
 
             background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + (Math.Floor(jogador.PosicaoX / 12) + 1) + "Mapa.png"));
+            PlayerFace.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Face.png"));
 
             AtualizarImagem();
             /*AREA DE TESTE*/

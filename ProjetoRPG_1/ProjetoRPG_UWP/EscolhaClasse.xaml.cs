@@ -68,6 +68,7 @@ namespace ProjetoRPG_UWP {
         }
         private void BtnExpert_Click(object sender, RoutedEventArgs e) {
             Expert player = new Expert {
+                Nome = "Tais Fubica",
                 Life = 400,
                 Energia = 400,
                 Animo = 15,
@@ -96,6 +97,7 @@ namespace ProjetoRPG_UWP {
         }
         private void BtnCheater_Click(object sender, RoutedEventArgs e) {
             Cheater player = new Cheater {
+                Nome = "Zé Nobody",
                 Life = 500,
                 Energia = 300,
                 MaxEnergia = 300,
