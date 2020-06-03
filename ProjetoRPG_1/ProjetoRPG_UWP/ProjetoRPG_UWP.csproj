@@ -156,11 +156,13 @@
     <Content Include="Assets\Cheater\IdleRight.png" />
     <Content Include="Assets\Cheater\IdleUp.png" />
     <Content Include="Assets\Cheater\Left.gif" />
+    <Content Include="Assets\Cheater\Nobody.png" />
     <Content Include="Assets\Cheater\Right.gif" />
     <Content Include="Assets\Cheater\Up.gif" />
     <Content Include="Assets\Expert\Battle_Fubica.png" />
     <Content Include="Assets\Expert\Down.gif" />
     <Content Include="Assets\Expert\Face.png" />
+    <Content Include="Assets\Expert\Fubica.png" />
     <Content Include="Assets\Expert\IdleDown.png" />
     <Content Include="Assets\Expert\IdleLeft.png" />
     <Content Include="Assets\Expert\IdleRight.png" />
@@ -179,6 +181,7 @@
     <Content Include="Assets\Worker\IdleRight.png" />
     <Content Include="Assets\Worker\IdleUp.png" />
     <Content Include="Assets\Worker\Left.gif" />
+    <Content Include="Assets\Worker\None.png" />
     <Content Include="Assets\Worker\Right.gif" />
     <Content Include="Assets\Worker\Up.gif" />
     <Content Include="Properties\Default.rd.xml" />

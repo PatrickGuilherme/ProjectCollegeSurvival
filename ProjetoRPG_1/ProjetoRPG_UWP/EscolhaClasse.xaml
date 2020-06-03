@@ -10,6 +10,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="800" d:DesignHeight="800">
 
     <Canvas Width="800" Height="800">
+
+        <Border BorderBrush="Black" BorderThickness="4" Width="250" Height="400" Canvas.Left="-85" Canvas.Top="148">
+            <Image Source="/Assets/Expert/Fubica.png"/>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="4" Width="250" Height="400" Canvas.Left="640" Canvas.Top="148">
+            <Image Source="/Assets/Cheater/Nobody.png" Margin="4,17,-4,-17" />
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="4" Width="250" Height="400" Canvas.Left="275" Canvas.Top="148">
+            <Image Source="/Assets/Worker/None.png" Margin="-6,0,6,0"/>
+        </Border>
+
         <Button x:Name="BtnWorker"
                 Content= "Worker"
                 Background="White"
@@ -18,12 +31,12 @@
         <Button x:Name="BtnCheater"
                 Content= "Cheater"
                 Background="White"
-                BorderBrush="Black" Canvas.Left="10" Canvas.Top="600"/>
+                BorderBrush="Black" Canvas.Left="731" Canvas.Top="600"/>
 
         <Button x:Name="BtnExpert"
                 Content= "Expert"
                 Background="White"
-                BorderBrush="Black" Canvas.Left="731" Canvas.Top="600"/>
+                BorderBrush="Black" Canvas.Left="10" Canvas.Top="600"/>
 
     </Canvas>
 </Page>
