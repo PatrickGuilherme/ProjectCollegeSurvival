@@ -7,27 +7,33 @@ namespace ProjetoRPG {
         public string Tipo { get; set; }
         List<Equipamento> eq = new List<Equipamento>();
         
-           public void calcBoostEquipamento(Equipamento equipamento) {
-            adcionarEquipamento();
-            foreach (var item in eq) {
-                if (equipamento.Nome.Equals(item.Nome)) {
-                    //Verrifica se o nome do equipamento passado por parametro é igual a de algum equipamento a lista
-                    if(item.BuffEnergia != 0) { // Se o BuffEnergia for diferente de zero retorna-se o valor por sem(porcentagen)
-                        equipamento.BuffPersistencia = 0;
-                        equipamento.BuffEnergia = item.BuffEnergia * 100;
-                    }
-                    else if(item.BuffPersistencia != 0) {// Se o BuffPersistencia for diferente de zero retorna-se o valor por sem(porcentagen)
-                        equipamento.BuffEnergia = 0;
-                        equipamento.BuffPersistencia = item.BuffPersistencia * 100;
-                    }
-                   
+        /// <summary>
+        ///  Calculo de boost dos equipamentos
+        /// </summary>
+        public void calcBoostEquipamento(Equipamento equipamento) {
+        adcionarEquipamento();
+        foreach (var item in eq) {
+            if (equipamento.Nome.Equals(item.Nome)) {
+                //Verrifica se o nome do equipamento passado por parametro é igual a de algum equipamento a lista
+                if(item.BuffEnergia != 0) { // Se o BuffEnergia for diferente de zero retorna-se o valor por sem(porcentagen)
+                    equipamento.BuffPersistencia = 0;
+                    equipamento.BuffEnergia = item.BuffEnergia * 100;
                 }
+                else if(item.BuffPersistencia != 0) {// Se o BuffPersistencia for diferente de zero retorna-se o valor por sem(porcentagen)
+                    equipamento.BuffEnergia = 0;
+                    equipamento.BuffPersistencia = item.BuffPersistencia * 100;
+                }
+                   
             }
-            //Se ele sair do foreach significa que não foi encontrado nenhum equipamento passado na lista e por isso o valor que se retorna
-            // do boost será zero
-            return ;
         }
-        public void adcionarEquipamento() { //Nessa Funcao é adcionado em uma lista os dados de cada equipamento
+        //Se ele sair do foreach significa que não foi encontrado nenhum equipamento passado na lista e por isso o valor que se retorna
+        // do boost será zero
+        }
+
+        /// <summary>
+        /// Nessa Funcao é adcionado em uma lista os dados de cada equipamento
+        /// </summary>
+        public void adcionarEquipamento() { 
             Equipamento[] e = new Equipamento[11];
             e[0] = new Equipamento("Agenda", "A agenda é um equipamento para aumentar o nivel de energia do personagem.",
                 "Equipavel",5,0,0,0);
@@ -55,6 +61,11 @@ namespace ProjetoRPG {
                 eq.Add(item);
             }
         }
+
+
+        /// <summary>
+        /// Metodo construtor de equipamento 
+        /// </summary>
         public Equipamento(string Nome, string Descricao,string Tipo, int BuffEnergia, int BuffLife,int BuffAnimo, int BuffPersistencia) {
             this.Nome = Nome;
             this.Descricao = Descricao;
@@ -64,6 +75,10 @@ namespace ProjetoRPG {
             this.BuffAnimo = BuffAnimo;
             this.BuffPersistencia = BuffPersistencia;
         }
+
+        /// <summary>
+        /// Metodo construtor em construção
+        /// </summary>
         public Equipamento() {
 
         }

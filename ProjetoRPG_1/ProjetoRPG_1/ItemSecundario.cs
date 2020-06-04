@@ -9,16 +9,34 @@ namespace ProjetoRPG
     {
         public List<ItemPrimario> ItensPreRequesito { get; set; }
         public List<ItemPrimario> ListaAuxiliar { get; set; }
+        
+        /// <summary>
+        /// Construtor de instância de item secundario 
+        /// </summary>
         public ItemSecundario()
         {
 
         }
+
+        //*Função em construção
+        public ItemSecundario(string Nome)
+        {
+            this.Nome = Nome;
+            addItem(Nome);
+        }
+
+        /// <summary>
+        /// Metodo para verificar se uma lista de itens do jogador forma um item secundario
+        /// </summary>
         public bool vericarItemPreRequesito(List<ItemPrimario> listaItem)
         {
+            //Navega pelos itens de pre requisitos para o craft
             foreach (var item in ItensPreRequesito)
             {
+                //Verifica se ele tem não tem o item
                 if (!ContemItem(listaItem, item))
                 {
+                    //Devolve os itens vindos craft
                     foreach (var item2 in ListaAuxiliar)
                     {
                         listaItem.Add(item2);
@@ -34,6 +52,9 @@ namespace ProjetoRPG
             return true;
         }
 
+        /// <summary>
+        /// Metodo que verifica se o usuario possui um item de craft
+        /// </summary>
         private bool ContemItem(List<ItemPrimario> listaItem, Item item) 
         {
             foreach(var i in listaItem)
@@ -43,16 +64,20 @@ namespace ProjetoRPG
             return false;
         }
 
+        /// <summary>
+        /// Metodo para inserir os itens primarios necessarios para realizar o craft do item secundario selecionado
+        /// </summary>
         public void addItem(string nome)
         {
+            //Instancia de variaveis
             int qtd = 0;
             ItemPrimario[] i = new ItemPrimario[4];
-
             for(int j = 0; j < 4; j++) 
             {
                 i[j] = new ItemPrimario();
             }
 
+            //Compara o item pelo nome para inserir seus pre requisitos
             if (nome.Equals("BLUE BULL"))
             {
                 i[0].Nome = "Garrafa vazia";
@@ -95,16 +120,12 @@ namespace ProjetoRPG
                 i[3].Nome = "Substancia quimica";
                 qtd = 4;
             }
-            //qtd = i.Length;
+            
+            //Adiciona os itens de pre-requisito
             for (int x = 0; x < qtd; x++)
             {
                 this.ItensPreRequesito.Add(i[x]);
             }
-        }
-        public ItemSecundario(string Nome)
-        {
-            this.Nome = Nome;
-            addItem(Nome);
         }
         
         override

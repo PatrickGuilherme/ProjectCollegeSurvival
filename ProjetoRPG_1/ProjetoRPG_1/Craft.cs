@@ -9,8 +9,12 @@ namespace ProjetoRPG
     {
         public List<ItemSecundario> ItensCraftados { get; set; }
 
+        /// <summary>
+        /// Metodo para gerar itens por combinações
+        /// </summary>
         public bool Craftar(Inventario inventario, ItemSecundario itemSecundario)
         {
+
             List<ItemPrimario> itens = inventario.GetItemPrimarios();
 
             if (itemSecundario.vericarItemPreRequesito(itens))
@@ -25,9 +29,9 @@ namespace ProjetoRPG
             else
             {
                 return false;
-                //num funcionou
             }
         }
+
         private void RemoverItem(Inventario inventario, ItemPrimario item) 
         {
             int cont = 0;

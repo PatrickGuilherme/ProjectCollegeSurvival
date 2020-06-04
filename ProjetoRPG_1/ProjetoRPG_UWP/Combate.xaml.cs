@@ -16,18 +16,17 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace ProjetoRPG_UWP {
-    /// <summary>
-    /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
-    /// </summary>
+    
 
     public sealed partial class Combate : Page {
         private PersonagemJogavel jogador;
         private Monstro monstro;
         private int rand, contPersistencia = 0, contAnimo = 0;
 
+        /// <summary>
+        /// Metodo construtor para assinar os eventos da tela do XAML
+        /// </summary>
         public Combate() {
             this.InitializeComponent();
             Ataque.Click += Btn_Ataque;
@@ -37,40 +36,66 @@ namespace ProjetoRPG_UWP {
             Defesa.Click += Btn_Defesa;
         }
 
+
+        /// <summary>
+        /// Metodo de exibição de descrição de itens (Em construção)
+        /// </summary>
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Habilidade hbl = ListaH.SelectedItem as Habilidade;
             //Descricao.Text = hbl.Descricao;
         }
     
+        /// <summary>
+        /// Metodo para utilizar um item selecionado no combobox
+        /// </summary>
         private void Btn_Inventario(object sender, RoutedEventArgs e)
         {
             if(ListaI.SelectedValue != null) {
                 Item item = ListaI.SelectedItem as ItemSecundario;
+                //Aplicar boost no personagem
                 jogador.UsarItem(item);
-                monstro.Life -= jogador.atacar(monstro, item, null);
+
+                //Atacar monstro
+                monstro.Life -= jogador.Atacar(monstro, item, null);
+
                 AtualizarTexto();
+                //Remove item do combobox
                 ListaI.Items.Remove(item);
+
+                //Checa se alguem morreu
                 checkLife();
             }
         }
 
+
+        /// <summary>
+        /// Metodo para aumentar a persistencia (defesa) do personagem para 
+        /// </summary> 
         private void Btn_Defesa(object sender, RoutedEventArgs e)
         {
             jogador.Persistencia += 5;
+            
+            //Inteligencia do inimigo 
             rand = InteligenciaAtacando(-1);
             AtualizarTexto();
             checkLife();
             jogador.Persistencia -= 5;
 
         }
+        /// <summary>
+        /// Metodo para transição de telas
+        /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             base.OnNavigatedTo(e);
-
+            
+            //Captura os personagens vindos de outra tela (movimento) 
             var ListParametros = e.Parameter as List<Personagem>;
             jogador = ListParametros.ElementAt<Personagem>(0) as PersonagemJogavel;
             monstro = ListParametros.ElementAt<Personagem>(1) as Monstro;
             rand = -1;
+
+            //Definir a classe do personagem jogavel
             if (jogador.GetType() == typeof(Worker)) 
             {
                 jogador = (Worker)jogador;
@@ -84,12 +109,14 @@ namespace ProjetoRPG_UWP {
                 jogador = (Cheater)jogador;
             }
             
+            //Preenche na combobox os itens do jogador
             int i = 0;
             jogador.inventario.GetItemSecundarios().ForEach(delegate (ItemSecundario itemSecundario)
             {
                 ListaI.Items.Add(itemSecundario);
             });
 
+            //Preenche na combobox as habilidades do jogador
             jogador.Habilidades.ForEach(delegate (Habilidade habilidade) {
                 if (i != 0) {
                     ListaH.Items.Add(habilidade);
@@ -97,22 +124,28 @@ namespace ProjetoRPG_UWP {
                 i++;
             });
 
-            /*AREA DE TESTE*/
+            /*Monstro de teste que dropa item*/
             monstro.ConhecimentoDrop = 250;
             Item item = new ItemPrimario();
             item.Nome = "EAI MEN!!!";
             monstro.ItemDrop = item;
-            /*============*/
 
             AtualizarTexto();
         }
 
+        /// <summary>
+        /// Metodo de utilização da habilidade mais basica do personagem
+        /// </summary>
         private void Btn_Ataque(object sender, RoutedEventArgs e) {
             rand = InteligenciaAtacando(rand);
-            monstro.Life -= jogador.atacar(monstro, null, jogador.Habilidades.ElementAt<Habilidade>(0));
+            monstro.Life -= jogador.Atacar(monstro, null, jogador.Habilidades.ElementAt<Habilidade>(0));
             AtualizarTexto();
+            //verifica quem morreu
             checkLife();
         }
+
+
+
         private void checkLife()
         {
             //monstro morto jogador vivo
@@ -134,22 +167,30 @@ namespace ProjetoRPG_UWP {
                 //criar tela ou mensagem de personagem morto (game over)
             }
         }
+
+        /// <summary>
+        /// Metodo para utilizar uma habilidade selecionada no combobox do jogador
+        /// </summary>
         private void Btn_Habilidade(object sender, RoutedEventArgs e) {
             if (ListaH.SelectedValue != null)
             {
                 Habilidade hbl = ListaH.SelectedItem as Habilidade;
                 //verificar se o usuario tem a energia para usar a habilidade
-
                 if (jogador.UsarHabilidade(hbl))
                 {
+                    //armazena os buffes para tirar no fim da rodada
                     contAnimo += hbl.BuffAnimo;
                     contPersistencia += hbl.BuffPersistencia;
+                    
+                    //habilidade de passar a vez
                     if (!hbl.DesativaHabilidade) 
                     {
                         rand = InteligenciaAtacando(rand);
                         Debug.WriteLine("PERDEU PLEBA");
                     } 
-                    monstro.Life -= jogador.atacar(monstro, null, hbl);
+
+                    //ataque do jogador
+                    monstro.Life -= jogador.Atacar(monstro, null, hbl);
                     jogador.Energia -= hbl.GastoEnergia;
                 }
                 AtualizarTexto();
@@ -164,6 +205,9 @@ namespace ProjetoRPG_UWP {
 
         }
         
+        /// <summary>
+        /// Metodo para descrever a inteligencia do personagem
+        /// </summary>
         private int InteligenciaAtacando(int antRandom)
         {
             //o random anterior define se retira ou não a persistencia do inimigo
@@ -180,13 +224,13 @@ namespace ProjetoRPG_UWP {
                 if(numRandom < 5)
                 {
                     monstro.UsarHabilidade(monstro.Habilidades[0]);
-                    jogador.Life -= monstro.atacar(jogador, null, monstro.Habilidades[0]);
+                    jogador.Life -= monstro.Atacar(jogador, null, monstro.Habilidades[0]);
                     Debug.WriteLine("Ele atacou com poder 1");
                 }
                 else
                 {
                     monstro.UsarHabilidade(monstro.Habilidades[1]);
-                    jogador.Life -= monstro.atacar(jogador, null, monstro.Habilidades[1]);
+                    jogador.Life -= monstro.Atacar(jogador, null, monstro.Habilidades[1]);
                     Debug.WriteLine("Ele atacou com poder 2");
                 }
             }

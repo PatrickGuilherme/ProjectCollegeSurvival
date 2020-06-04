@@ -7,6 +7,25 @@ namespace ProjetoRPG
 {
     public class Worker : PersonagemJogavel
     {
+        public Worker()
+        {
+            this.Nome = "João None Workefield";
+            this.Descricao = "Um aluno esforçado que se dedica a ser melhor no que faz";
+            this.Life = 300;
+            this.MaxLife = 300;
+            this.Energia = 500;
+            this.MaxEnergia = 500;
+            this.Animo = 20;
+            this.Persistencia = 15;
+            this.Conhecimento = 0;
+            this.Nivel = 1;
+            this.PosicaoX = 19;
+            this.PosicaoY = 2;
+            this.MenuCraft = new Craft();
+            this.inventario = new Inventario();
+            Habilidades = new List<Habilidade>();
+            this.StartHabilidade();
+        }
         public override void LevelUp()
         {
 

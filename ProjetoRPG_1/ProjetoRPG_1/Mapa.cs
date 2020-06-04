@@ -8,8 +8,12 @@ namespace ProjetoRPG
     {
         public GameObject[,] MapaJogo { get; set; }
 
+        /// <summary>
+        /// Metodo de construção do mapa
+        /// </summary>
         public void ConstruirMapa()
         {
+            //Inicializar o mapa
             GameObject G = new GameObject { Ocupado = true };
             GameObject[,] Map;
             Map = new GameObject[9, 132]
@@ -23,12 +27,16 @@ namespace ProjetoRPG
              {G,G,G,G,G,null,null,G,G,G,G,G,G,null,G,null,G,null,null,null,null,G,G,G,G,null,null,null,null,null,null,null,null,null,null,G,G,G,null,G,G,G,G,G,G,G,G,G,G,null,null,null,null,null,null,null,G,G,G,G,G,null,null,null,null,null,null,null,null,null,null,G,G,G,G,G,G,null,G,G,G,G,G,G,G,G,null,null,null,G,null,G,null,null,G,G,G,G,G,G,G,null,null,G,G,G,G,G,G,G,null,null,null,null,null,null,null,null,null,G,G,G,null,G,null,G,null,null,null,null,null,G},
              {G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G}};
 
+            //Loading de elementos
             LoadingDeslocamentosMapa(Map);
             LoadingEnemiesMapa(Map);
             LoadingItensMapa(Map);
             this.MapaJogo = Map;
         }
 
+        /// <summary>
+        ///  Metodo de definição dos pontos de mudança do mapa
+        /// </summary>
         private GameObject[,] LoadingDeslocamentosMapa(GameObject[,] Map) 
         {
             GameObject D0 = new GameObject() { Deslocamento = new int[3] { 2, 19, 2 } };
@@ -79,18 +87,25 @@ namespace ProjetoRPG
             return Map;
         }
 
+        /// <summary>
+        /// Metodo para inserir aleatoriamento os inimigos no mapa
         private GameObject[,] LoadingEnemiesMapa(GameObject[,] Map)
         {
             var random = new Random();
             int posicaoY, posicaoX;
+            
+            //Gera 12 inimigos no mapa (Gasefic)
             for (int i = 0; i < 12; i++)
             {
+                //Procura uma posição aleatoria em que a posição seja nula
                 while (true)
                 {
                     posicaoY = random.Next(9);
                     posicaoX = random.Next(107, 131);
                     if (Map[posicaoY, posicaoX] == null) break;
                 }
+
+                //Instância o monstro
                 GameObject GridMonstro = new GameObject();
                 Gasefic GridGasefic = new Gasefic
                 {
@@ -104,16 +119,21 @@ namespace ProjetoRPG
                 GridGasefic.StartHabilidade();
                 GridMonstro.Monstro = GridGasefic;
                 Map[posicaoY, posicaoX] = GridMonstro;
-            } //Gasefic
+            }
+
+            //Gera 14 inimigos no mapa (min tosta)
             for (int i = 0; i < 14; i++)
             {
-                GameObject GridMonstro = new GameObject();
+                //Procura uma posição aleatoria em que a posição seja nula
                 while (true)
                 {
                     posicaoY = random.Next(9);
                     posicaoX = random.Next(83, 107);
                     if (Map[posicaoY, posicaoX] == null) break;
                 }
+
+                //Instância o monstro
+                GameObject GridMonstro = new GameObject();
                 Mintost GridMintost = new Mintost
                 {
                     Animo = 25,
@@ -126,16 +146,21 @@ namespace ProjetoRPG
                 //GridMintost.StartHabilidade();
                 GridMonstro.Monstro = GridMintost;
                 Map[posicaoY, posicaoX] = GridMonstro;
-            } //Mintost
+            }
+
+            //Gera 10 inimigos no mapa (Minlapa)
             for (int i = 0; i < 10; i++)
             {
-                GameObject GridMonstro = new GameObject();
+                //Procura uma posição aleatoria em que a posição seja nula
                 while (true)
                 {
                     posicaoY = random.Next(9);
                     posicaoX = random.Next(59, 83);
                     if (Map[posicaoY, posicaoX] == null) break;
                 }
+
+                //Instância o monstro
+                GameObject GridMonstro = new GameObject();
                 Minlapa GridMinlapa = new Minlapa
                 {
                     Animo = 35,
@@ -145,19 +170,24 @@ namespace ProjetoRPG
                     Persistencia = 20
                 };
                 GridMinlapa.Habilidades = new List<Habilidade>();
-                //GridMinlapa.StartHabilidade();
+                //GridMinlapa.StartHabilidade(); //Ativar quando a classe minlapa estiver pronta
                 GridMonstro.Monstro = GridMinlapa;
                 Map[posicaoY, posicaoX] = GridMonstro;
-            } //Minlapa
+            }
+
+            //Gera 4 inimigos no mapa (Aculo)
             for (int i = 0; i < 4; i++)
             {
-                GameObject GridMonstro = new GameObject();
+                //Procura uma posição aleatoria em que a posição seja nula
                 while (true)
                 {
                     posicaoY = random.Next(9);
                     posicaoX = random.Next(35, 59);
                     if (Map[posicaoY, posicaoX] == null) break;
                 }
+
+                //Instância o monstro
+                GameObject GridMonstro = new GameObject();
                 Aculo GridAculo = new Aculo
                 {
                     Animo = 40,
@@ -170,12 +200,13 @@ namespace ProjetoRPG
                 //GridAculo.StartHabilidade();
                 GridMonstro.Monstro = GridAculo;
                 Map[posicaoY, posicaoX] = GridMonstro;
-            }  //Aculo
-
-
+            }
             return Map;
         }
 
+        /// <summary>
+        /// Metodo para inserir os itens no mapa (Em desenvolvimento)
+        /// </summary>
         private GameObject[,] LoadingItensMapa(GameObject[,] Map) 
         {
             //ISSO AQUI É UM TESTE !!

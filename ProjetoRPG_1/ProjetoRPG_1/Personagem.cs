@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace ProjetoRPG
 {
+    /// <summary>
+    /// Classe com atributos padrões de todos os jogadores e monstros.
+    /// </summary>
     public abstract class Personagem
     {
         public string Nome { get; set; }
@@ -15,11 +18,12 @@ namespace ProjetoRPG
         public int MaxAnimo { get; set; }
         public int Persistencia { get; set; }
         public int MaxPersistencia { get; set; }
-
         public List<Habilidade> Habilidades { get; set; }
         
-        //atacar recebe o inimigo, o nome do item ou o nome da habilidade
-        public int atacar(Personagem inimigo, Item item, Habilidade habilidade)
+        /// <summary>
+        /// Metodo quando inicia um combate entre dois personagens.
+        /// </summary>
+        public int Atacar(Personagem inimigo, Item item, Habilidade habilidade)
         {   
             //Verifica se há um inimigo para atacar
             if(inimigo != null)
@@ -30,62 +34,33 @@ namespace ProjetoRPG
                 {
                     if (item.Dano > 0)
                     {
-                        danoInfligido = calculoDano(inimigo, item.Dano);
+                        danoInfligido = CalculoDano(inimigo, item.Dano);
                     }
                 }
-
                 //Calcular dano da habilidade
                 else if (habilidade != null)
                 {
                     if (habilidade.Dano > 0)
                     {
                         
-                        danoInfligido = calculoDano(inimigo, habilidade.Dano);
+                        danoInfligido = CalculoDano(inimigo, habilidade.Dano);
                     }
-                    //verifica se a habiliidade é do tipo de imcapacitar habilidade
-                    //if (habilidade.DesativaHabilidade)
-                    //{
-                    //    return DesativarHabilidadeInimigo(inimigo.Habilidades);//retorna a posicao da habilidade desativada (nunca retorn 0)
-                    //}
                 }
-
-                //Aplicar dano no inimigo
+                //Se houve dano este deve ser retornado
                 if (danoInfligido > 0)
                 {
-                    //inimigo.Life -= danoInfligido;
-                    return danoInfligido;//significa que foi bem sucedido e que foi uma habilidade ou item causador de dano
+                    return danoInfligido;
                 }
             }
-            return 0; // o retorno -1 está aumentando a vida do inimigo
+            return 0;
         }
 
-        //public int DesativarHabilidadeInimigo(List<Habilidade> habilidadesInimigo)
-        //{
-        //    Random randNum;
-            
-        //    int qtdHabilidades = habilidadesInimigo.Count;
-        //    int PDesabilit = 0;
-
-        //    //enquanto a posicao for  < 0 || e a posicao for >= qtdHabilidades;
-            
-        //    while (PDesabilit <= 0  || PDesabilit >= qtdHabilidades)
-        //    {
-        //        randNum = new Random();
-        //        PDesabilit = randNum.Next(1, qtdHabilidades -1);
-        //    }
-
-        //    //Não inclui a habilidade basica (que esta na posicao 1)
-        //    if (PDesabilit >= 1)
-        //    {
-        //        habilidadesInimigo[PDesabilit].Ativa = false;
-        //        return PDesabilit;//retorna a posicao da habilidade do inimigo desativada
-        //    }
-        //    return 0;
-        //}
-
-        public int calculoDano(Personagem inimigo, int dano) 
+        /// <summary>
+        /// Metodo de calcular o dano infligido no inimigo 
+        /// </summary>
+        public int CalculoDano(Personagem inimigo, int dano) 
         {   
-            //O dano é da habilidade ou do item
+            //Inicializa uma atividade
             int danoTotal = dano + this.Animo;
             int defesaInimigo = inimigo.Persistencia;
             int danoInfligido = 0;
@@ -95,13 +70,6 @@ namespace ProjetoRPG
             {
                 danoInfligido = danoTotal - defesaInimigo;
             }
-
-            // A defesa é maior que o dano(Não faz sentido - ass: Jota)
-            //else
-            //{
-            //    //danoInfligido = defesaInimigo - danoTotal;
-
-            //}
 
             return danoInfligido;
         }

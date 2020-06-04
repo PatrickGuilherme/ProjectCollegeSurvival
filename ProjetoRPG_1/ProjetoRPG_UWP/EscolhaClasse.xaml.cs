@@ -15,19 +15,24 @@ using Windows.UI.Xaml.Navigation;
 using ProjetoRPG;
 using Windows.UI.ViewManagement;
 
-// O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x416
 
 namespace ProjetoRPG_UWP {
-    /// <summary>
-    /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
-    /// </summary>
+    
     public sealed partial class Page2 : Page {
+
+        /// <summary>
+        /// Metodo de construtor
+        /// </summary>
         public Page2() {
             this.InitializeComponent();
             BtnWorker.Click += BtnWorker_Click;
             BtnCheater.Click += BtnCheater_Click;
             BtnExpert.Click += BtnExpert_Click;
         }
+
+        /// <summary>
+        /// Metodo de de criar worker
+        /// </summary>
         private void BtnWorker_Click(object sender, RoutedEventArgs e) {
             ItemSecundario itsec = new ItemSecundario();
             itsec.BuffLife = 10;
@@ -66,6 +71,11 @@ namespace ProjetoRPG_UWP {
             player.StartHabilidade();
             this.Frame.Navigate(typeof(Movimento), ListaParametros);
         }
+
+
+        /// <summary>
+        /// Metodo de criar expert
+        /// </summary>
         private void BtnExpert_Click(object sender, RoutedEventArgs e) {
             Expert player = new Expert {
                 Nome = "Tais Fubica",
@@ -95,6 +105,10 @@ namespace ProjetoRPG_UWP {
             player.StartHabilidade();
             this.Frame.Navigate(typeof(Movimento), ListaParametros);
         }
+
+        /// <summary>
+        /// Metodo de criar cheater
+        /// </summary>
         private void BtnCheater_Click(object sender, RoutedEventArgs e) {
             Cheater player = new Cheater {
                 Nome = "Zé Nobody",

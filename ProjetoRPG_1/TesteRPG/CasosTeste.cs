@@ -75,12 +75,12 @@ namespace TesteRPG
                 Persistencia = 30
             };
             //defesa == ataque
-            int result = worker.atacar(gasefic, null, worker.Habilidades.ElementAt<Habilidade>(0));
+            int result = worker.Atacar(gasefic, null, worker.Habilidades.ElementAt<Habilidade>(0));
             Assert.AreEqual(0, result);
 
             //defesa maior ataque
             gasefic.Persistencia = 40;
-            result = worker.atacar(gasefic, null, worker.Habilidades.ElementAt<Habilidade>(0));
+            result = worker.Atacar(gasefic, null, worker.Habilidades.ElementAt<Habilidade>(0));
             Assert.AreEqual(0, result);
 
         }
@@ -127,7 +127,7 @@ namespace TesteRPG
 
              persistencia: 10
              */
-            int result = worker.atacar(gasefic, null, worker.Habilidades.ElementAt<Habilidade>(0));
+            int result = worker.Atacar(gasefic, null, worker.Habilidades.ElementAt<Habilidade>(0));
             Assert.AreEqual(20, result);
         }
         [Test]
