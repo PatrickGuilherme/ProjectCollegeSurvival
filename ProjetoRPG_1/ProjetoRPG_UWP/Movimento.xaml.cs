@@ -43,6 +43,7 @@ namespace ProjetoRPG_UWP
         private bool MoveDown;
         private bool MoveLeft;
         private bool MoveRight;
+        private List<Image> ListImageItem;
         private bool ImagemDown = false, ImagemUp = false, ImagemLeft = false, ImagemRight = false;
         private Timer MovementTimer = new Timer { Interval = 20 };
         
@@ -456,9 +457,39 @@ namespace ProjetoRPG_UWP
 
             //Altera a posição Y do jogador na matriz
             jogador.PosicaoY = PosicaoAux;
-
+            ExibirItemTela();
             //Atualiza a imagem do personagem de acordo com a direção que ele vai
             AtualizarImagem();
+        }
+
+        private void ExibirItemTela() 
+        {
+            int cont = (int)(jogador.PosicaoX - (jogador.PosicaoX - Math.Floor(jogador.PosicaoX / 12) * 12));
+
+            foreach(var image in ListImageItem) 
+            {
+                image.Source = null;
+            }
+
+            for(int i = 0; i < 9; i++) 
+            {
+                for(int j = cont; j < cont + 12; j++) 
+                {
+                    if(Mapa.MapaJogo[i, j] != null && Mapa.MapaJogo[i, j].Item != null) 
+                    {
+                        Image ItemImage = new Image();
+                        ItemImage.Name = (i*j).ToString();
+                        ItemImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/objeto.png"));
+                        ItemImage.Width = 100;
+                        ItemImage.Height = 70;
+                        canvas.Children.Add(ItemImage);
+                        ListImageItem.Add(ItemImage);
+
+                        Canvas.SetLeft(ItemImage, 100 * (j - (i/12) * 12) + 1);
+                        Canvas.SetTop(ItemImage, 70 * i + 1);
+                    }
+                }
+            }
         }
 
         //Coleta de item no mapa
@@ -466,6 +497,14 @@ namespace ProjetoRPG_UWP
         {
             //Coleta o item do mapa 
             jogador.ColetarItem(Mapa.MapaJogo[x, y].Item);
+            int cont = (int)(y - (y / 12) * 12);
+            foreach(var image in ListImageItem) 
+            {
+                if(image.Name == (x * cont).ToString()) 
+                {
+                    image.Source = null;
+                }
+            }
 
             //Impede o movimento do personagem enquando a mensagem estiver ativa 
             CancelarMovimento();
@@ -543,7 +582,7 @@ namespace ProjetoRPG_UWP
             background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + (Math.Floor(jogador.PosicaoX / 12) + 1) + "Mapa.png"));
             PlayerFace.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Face.png"));
             ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Down.gif"));
-
+            ListImageItem = new List<Image>();
             AtualizarImagem();
             /*AREA DE TESTE*/
             Debug.WriteLine("TAMANHO PAGINA: " + Window.Current.Bounds.Height);

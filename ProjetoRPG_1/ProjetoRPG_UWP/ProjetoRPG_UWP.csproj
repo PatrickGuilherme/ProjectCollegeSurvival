@@ -176,6 +176,7 @@
     <Content Include="Assets\Landscape_1.png" />
     <Content Include="Assets\mesa.jpg" />
     <Content Include="Assets\Monstro.png" />
+    <Content Include="Assets\objeto.png" />
     <Content Include="Assets\stick.png" />
     <Content Include="Assets\Worker\Down.gif" />
     <Content Include="Assets\Worker\Face.png" />
