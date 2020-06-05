@@ -18,7 +18,6 @@ using Windows.UI.Xaml.Navigation;
 
 namespace ProjetoRPG_UWP {
     
-
     public sealed partial class Combate : Page {
         private PersonagemJogavel jogador;
         private Monstro monstro;
@@ -35,7 +34,6 @@ namespace ProjetoRPG_UWP {
             Inventario.Click += Btn_Inventario;
             Defesa.Click += Btn_Defesa;
         }
-
 
         /// <summary>
         /// Metodo de exibição de descrição de itens (Em construção)
@@ -144,8 +142,6 @@ namespace ProjetoRPG_UWP {
             checkLife();
         }
 
-
-
         private void checkLife()
         {
             //monstro morto jogador vivo
@@ -202,9 +198,8 @@ namespace ProjetoRPG_UWP {
             Energia.Text = "Energia: " + jogador.Energia;
             VidaM.Text = "Vida: " + monstro.Life.ToString();
             EnergiaM.Text = "Energia: " + monstro.Energia;
-
         }
-        
+
         /// <summary>
         /// Metodo para descrever a inteligencia do personagem
         /// </summary>

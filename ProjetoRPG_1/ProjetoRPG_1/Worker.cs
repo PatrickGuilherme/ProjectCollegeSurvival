@@ -116,7 +116,7 @@ namespace ProjetoRPG
         {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Persuadir";
-            habilidade.Descricao = "Pule um turno e zoe a cara do inimigo com um blue bull";
+            habilidade.Descricao = "Pule um turno e zoe a cara do inimigo com um blue bull.";
             habilidade.NivelRequerido = 3;
             habilidade.GastoEnergia = this.MaxEnergia/2;
             habilidade.Dano = 0;

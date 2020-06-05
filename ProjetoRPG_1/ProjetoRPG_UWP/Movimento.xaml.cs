@@ -97,19 +97,23 @@ namespace ProjetoRPG_UWP
             {
                 this.Frame.Navigate(typeof(MenuCraft), jogador);
             }
-            else if (e.Key == Windows.System.VirtualKey.Down)
+            else if (e.Key == Windows.System.VirtualKey.I)
+            {
+                this.Frame.Navigate(typeof(ExibirInventario), jogador);
+            }
+            else if (e.Key == Windows.System.VirtualKey.S)
             {
                 MoveDown = false;
             }
-            else if (e.Key == Windows.System.VirtualKey.Up)
+            else if (e.Key == Windows.System.VirtualKey.W)
             {
                 MoveUp = false;
             }
-            else if (e.Key == Windows.System.VirtualKey.Right)
+            else if (e.Key == Windows.System.VirtualKey.D)
             {
                 MoveRight = false;
             }
-            else if (e.Key == Windows.System.VirtualKey.Left)
+            else if (e.Key == Windows.System.VirtualKey.A)
             {
                 MoveLeft = false;
             }
@@ -124,20 +128,20 @@ namespace ProjetoRPG_UWP
         protected override void OnKeyDown(KeyRoutedEventArgs e)
         {
             Status.IsOpen = false;
-            if (e.Key == Windows.System.VirtualKey.Down)
+            if (e.Key == Windows.System.VirtualKey.S)
             {
                 MoveDown = true;
             }
-            else if (e.Key == Windows.System.VirtualKey.Up)
+            else if (e.Key == Windows.System.VirtualKey.W)
             {
                 MoveUp = true;
             }
 
-            else if (e.Key == Windows.System.VirtualKey.Right)
+            else if (e.Key == Windows.System.VirtualKey.D)
             {
                 MoveRight = true;
             }
-            else if (e.Key == Windows.System.VirtualKey.Left)
+            else if (e.Key == Windows.System.VirtualKey.A)
             {
                 MoveLeft = true;
             }
@@ -285,16 +289,16 @@ namespace ProjetoRPG_UWP
         //Inicia com imagem padrão o player
         private void ImgPlayer_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == Windows.System.VirtualKey.Up && ImagemUp) ImagemUp = false;
-            else if (e.Key == Windows.System.VirtualKey.Down && ImagemDown) ImagemDown = false;
-            else if (e.Key == Windows.System.VirtualKey.Right && ImagemRight) ImagemRight = false;
-            else if (e.Key == Windows.System.VirtualKey.Left && ImagemLeft) ImagemLeft = false;
+            if (e.Key == Windows.System.VirtualKey.W && ImagemUp) ImagemUp = false;
+            else if (e.Key == Windows.System.VirtualKey.S && ImagemDown) ImagemDown = false;
+            else if (e.Key == Windows.System.VirtualKey.D && ImagemRight) ImagemRight = false;
+            else if (e.Key == Windows.System.VirtualKey.A && ImagemLeft) ImagemLeft = false;
         }
 
         //Muda a imagem do player de acordo com a direção passada
         private void ImgPlayer_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == Windows.System.VirtualKey.Down)
+            if (e.Key == Windows.System.VirtualKey.S)
             {
                 if (!ImagemDown)
                 {
@@ -302,7 +306,7 @@ namespace ProjetoRPG_UWP
                     ImagemDown = true;
                 }
             }
-            else if (e.Key == Windows.System.VirtualKey.Up)
+            else if (e.Key == Windows.System.VirtualKey.W)
             {
                 if (!ImagemUp)
                 {
@@ -310,7 +314,7 @@ namespace ProjetoRPG_UWP
                     ImagemUp = true;
                 }
             }
-            else if (e.Key == Windows.System.VirtualKey.Right)
+            else if (e.Key == Windows.System.VirtualKey.D)
             {
                 if (!ImagemRight)
                 {
@@ -318,14 +322,13 @@ namespace ProjetoRPG_UWP
                     ImagemRight = true;
                 }
             }
-            else if (e.Key == Windows.System.VirtualKey.Left)
+            else if (e.Key == Windows.System.VirtualKey.A)
             {
                 if (!ImagemLeft)
                 {
                     ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Left.gif"));
                     ImagemLeft = true;
                 }
-
             }
         }
 
@@ -538,6 +541,7 @@ namespace ProjetoRPG_UWP
 
             background.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + (Math.Floor(jogador.PosicaoX / 12) + 1) + "Mapa.png"));
             PlayerFace.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Face.png"));
+            ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Down.gif"));
 
             AtualizarImagem();
             /*AREA DE TESTE*/

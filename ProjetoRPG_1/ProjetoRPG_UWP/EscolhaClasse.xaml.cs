@@ -59,7 +59,11 @@ namespace ProjetoRPG_UWP {
                 },
                 Habilidades = new List<Habilidade>()
                 };
-            player.inventario.Itens.Add(itsec);
+
+            for(int i = 0; i < 18; i++) 
+            {
+                player.inventario.Itens.Add(itsec);
+            }
 
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];
