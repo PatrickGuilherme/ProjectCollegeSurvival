@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -45,20 +46,21 @@ namespace ProjetoRPG_UWP
             foreach (var item in jogador.inventario.Itens.ToList())
             {
                 Button button = new Button();
-                button.Content = item;
-                button.Width = 252;
-                button.Height = 72;
+                button.Width = 216;
+                button.Height = 84;
                 Image image = new Image();
-                image.Width = 252;
-                image.Height = 72;
+                image.Width = 216;
+                image.Height = 84;
                 image.Source = new BitmapImage(new Uri("ms-appx:///Assets/mesa.jpg"));
                 button.Content = image;
                 TabelaItens.Children.Add(button);
-                //button.Background = (Brush)Color.White;
+
+                button.Background = new SolidColorBrush(Colors.White);
+                button.BorderBrush = new SolidColorBrush(Colors.Black);
                 //button.BorderBrush = (SolidColorBrush)Resources["Black"];
-                
-                Canvas.SetLeft(button, 252 * contX);
-                Canvas.SetTop(button, 72 * contY);
+
+                Canvas.SetLeft(button, 216 * contX);
+                Canvas.SetTop(button, 84 * contY);
 
                 contX++;
                 if(contX == 3) 

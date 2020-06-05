@@ -10,12 +10,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas Width="1300" Height="696">
-        <Image Width="300" Height="600" Canvas.Left="98" Canvas.Top="50" Source="/Assets/stick.png" />
+        <Image x:Name="ImgPlayer" Width="300" Height="600" Canvas.Left="98" Canvas.Top="50" Source="/Assets/stick.png" />
         <TextBlock Text="INVENTÁRIO" Canvas.Left="487" Canvas.Top="50" FontSize="40" FontStyle="Oblique"/>
         <Button x:Name="Voltar" Height="52" Width="258" Canvas.Left="985" Content="Voltar" FontSize="20" Canvas.Top="51"/>
 
-        <Border BorderThickness="5" BorderBrush="Black" Width="762" Height="504" Canvas.Left="487" Canvas.Top="133">
-            <Canvas x:Name="TabelaItens" Width="756" Height="504"/>
+        <Border BorderThickness="5" BorderBrush="Black" Width="656" Height="512" Canvas.Left="487" Canvas.Top="133">
+            <Canvas x:Name="TabelaItens"/>
         </Border>
     </Canvas>
 </Page>
