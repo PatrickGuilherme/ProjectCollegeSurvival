@@ -99,6 +99,7 @@ namespace ProjetoRPG_UWP
             }
             else if (e.Key == Windows.System.VirtualKey.I)
             {
+                CancelarMovimento();
                 this.Frame.Navigate(typeof(ExibirInventario), jogador);
             }
             else if (e.Key == Windows.System.VirtualKey.S)
@@ -382,12 +383,12 @@ namespace ProjetoRPG_UWP
 
                 case 3://right
                     Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) + 5);//muda a imagem do personagem
-                    jogador.PosicaoX = Math.Round(jogador.PosicaoX + VMatrizX, 4);//muda o y da matriz da posição do jogador
+                    jogador.PosicaoX = Math.Round(jogador.PosicaoX + VMatrizX, 4);//muda o X da matriz da posição do jogador
                     break;
 
                 case 4://left
                     Canvas.SetLeft(ImgPlayer, Canvas.GetLeft(ImgPlayer) - 5);//muda a imagem do personagem
-                    jogador.PosicaoX = Math.Round(jogador.PosicaoX - VMatrizX, 4);//muda o y da matriz da posição do jogador
+                    jogador.PosicaoX = Math.Round(jogador.PosicaoX - VMatrizX, 4);//muda o X da matriz da posição do jogador
                     break;
             }
 
