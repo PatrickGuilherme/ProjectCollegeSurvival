@@ -111,8 +111,6 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Gasefic GridGasefic = new Gasefic
                 {
-                    Nome = "Gasefic",
-                    Descricao = "Monstros servos do BOSS Atom.",
                     Animo = 15,
                     ConhecimentoDrop = 5,
                     Life = 400,
@@ -140,8 +138,6 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Mintost GridMintost = new Mintost
                 {
-                    Nome = "MinTosta",
-                    Descricao = "Monstros servos do BOSS Toest.",
                     Animo = 25,
                     ConhecimentoDrop = 8,
                     Life = 450,
@@ -169,8 +165,6 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Minlapa GridMinlapa = new Minlapa
                 {
-                    Nome = "MinLapa",
-                    Descricao = "Monstros servos do BOSS Lapain.",
                     Animo = 35,
                     ConhecimentoDrop = 35,
                     Life = 500,
@@ -198,8 +192,6 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Aculo GridAculo = new Aculo
                 {
-                    Nome = "Aculo",
-                    Descricao = "Monstros servos do BOSS Anaculo.",
                     Animo = 40,
                     ConhecimentoDrop = 171,
                     Life = 550,

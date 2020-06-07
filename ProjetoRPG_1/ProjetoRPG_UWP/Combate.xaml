@@ -10,25 +10,20 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas Width="1280" Height="720" x:Name="PaginaCombate">
-        <Image x:Name="ImgPlayer" Height="200" Width="200"  Source="/Assets/stick.png" Canvas.Left="120" Canvas.Top="160"/>
-        <Image x:Name="ImgMonstro" Height="300" Width="300" Source="/Assets/Aculo.png" Canvas.Left="840" Canvas.Top="124"/>
-        <Button x:Name ="Ataque" Content="Ataque" Height="70" Width="140" Canvas.Left="80" Canvas.Top="545" />
-        <ComboBox x:Name="ListaI" Canvas.Left="901" Canvas.Top="544" Width="193" SelectionChanged="ComboBoxs_SelectionChanged" />
-        <Button x:Name="Lancar_Habilidade" Content="Lançar Habilidade"  Height="32" Width="193"  Canvas.Left="640" Canvas.Top="582"/>
-        <Button x:Name="Inventario" Content="Usar item" Height="32" Width="192" Canvas.Left="902" Canvas.Top="583"/>
-        <TextBlock x:Name="Vida" Text="TextBlock" FontSize="25" Canvas.Left="69" Canvas.Top="89"  />
-        <TextBlock x:Name="Energia" Text="TextBlock" FontSize="25"  Canvas.Left="69" Canvas.Top="40"/>
-        <TextBlock x:Name="EnergiaM" Text="TextBlock" FontSize="25" Canvas.Left="855" Canvas.Top="40"/>
-        <TextBlock x:Name="VidaM" Text="TextBlock" FontSize="25" Canvas.Top="89" Canvas.Left="855" RenderTransformOrigin="0.534,0.394"/>
-        <TextBlock x:Name="DescricaoHabilidade" TextWrapping="Wrap" Text="" Height="71" Width="193" FontSize="12" Canvas.Top="463" Canvas.Left="640"/>
-        <TextBlock x:Name="DescricaoItem" TextWrapping="Wrap" Text="" Height="73" Width="193" FontSize="12" Canvas.Top="459" Canvas.Left="902"/>
-        <Button x:Name="Defesa" Content="Defesa" Canvas.Left="408" Canvas.Top="545" Height="70" Width="140"/>
-        <ComboBox x:Name="ListaH" Canvas.Left="640" Canvas.Top="545" Width="193" SelectionChanged="ComboBoxs_SelectionChanged"/>
-        <TextBlock x:Name="NomeJogador" TextWrapping="Wrap" Text="Nome jogador" Height="53" Width="324" FontSize="25" Canvas.Top="400" TextAlignment="Center" Canvas.Left="69"/>
-        <TextBlock x:Name="NomeMonstro" TextWrapping="Wrap" Text="Nome monstro" Height="53" Width="324" FontSize="25" Canvas.Top="400" TextAlignment="Center" Canvas.Left="822"/>
-        <TextBlock x:Name="DanoMonstro" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="160" TextAlignment="Center" Canvas.Left="840" Foreground="RED"/>
-        <TextBlock x:Name="DanoJogador" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="160" TextAlignment="Center" Canvas.Left="320" Foreground="RED"/>
-        <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="" FontWeight="Bold" Height="53" Width="324" FontSize="25" Canvas.Top="406" TextAlignment="Center" Canvas.Left="408"/>
-
+        <Image x:Name="ImgPlayer" Height="200" Width="200"  Source="/Assets/stick.png" Canvas.Left="132" Canvas.Top="166"/>
+        <Image x:Name="ImgMonstro" Height="300" Width="300" Source="/Assets/Aculo.png" Canvas.Left="840" Canvas.Top="116"/>
+        <Button Content="Ataque" Height="70" Width="140"   Canvas.Left="69" Canvas.Top="598" x:Name ="Ataque"/>
+        <ComboBox Canvas.Left="69" Canvas.Top="526" Width="193" x:Name="ListaI" SelectionChanged="ComboBox_SelectionChanged" />
+        <Button Content="Lançar Habilidade"  Height="32" Width="135"  Canvas.Left="267" Canvas.Top="468"  x:Name = "Lancar_Habilidade"/>
+        <Button Content="Usar item"  x:Name="Inventario" Height="32" Width="135" Canvas.Left="267" Canvas.Top="527"/>
+        <TextBlock  Text="TextBlock"  x:Name="Vida" FontSize="25" Canvas.Left="281" Canvas.Top="56"  />
+        <TextBlock  Text="TextBlock"  x:Name="Energia" FontSize="25"  Canvas.Left="69" Canvas.Top="56"/>
+        <TextBlock  Text="TextBlock"  FontSize="25" Canvas.Left="840" Canvas.Top="56" x:Name="EnergiaM"/>
+        <TextBlock  Text="TextBlock"  FontSize="25"  Canvas.Top="56" Canvas.Left="1037" x:Name="VidaM"/>
+        <TextBlock TextWrapping="Wrap" Text="..." x:Name="Descricao"  Height="200" Width="135" FontSize="12"  Canvas.Top="467" Canvas.Left="439"/>
+        <Button Content="Defesa" Canvas.Left="262" Canvas.Top="598" Height="70" Width="140" x:Name="Defesa" />
+        <ComboBox Canvas.Left="69" Canvas.Top="468" Width="193" x:Name="ListaH"/>
     </Canvas>
+
+
 </Page>

@@ -25,10 +25,10 @@ namespace ProjetoRPG
             this.inventario = new Inventario();
             Habilidades = new List<Habilidade>();
             this.StartHabilidade();
-         
         }
         public override void LevelUp()
         {
+
             if (this.Conhecimento >= 240 && this.Nivel < 2)
             {
                 this.Nivel++;
@@ -137,7 +137,6 @@ namespace ProjetoRPG
                 this.Life += habilidade.BuffLife;
                 if (this.MaxLife < this.Life) this.Life = this.MaxLife;  
                 this.Persistencia += habilidade.BuffPersistencia;
-                this.Energia -= habilidade.GastoEnergia;
                 habilidade.Usada = true;
                 return true;
             }
