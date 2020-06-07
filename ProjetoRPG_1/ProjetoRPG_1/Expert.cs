@@ -102,7 +102,16 @@ namespace ProjetoRPG
 
         public override bool UsarHabilidade(Habilidade habilidade)
         {
-            throw new NotImplementedException();
+            if (habilidade.GastoEnergia <= this.Energia)
+            {
+                this.Animo += habilidade.BuffAnimo;
+                this.Life += habilidade.BuffLife;
+                if (this.MaxLife < this.Life) this.Life = this.MaxLife;
+                this.Persistencia += habilidade.BuffPersistencia;
+                habilidade.Usada = true;
+                return true;
+            }
+            return false;
         }
     }
 }
