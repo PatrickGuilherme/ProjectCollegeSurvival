@@ -16,7 +16,7 @@ namespace ProjetoRPG
             //Inicializar o mapa
             GameObject G = new GameObject { Ocupado = true };
             GameObject[,] Map;
- 
+
             Map = new GameObject[9, 132]
             {{G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G},
              {G,G,G,G,G,G,G,G,G,G,G,G,G,null,null,null,null,null,null,null,G,G,G,G,G,null,null,null,null,null,null,null,null,null,null,G,G,G,G,G,G,G,null,null,G,null,null,G,G,null,null,null,null,null,null,null,G,G,G,G,G,G,null,null,null,null,null,null,null,null,null,G,G,G,G,G,G,null,G,G,G,G,G,G,G,null,null,G,G,G,G,G,G,G,null,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,G,null,G,null,null,null,G,G,G,G,null,G,null,G,null,null,null,G,G,G},
@@ -38,7 +38,7 @@ namespace ProjetoRPG
         /// <summary>
         ///  Metodo de definição dos pontos de mudança do mapa
         /// </summary>
-        private GameObject[,] LoadingDeslocamentosMapa(GameObject[,] Map) 
+        private GameObject[,] LoadingDeslocamentosMapa(GameObject[,] Map)
         {
             GameObject D0 = new GameObject() { Deslocamento = new int[3] { 2, 19, 2 } };
             Map[7, 6] = D0;
@@ -50,39 +50,39 @@ namespace ProjetoRPG
             Map[1, 26] = D3;
             GameObject D4 = new GameObject() { Deslocamento = new int[3] { 1, 27, 3 } };
             Map[7, 38] = D4;
-            GameObject D5 = new GameObject() { Deslocamento = new int[3] { 4, 62, 6} };
+            GameObject D5 = new GameObject() { Deslocamento = new int[3] { 4, 62, 6 } };
             Map[4, 46] = D5;
-            GameObject D6 = new GameObject() { Deslocamento = new int[3] { 2, 69, 6} };
+            GameObject D6 = new GameObject() { Deslocamento = new int[3] { 2, 69, 6 } };
             Map[2, 49] = D6;
             GameObject D7 = new GameObject() { Deslocamento = new int[3] { 7, 69, 6 } };
             Map[6, 49] = D7;
-            GameObject D8 = new GameObject() { Deslocamento = new int[3] { 4, 45, 4} };
+            GameObject D8 = new GameObject() { Deslocamento = new int[3] { 4, 45, 4 } };
             Map[4, 61] = D8;
-            GameObject D9 = new GameObject() { Deslocamento = new int[3] { 2, 50, 5} };
+            GameObject D9 = new GameObject() { Deslocamento = new int[3] { 2, 50, 5 } };
             Map[2, 70] = D9;
-            GameObject D10 = new GameObject() { Deslocamento = new int[3] { 6, 50, 5} };
+            GameObject D10 = new GameObject() { Deslocamento = new int[3] { 6, 50, 5 } };
             Map[7, 70] = D10;
-            GameObject D11 = new GameObject() { Deslocamento = new int[3] { 2, 77, 7} };
+            GameObject D11 = new GameObject() { Deslocamento = new int[3] { 2, 77, 7 } };
             Map[7, 61] = D11;
-            GameObject D12 = new GameObject() { Deslocamento = new int[3] { 7, 62, 6} };
+            GameObject D12 = new GameObject() { Deslocamento = new int[3] { 7, 62, 6 } };
             Map[1, 77] = D12;
-            GameObject D13 = new GameObject() { Deslocamento = new int[3] { 2, 94, 8} };
+            GameObject D13 = new GameObject() { Deslocamento = new int[3] { 2, 94, 8 } };
             Map[7, 77] = D13;
-            GameObject D14 = new GameObject() { Deslocamento = new int[3] { 6, 77, 7} };
+            GameObject D14 = new GameObject() { Deslocamento = new int[3] { 6, 77, 7 } };
             Map[1, 94] = D14;
-            GameObject D15 = new GameObject() { Deslocamento = new int[3] { 2, 113, 10} };
+            GameObject D15 = new GameObject() { Deslocamento = new int[3] { 2, 113, 10 } };
             Map[7, 90] = D15;
-            GameObject D16 = new GameObject() { Deslocamento = new int[3] { 5, 115, 10} };
+            GameObject D16 = new GameObject() { Deslocamento = new int[3] { 5, 115, 10 } };
             Map[4, 97] = D16;
-            GameObject D17 = new GameObject() { Deslocamento = new int[3] { 6, 90, 8} };
+            GameObject D17 = new GameObject() { Deslocamento = new int[3] { 6, 90, 8 } };
             Map[1, 113] = D17;
-            GameObject D18 = new GameObject() { Deslocamento = new int[3] { 7, 129, 11} };
+            GameObject D18 = new GameObject() { Deslocamento = new int[3] { 7, 129, 11 } };
             Map[2, 109] = D18;
-            GameObject D19 = new GameObject() { Deslocamento = new int[3] { 4, 98, 9} };
+            GameObject D19 = new GameObject() { Deslocamento = new int[3] { 4, 98, 9 } };
             Map[5, 116] = D19;
-            GameObject D20 = new GameObject() { Deslocamento = new int[3] { 6, 15, 2} };
+            GameObject D20 = new GameObject() { Deslocamento = new int[3] { 6, 15, 2 } };
             Map[1, 124] = D20;
-            GameObject D21 = new GameObject() { Deslocamento = new int[3] { 2, 110, 10} };
+            GameObject D21 = new GameObject() { Deslocamento = new int[3] { 2, 110, 10 } };
             Map[7, 130] = D21;
 
             return Map;
@@ -95,7 +95,7 @@ namespace ProjetoRPG
         {
             var random = new Random();
             int posicaoY, posicaoX;
-            
+
             //Gera 12 inimigos no mapa (Gasefic)
             for (int i = 0; i < 12; i++)
             {
@@ -111,6 +111,8 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Gasefic GridGasefic = new Gasefic
                 {
+                    Nome = "Gasefic",
+                    Descricao = "Monstros servos do BOSS Atom.",
                     Animo = 15,
                     ConhecimentoDrop = 5,
                     Life = 400,
@@ -138,6 +140,8 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Mintost GridMintost = new Mintost
                 {
+                    Nome = "MinTosta",
+                    Descricao = "Monstros servos do BOSS Toest.",
                     Animo = 25,
                     ConhecimentoDrop = 8,
                     Life = 450,
@@ -165,6 +169,8 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Minlapa GridMinlapa = new Minlapa
                 {
+                    Nome = "MinLapa",
+                    Descricao = "Monstros servos do BOSS Lapain.",
                     Animo = 35,
                     ConhecimentoDrop = 35,
                     Life = 500,
@@ -192,6 +198,8 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Aculo GridAculo = new Aculo
                 {
+                    Nome = "Aculo",
+                    Descricao = "Monstros servos do BOSS Anaculo.",
                     Animo = 40,
                     ConhecimentoDrop = 171,
                     Life = 550,
@@ -209,7 +217,7 @@ namespace ProjetoRPG
         /// <summary>
         /// Metodo para inserir os itens no mapa (Em desenvolvimento)
         /// </summary>
-        private GameObject[,] LoadingItensMapa(GameObject[,] Map) 
+        private GameObject[,] LoadingItensMapa(GameObject[,] Map)
         {
             //ISSO AQUI É UM TESTE !!
             ItemPrimario item = new ItemPrimario();

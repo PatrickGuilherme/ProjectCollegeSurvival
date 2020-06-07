@@ -25,10 +25,10 @@ namespace ProjetoRPG
             this.inventario = new Inventario();
             Habilidades = new List<Habilidade>();
             this.StartHabilidade();
+
         }
         public override void LevelUp()
         {
-
             if (this.Conhecimento >= 240 && this.Nivel < 2)
             {
                 this.Nivel++;
@@ -111,14 +111,14 @@ namespace ProjetoRPG
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
         }
-        
+
         private void Persuadir()
         {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Persuadir";
             habilidade.Descricao = "Pule um turno e zoe a cara do inimigo com um blue bull.";
             habilidade.NivelRequerido = 3;
-            habilidade.GastoEnergia = this.MaxEnergia/2;
+            habilidade.GastoEnergia = this.MaxEnergia / 2;
             habilidade.Dano = 0;
             habilidade.BuffLife = 0;
             habilidade.BuffAnimo = 0;
@@ -131,12 +131,13 @@ namespace ProjetoRPG
 
         public override bool UsarHabilidade(Habilidade habilidade)// se for atacar com uma habilidade chame essa funcao depois chama a funcao de ataque
         {
-            if (habilidade.GastoEnergia <= this.Energia) 
+            if (habilidade.GastoEnergia <= this.Energia)
             {
                 this.Animo += habilidade.BuffAnimo;
                 this.Life += habilidade.BuffLife;
-                if (this.MaxLife < this.Life) this.Life = this.MaxLife;  
+                if (this.MaxLife < this.Life) this.Life = this.MaxLife;
                 this.Persistencia += habilidade.BuffPersistencia;
+                this.Energia -= habilidade.GastoEnergia;
                 habilidade.Usada = true;
                 return true;
             }
