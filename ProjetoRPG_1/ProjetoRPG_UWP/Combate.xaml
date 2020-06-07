@@ -10,47 +10,53 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas Width="1366" Height="696" x:Name="PaginaCombate">
-        <Image x:Name="ImgPlayer" Height="200" Width="200"  Source="/Assets/stick.png" Canvas.Left="87" Canvas.Top="156"/>
-        <Image x:Name="ImgMonstro" Height="300" Width="300" Source="/Assets/Aculo.png" Canvas.Left="807" Canvas.Top="120"/>
-        <ComboBox x:Name="ListaI" Canvas.Left="901" Canvas.Top="544" Width="193" SelectionChanged="ComboBoxs_SelectionChanged" />
-        <ComboBox x:Name="ListaH" Canvas.Left="640" Canvas.Top="545" Width="193" SelectionChanged="ComboBoxs_SelectionChanged"/>
-        
+        <Image x:Name="ImgPlayer" Height="257" Width="252"  Source="/Assets/stick.png" Canvas.Left="61" Canvas.Top="235"/>
+        <Image x:Name="ImgMonstro" Height="358" Width="333" Source="/Assets/Aculo.png" Canvas.Left="734" Canvas.Top="191"/>
+        <ComboBox x:Name="ListaI" Background="Red" BorderBrush="Black" BorderThickness="5" Canvas.Left="1176" Canvas.Top="347" Width="190" SelectionChanged="ComboBoxs_SelectionChanged" />
+        <ComboBox x:Name="ListaH" Background="Purple" BorderBrush="Black" BorderThickness="5" Canvas.Left="1176" Canvas.Top="517" Width="190" SelectionChanged="ComboBoxs_SelectionChanged"/>
+
         <Button x:Name ="Ataque" Background="Blue" BorderBrush="Black" BorderThickness="5" Height="174" Width="190" Canvas.Left="1176">
             <Image Source="/Assets/Atacar.png" Margin="-1,14,1,12" />
         </Button>
-        <Button x:Name="Lancar_Habilidade" Background="Purple" BorderBrush="Black" BorderThickness="5" Height="174" Width="190"  Canvas.Left="1176" Canvas.Top="522">
+        <Button x:Name="Lancar_Habilidade" Background="Purple" BorderBrush="Black" BorderThickness="5" Height="147" Width="190"  Canvas.Left="1176" Canvas.Top="545">
             <Image Source="/Assets/habilidade.png" />
         </Button>
-        <Button x:Name="Inventario" Background="Red" BorderBrush="Black" BorderThickness="5" Height="174" Width="190" Canvas.Left="1176" Canvas.Top="348">
+        <Button x:Name="Inventario" Background="Red" BorderBrush="Black" BorderThickness="5" Height="143
+                " Width="190" Canvas.Left="1176" Canvas.Top="374">
             <Image Source="/Assets/bag.png" Margin="0,11,0,9" />
         </Button>
         <Button x:Name="Defesa" Background="Green" BorderBrush="Black" BorderThickness="5" Canvas.Left="1176" Canvas.Top="174" Height="174" Width="190">
             <Image Source="/Assets/defesa.png" />
         </Button>
-        
-        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="35" Canvas.Top="61">
+
+        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="43" Canvas.Top="121">
             <ProgressBar x:Name="VidaP" Width="300" Height="20" Foreground="Red" Canvas.Left="69" Canvas.Top="64" VerticalAlignment="Top"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="35" Canvas.Top="94">
-            <ProgressBar x:Name="EnergiaP" Width="300" Height="20" Foreground="Blue" Canvas.Left="70" Canvas.Top="96"/>
+        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="43" Canvas.Top="154">
+            <ProgressBar x:Name="EnergiaP" Width="300" Height="20" Foreground="Blue" Canvas.Left="70" Canvas.Top="96" VerticalAlignment="Top"/>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="813" Canvas.Top="61">
-            <ProgressBar x:Name="VidaM" Width="300" Height="20" Foreground="DarkRed"/>
+        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="765" Canvas.Top="121">
+            <ProgressBar x:Name="VidaM" Width="300" Height="20" Foreground="DarkRed" Canvas.Top="64"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="813" Canvas.Top="94">
-            <ProgressBar x:Name="EnergiaM" Width="300" Height="20" Foreground="DarkBlue"/>
+        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="765" Canvas.Top="154">
+            <ProgressBar x:Name="EnergiaM" Width="300" Height="20" Foreground="DarkBlue" Canvas.Top="96"/>
         </Border>
 
+        <TextBlock x:Name="TxtVidaJ" Foreground="White" TextWrapping="Wrap" Text="Life jogador" Width="301" Height="26" FontSize="15" Canvas.Top="122" TextAlignment="Center" Canvas.Left="43"/>
+        <TextBlock x:Name="TxtVidaM" Foreground="White" TextWrapping="Wrap" Text="Life Monstro" Width="301" Height="26" FontSize="15" Canvas.Top="122" TextAlignment="Center" Canvas.Left="765"/>
+        <TextBlock x:Name="TxtEnergiaM" Foreground="White" TextWrapping="Wrap" Text="Energia Monstro" Width="301" Height="26" FontSize="15" Canvas.Top="155" TextAlignment="Center" Canvas.Left="765"/>
+        <TextBlock x:Name="TxtEnergiaJ" Foreground="White" TextWrapping="Wrap" Text="Energia Monstro" Width="301" Height="26" FontSize="15" Canvas.Top="155" TextAlignment="Center" Canvas.Left="43"/>
 
-        <TextBlock x:Name="DescricaoHabilidade" TextWrapping="Wrap" Text="" Height="71" Width="193" FontSize="12" Canvas.Top="459" Canvas.Left="607"/>
-        <TextBlock x:Name="DescricaoItem" TextWrapping="Wrap" Text="" Height="73" Width="193" FontSize="12" Canvas.Top="455" Canvas.Left="869"/>
-        
-        <TextBlock x:Name="NomeJogador" TextWrapping="Wrap" Text="Nome jogador" Height="53" Width="324" FontSize="25" Canvas.Top="396" TextAlignment="Center" Canvas.Left="36"/>
-        <TextBlock x:Name="NomeMonstro" TextWrapping="Wrap" Text="Nome monstro" Height="53" Width="324" FontSize="25" Canvas.Top="396" TextAlignment="Center" Canvas.Left="789"/>
-        <TextBlock x:Name="DanoMonstro" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="156" TextAlignment="Center" Canvas.Left="807" Foreground="RED"/>
-        <TextBlock x:Name="DanoJogador" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="156" TextAlignment="Center" Canvas.Left="287" Foreground="RED"/>
-        <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="" FontWeight="Bold" Height="53" Width="324" FontSize="25" Canvas.Top="402" TextAlignment="Center" Canvas.Left="375"/>
+
+        <TextBlock x:Name="DescricaoHabilidade" TextWrapping="Wrap" Text="" Height="71" Width="193" FontSize="12" Canvas.Top="603" Canvas.Left="547"/>
+        <TextBlock x:Name="DescricaoItem" TextWrapping="Wrap" Text="" Height="73" Width="193" FontSize="12" Canvas.Top="611" Canvas.Left="854"/>
+
+        <TextBlock x:Name="NomeJogador" FontWeight="Bold" TextWrapping="Wrap" Text="Nome jogador" Width="300" Height="44" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="43"/>
+        <TextBlock x:Name="NomeMonstro" FontWeight="Bold" TextWrapping="Wrap" Text="Nome monstro" Width="300" Height="44" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="765"/>
+        <TextBlock x:Name="DanoMonstro" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="241" TextAlignment="Center" Canvas.Left="683" Foreground="RED" RenderTransformOrigin="0.37,0.509"/>
+        <TextBlock x:Name="DanoJogador" TextWrapping="Wrap" Text="" Height="41" Width="65" FontSize="30" Canvas.Top="241" TextAlignment="Center" Canvas.Left="313" Foreground="RED"/>
+        <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="--" FontWeight="Bold" Height="53" Width="324" FontSize="25" Canvas.Top="121" TextAlignment="Center" Canvas.Left="405"/>
 
     </Canvas>
 </Page>

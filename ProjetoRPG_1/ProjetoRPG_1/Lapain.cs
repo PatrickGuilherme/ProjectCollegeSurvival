@@ -6,6 +6,7 @@ namespace ProjetoRPG
 {
     public class Lapain : Monstro
     {
+
         
         public override bool StartHabilidade()
         {

@@ -154,6 +154,17 @@ namespace ProjetoRPG_UWP
             jogador.LevelUp();
             /*-----------------*/
 
+            //Iniciar preenchimento das progress bars do jogador e monstro 
+            EnergiaP.Maximum = jogador.MaxEnergia;
+            VidaP.Maximum = jogador.MaxLife;
+            EnergiaP.Value = jogador.MaxEnergia;
+            VidaP.Value = jogador.Life;
+            EnergiaM.Maximum = monstro.Energia;
+            EnergiaM.Value = monstro.Energia;
+            VidaM.Maximum = monstro.Life;
+            VidaM.Value = monstro.Life;
+
+            //Chamada de metodos[
             ImgJogadorCombate();
             ImgMonstroCombate();
             PreencherCBHabilidades();
@@ -404,10 +415,15 @@ namespace ProjetoRPG_UWP
         /// </summary>
         private void AtualizarTexto()
         {
-            Vida.Text = "Vida: " + jogador.Life.ToString();
-            Energia.Text = "Energia: " + jogador.Energia;
-            VidaM.Text = "Vida: " + monstro.Life.ToString();
-            EnergiaM.Text = "Energia: " + monstro.Energia;
+            TxtVidaJ.Text = jogador.Life + " / " + jogador.MaxLife;
+            TxtEnergiaJ.Text = + jogador.Energia + " / " + jogador.MaxEnergia;
+            TxtVidaM.Text = monstro.Life + " / " + monstro.MaxLife;
+            TxtEnergiaM.Text = monstro.Energia + " / " + monstro.MaxEnergia;
+            
+            VidaP.Value = jogador.Life;
+            EnergiaP.Value = jogador.Energia;
+            VidaM.Value = monstro.Life;
+            EnergiaM.Value = monstro.Energia;
             NomeJogador.Text = jogador.Nome;
             NomeMonstro.Text = monstro.Nome;
         }
@@ -425,7 +441,7 @@ namespace ProjetoRPG_UWP
             {
                 Debug.WriteLine("Desativação da defesa ");
                 defesaMonstro = false;
-                this.monstro.Persistencia -= 10;
+                this.monstro.Persistencia -= 12;
             }
 
             //Ramdow das ações
@@ -470,7 +486,7 @@ namespace ProjetoRPG_UWP
                 else
                 {
                     Debug.WriteLine("ESCUDOS UTILIZADOS");
-                    this.monstro.Persistencia += 10;
+                    this.monstro.Persistencia += 12;
                     defesaMonstro = true;
                 }
             }
@@ -512,7 +528,7 @@ namespace ProjetoRPG_UWP
                     else
                     {
                         Debug.WriteLine("ESCUDOS UTILIZADOS");
-                        this.monstro.Persistencia += 10;
+                        this.monstro.Persistencia += 12;
                         defesaMonstro = true;
                     }
                 }
@@ -572,7 +588,7 @@ namespace ProjetoRPG_UWP
                     else
                     {
                         Debug.WriteLine("ESCUDOS UTILIZADOS");
-                        this.monstro.Persistencia += 10;
+                        this.monstro.Persistencia += 12;
                         defesaMonstro = true;
                     }
                 }
