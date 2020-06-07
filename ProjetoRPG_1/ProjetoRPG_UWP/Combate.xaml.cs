@@ -42,8 +42,8 @@ namespace ProjetoRPG_UWP
             contPersistencia = 0;
             contAnimo = 0;
             Ataque.Click += Btn_Ataque;
-            ListaH.SelectionChanged += ComboBoxs_SelectionChanged;
-            ListaI.SelectionChanged += ComboBoxs_SelectionChanged;
+            ListaH.SelectionChanged += ComboBoxs_SelectionChanged_Habilidade;
+            ListaI.SelectionChanged += ComboBoxs_SelectionChanged_Inventario;
             Lancar_Habilidade.Click += Btn_Habilidade;
             Inventario.Click += Btn_Inventario;
             Defesa.Click += Btn_Defesa;
@@ -52,12 +52,14 @@ namespace ProjetoRPG_UWP
         /// <summary>
         /// Metodo de exibição de descrição de itens (Em construção)
         /// </summary>
-        private void ComboBoxs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBoxs_SelectionChanged_Habilidade(object sender, SelectionChangedEventArgs e)
         {
             string descricao;
 
             if (ListaH.SelectedItem != null)
             {
+                ToolTip toolTip = new ToolTip(); 
+                
                 Habilidade hbl = ListaH.SelectedItem as Habilidade;
                 descricao = "Dano: -" + hbl.Dano + "\n" +
                             "Gato energia: -" + hbl.GastoEnergia + "\n" +
@@ -65,25 +67,37 @@ namespace ProjetoRPG_UWP
                             "Buffer Life: +" + hbl.BuffLife + "\n" +
                             "Buffer Animo: +" + hbl.BuffAnimo + "\n" +
                             "Buffer Persistência: " + hbl.BuffPersistencia;
-                DescricaoHabilidade.Text = descricao;
+                toolTip.Content = descricao;
+                ToolTipService.SetToolTip(ListaH, toolTip);
+              //DescricaoHabilidade.Text = descricao;
             }
+        }
+        
+        private void ComboBoxs_SelectionChanged_Inventario(object sender, SelectionChangedEventArgs e)
+        {
+            string descricao;
 
             if (ListaI.SelectedItem != null)
             {
-                ItemSecundario item = ListaI.SelectedItem as ItemSecundario;
+                ToolTip toolTip = new ToolTip();
+
+                Item item = ListaI.SelectedItem as Item;
                 descricao = "Dano: -" + item.Dano + "\n" +
+                            "Buffer energia: -" + item.BuffEnergia + "\n" +
                             "Descrição: " + item.Descricao + "\n" +
                             "Buffer Life: +" + item.BuffLife + "\n" +
                             "Buffer Animo: +" + item.BuffAnimo + "\n" +
                             "Buffer Persistência: " + item.BuffPersistencia;
-                DescricaoItem.Text = descricao;
+                toolTip.Content = descricao;
+                ToolTipService.SetToolTip(ListaI, toolTip);
+                //DescricaoHabilidade.Text = descricao;
             }
         }
 
-        /// <summary>
-        /// Metodo para utilizar um item selecionado no combobox
-        /// </summary>
-        private void Btn_Inventario(object sender, RoutedEventArgs e)
+            /// <summary>
+            /// Metodo para utilizar um item selecionado no combobox
+            /// </summary>
+            private void Btn_Inventario(object sender, RoutedEventArgs e)
         {
             if (ListaI.SelectedValue != null)
             {
@@ -110,6 +124,7 @@ namespace ProjetoRPG_UWP
 
                 //Remove item do combobox
                 _ = ListaI.Items.Remove(item);
+                ToolTipService.SetToolTip(ListaI, null);
 
                 //Checa se alguem morreu
                 checkLife();
