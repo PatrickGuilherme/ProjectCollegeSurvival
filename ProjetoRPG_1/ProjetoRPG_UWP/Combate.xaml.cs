@@ -166,7 +166,7 @@ namespace ProjetoRPG_UWP
 
             /*AREA DE TESTE*/
             monstro.ConhecimentoDrop = 250;
-            monstro.Animo = 100;
+            monstro.Animo = 10;
             Item item = new ItemPrimario();
             item.Nome = "EAI MEN!!!";
             monstro.ItemDrop = item;
@@ -351,7 +351,7 @@ namespace ProjetoRPG_UWP
             //monstro morto jogador vivo
             if (monstro.Life <= 0 && jogador.Life > 0)
             {
-                if (monstro.ItemDrop != null && jogador.inventario.Itens.Count < 18)
+                if (monstro.ItemDrop != null)
                 {
                     jogador.ColetarItem(monstro.ItemDrop);
                 }
