@@ -359,7 +359,7 @@ namespace ProjetoRPG_UWP
             //monstro morto jogador vivo
             if (monstro.Life <= 0 && jogador.Life > 0)
             {
-                if (monstro.ItemDrop != null)
+                if (monstro.ItemDrop != null && jogador.inventario.Itens.Count < 18)
                 {
                     _ = jogador.ColetarItem(monstro.ItemDrop);
                 }
