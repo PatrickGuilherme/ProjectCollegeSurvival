@@ -230,8 +230,17 @@ namespace ProjetoRPG
             GameObject teste2 = new GameObject();
             teste2.Item = item2;
             Map[3, 4] = teste2;
-            ItemPrimario item3 = new ItemPrimario();
-            item3.Nome = "Pombo";
+
+            Equipamento item3 = new Equipamento();
+            item3.Nome = "Borracha";
+            item3.BuffAnimo = 0;
+            item3.BuffEnergia = 0;
+            item3.BuffLife = 0;
+            item3.BuffPersistencia = 0;
+            item3.Dano = 0;
+            item3.Descricao = "Esse equipamento salvará vidas.";
+            item3.NivelRequerido = 1;
+            item3.Tipo = "LAPIS";
             GameObject teste3 = new GameObject();
             teste3.Item = item3;
             Map[3, 5] = teste3;

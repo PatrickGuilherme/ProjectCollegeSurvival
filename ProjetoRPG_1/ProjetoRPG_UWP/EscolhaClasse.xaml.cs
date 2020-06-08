@@ -57,8 +57,9 @@ namespace ProjetoRPG_UWP {
                 inventario = new Inventario() {
                     Itens = new List<Item>()
                 },
-                Habilidades = new List<Habilidade>()
-                };
+                Habilidades = new List<Habilidade>(),
+                EquipamentosEquipados = new List<Equipamento>()
+            };
 
             //for(int i = 0; i < 18; i++) 
             //{
@@ -97,8 +98,9 @@ namespace ProjetoRPG_UWP {
                 inventario = new Inventario() {
                     Itens = new List<Item>()
                 },
-                Habilidades = new List<Habilidade>()
-                };
+                Habilidades = new List<Habilidade>(),
+                EquipamentosEquipados = new List<Equipamento>()
+            };
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];
             Mapa.ConstruirMapa();
@@ -130,7 +132,8 @@ namespace ProjetoRPG_UWP {
                 inventario = new Inventario() {
                     Itens = new List<Item>()
                 },
-                Habilidades = new List<Habilidade>()
+                Habilidades = new List<Habilidade>(),
+                EquipamentosEquipados = new List<Equipamento>()
             };
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];

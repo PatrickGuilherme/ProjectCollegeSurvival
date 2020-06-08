@@ -9,7 +9,20 @@
     Width="1300" Height="696"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas Width="1300" Height="696">
+    <Canvas>
+        <Popup x:Name="AvisoEquipado" 
+                    IsOpen="False" 
+                    IsLightDismissEnabled="True"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"               
+                    HorizontalOffset="740"
+                    VerticalOffset="380"
+                    LightDismissOverlayMode="Off">
+
+            <Border Background="Black" BorderBrush="Yellow" BorderThickness="3">
+                <TextBlock  Text="EQUIPADO" FontSize="30" FontWeight="Bold" Foreground="White"/>
+            </Border>
+        </Popup>
+        
         <Image x:Name="ImgPlayer" Width="300" Height="600" Canvas.Left="98" Canvas.Top="50" Source="/Assets/stick.png" />
         <TextBlock Text="INVENTÁRIO" Canvas.Left="487" Canvas.Top="50" FontSize="40" FontStyle="Oblique"/>
         <Button x:Name="Voltar" Height="52" Width="258" Canvas.Left="985" Content="Voltar" FontSize="20" Canvas.Top="51"/>
