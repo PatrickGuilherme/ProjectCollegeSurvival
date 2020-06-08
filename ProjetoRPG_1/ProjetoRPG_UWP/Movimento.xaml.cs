@@ -471,6 +471,8 @@ namespace ProjetoRPG_UWP
                 image.Source = null;
             }
 
+            ListImageItem.Clear();
+
             for(int i = 0; i < 9; i++) 
             {
                 for(int j = cont; j < cont + 12; j++) 
@@ -495,23 +497,32 @@ namespace ProjetoRPG_UWP
         //Coleta de item no mapa
         private void ColetaItemMapa(int x, int y)
         {
-            //Coleta o item do mapa 
-            jogador.ColetarItem(Mapa.MapaJogo[x, y].Item);
-            int cont = (int)(y - (y / 12) * 12);
-            foreach(var image in ListImageItem) 
+            //Coleta o item do mapa
+            if(jogador.inventario.Itens.Count < 18) 
             {
-                if(image.Name == (x * cont).ToString()) 
+                jogador.ColetarItem(Mapa.MapaJogo[x, y].Item);
+                int cont = (int)(y - (y / 12) * 12);
+                foreach (var image in ListImageItem)
                 {
-                    image.Source = null;
+                    if (image.Name == (x * cont).ToString())
+                    {
+                        image.Source = null;
+                    }
                 }
+
+                //Impede o movimento do personagem enquando a mensagem estiver ativa 
+                CancelarMovimento();
+                Mensagem("Item: " + Mapa.MapaJogo[x, y].Item.Nome, "Novo Item adquirido");
+
+                //Retira o item do mapa
+                Mapa.MapaJogo[x, y] = null;
+            }
+            else 
+            {
+                CancelarMovimento();
+                Mensagem("Querido usuário, sua mochila está cheia. Coma alguma coisa e pense bem no que tu fez.", "INVENTÁRIO CHEIO");
             }
 
-            //Impede o movimento do personagem enquando a mensagem estiver ativa 
-            CancelarMovimento();
-            Mensagem("Item: " + Mapa.MapaJogo[x, y].Item.Nome, "Novo Item adquirido");
-
-            //Retira o item do mapa
-            Mapa.MapaJogo[x, y] = null;
         }
 
         //Transição para tela de combate
@@ -583,6 +594,8 @@ namespace ProjetoRPG_UWP
             PlayerFace.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Face.png"));
             ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Down.gif"));
             ListImageItem = new List<Image>();
+            ExibirItemTela();
+
             AtualizarImagem();
             /*AREA DE TESTE*/
             Debug.WriteLine("TAMANHO PAGINA: " + Window.Current.Bounds.Height);
