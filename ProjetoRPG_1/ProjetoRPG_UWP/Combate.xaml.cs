@@ -94,10 +94,10 @@ namespace ProjetoRPG_UWP
             }
         }
 
-            /// <summary>
-            /// Metodo para utilizar um item selecionado no combobox
-            /// </summary>
-            private void Btn_Inventario(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Metodo para utilizar um item selecionado no combobox
+        /// </summary>
+        private void Btn_Inventario(object sender, RoutedEventArgs e)
         {
             if (ListaI.SelectedValue != null)
             {
@@ -105,14 +105,17 @@ namespace ProjetoRPG_UWP
                 //Aplicar boost no personagem
                 jogador.UsarItem(item);
 
+
                 if (item.Dano > 0)
                 {
                     //Atacar o monstro
                     int dano = jogador.Atacar(monstro, item, null);
                     monstro.Life -= dano;
 
+
                     //exibir marcador de dano do monstro
                     _ = ExibeDanoCombateAsync(dano, 1);
+
 
                     //monstro ataca
                     InteligenciaMonstro();
@@ -154,7 +157,7 @@ namespace ProjetoRPG_UWP
         /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            //base.OnNavigatedTo(e);
 
             //Captura os personagens vindos de outra tela (movimento) 
             var ListParametros = e.Parameter as List<Personagem>;
@@ -163,6 +166,7 @@ namespace ProjetoRPG_UWP
 
             /*AREA DE TESTE*/
             monstro.ConhecimentoDrop = 250;
+            monstro.Animo = 100;
             Item item = new ItemPrimario();
             item.Nome = "EAI MEN!!!";
             monstro.ItemDrop = item;
@@ -262,7 +266,7 @@ namespace ProjetoRPG_UWP
             }
             else if (monstro.GetType() == typeof(Gasefic))
             {
-                diretorioMonstro = "Aculo.png";
+                diretorioMonstro = "gasefic.png";
             }
             else if (monstro.GetType() == typeof(Lapain))
             {
@@ -313,25 +317,13 @@ namespace ProjetoRPG_UWP
             }
         }
 
-        private async Task ExibirAcaoCombatentesAsync(int personagem, string acaoUtilizada)
+        private async Task ExibirAcaoCombatentesAsync(string acaoUtilizada)
         {
 
-            //dano no monstro
-            if (personagem >= 1)
-            {
                 //ação utilizada pelo monstro 
-                AcaoCombate.Text = monstro.Nome + "usou " + acaoUtilizada;
-                await Task.Delay(600);
+                AcaoCombate.Text = monstro.Nome + " usou " + acaoUtilizada;
+                await Task.Delay(1000);
                 AcaoCombate.Text = "";
-            }
-            //dano no jogador
-            else
-            {
-                //ação utilizada pelo jogador
-                AcaoCombate.Text = jogador.Nome + "usou" + acaoUtilizada;
-                await Task.Delay(600);
-                AcaoCombate.Text = "";
-            }
         }
 
         /// <summary>
@@ -341,7 +333,7 @@ namespace ProjetoRPG_UWP
         {
             int dano = jogador.Atacar(monstro, null, jogador.Habilidades.ElementAt<Habilidade>(0));
             monstro.Life -= dano;
-            _ = ExibeDanoCombateAsync(dano, 1);
+            _ = ExibeDanoCombateAsync(dano,1);
 
             //mostro ataca
             InteligenciaMonstro();
@@ -361,7 +353,7 @@ namespace ProjetoRPG_UWP
             {
                 if (monstro.ItemDrop != null)
                 {
-                    _ = jogador.ColetarItem(monstro.ItemDrop);
+                    jogador.ColetarItem(monstro.ItemDrop);
                 }
                 jogador.Conhecimento += monstro.ConhecimentoDrop;
                 jogador.Animo -= contAnimo;
@@ -372,6 +364,7 @@ namespace ProjetoRPG_UWP
             //jogador morto monstro vivo
             else if (jogador.Life <= 0)
             {
+                this.Frame.Navigate(typeof(GameOver), monstro);
                 //criar tela ou mensagem de personagem morto (game over)
             }
         }
@@ -387,6 +380,7 @@ namespace ProjetoRPG_UWP
                 //verificar se o usuario tem a energia para usar a habilidade
                 if (jogador.UsarHabilidade(hbl))
                 {
+
                     //armazena os buffes para tirar no fim da rodada
                     contAnimo += hbl.BuffAnimo;
                     contPersistencia += hbl.BuffPersistencia;
@@ -448,7 +442,6 @@ namespace ProjetoRPG_UWP
         /// </summary>
         private void InteligenciaMonstro()
         {
-            //delay para ação do monstro
             _ = Task.Delay(700);
 
             //Retira a persistencia quando o mosntro se defendeu
@@ -495,11 +488,14 @@ namespace ProjetoRPG_UWP
                     monstro.UsarHabilidade(monstro.Habilidades[numhabilidade]);
                     int dano = monstro.Atacar(jogador, null, monstro.Habilidades[numhabilidade]);
                     jogador.Life -= dano;
+                    _ = ExibirAcaoCombatentesAsync(monstro.Habilidades[numhabilidade].Nome);
                     _ = ExibeDanoCombateAsync(dano, 2);
                 }
                 //Defende
                 else
                 {
+                    _ = ExibirAcaoCombatentesAsync("Escudo");
+
                     Debug.WriteLine("ESCUDOS UTILIZADOS");
                     this.monstro.Persistencia += 12;
                     defesaMonstro = true;
@@ -536,8 +532,8 @@ namespace ProjetoRPG_UWP
                         monstro.UsarHabilidade(maiorHabilidade);
                         int dano = monstro.Atacar(jogador, null, maiorHabilidade);
                         jogador.Life -= dano;
+                        _ = ExibirAcaoCombatentesAsync(maiorHabilidade.Nome);
                         _ = ExibeDanoCombateAsync(dano, 2);
-
                     }
                     //Defende
                     else
@@ -545,6 +541,7 @@ namespace ProjetoRPG_UWP
                         Debug.WriteLine("ESCUDOS UTILIZADOS");
                         this.monstro.Persistencia += 12;
                         defesaMonstro = true;
+                        _ = ExibirAcaoCombatentesAsync("Escudo");
                     }
                 }
                 //Se ele tiver seu life abaixo da metade ele tende a atacar mais utilizando a seu melhor habilidade e outras habilidades
@@ -566,10 +563,12 @@ namespace ProjetoRPG_UWP
                         Debug.WriteLine("Numero para habilidade sorteado: " + numhabilidade);
                         Debug.WriteLine("Habilidade usada: " + monstro.Habilidades[numhabilidade].Nome);
 
+
                         //Usar a habilidade
                         _ = monstro.UsarHabilidade(monstro.Habilidades[numhabilidade]);
                         int dano = monstro.Atacar(jogador, null, monstro.Habilidades[numhabilidade]);
                         jogador.Life -= dano;
+                        _ = ExibirAcaoCombatentesAsync(monstro.Habilidades[numhabilidade].Nome);
                         _ = ExibeDanoCombateAsync(dano, 2);
                     }
                     //ataca com melhor habilidade
@@ -597,6 +596,7 @@ namespace ProjetoRPG_UWP
                         _ = monstro.UsarHabilidade(maiorHabilidade);
                         int dano = monstro.Atacar(jogador, null, maiorHabilidade);
                         jogador.Life -= dano;
+                        _ = ExibirAcaoCombatentesAsync(maiorHabilidade.Nome);
                         _ = ExibeDanoCombateAsync(dano, 2);
                     }
                     //Defende
@@ -605,6 +605,7 @@ namespace ProjetoRPG_UWP
                         Debug.WriteLine("ESCUDOS UTILIZADOS");
                         this.monstro.Persistencia += 12;
                         defesaMonstro = true;
+                        _ = ExibirAcaoCombatentesAsync("Escudos");
                     }
                 }
             }

@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="ProjetoRPG_UWP.GameOver"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetoRPG_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Width="1366" Height="696"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Canvas Width="1366" Height="696" x:Name="PaginaGameOver" Background="Black">
+
+        <Button x:Name="ReiniciarJogo" Click="ReiniciarJogo_Click" Background="Black" BorderBrush="White" BorderThickness="2" FontSize="25" Foreground="White"  Content="Reiniciar" Canvas.Left="544" Canvas.Top="576" Height="58" Width="277"/>
+        <Image x:Name="ImgMonstro" Source="/Assets/gasefic.png" Height="406" Canvas.Left="491" Canvas.Top="90" Width="385"/>
+        <TextBlock Canvas.Left="76" Canvas.Top="193" Text="GAME" FontSize="150" Foreground="Snow" TextWrapping="Wrap"/>
+        <TextBlock Canvas.Left="881" Canvas.Top="193" Text="OVER" FontSize="150" Foreground="Snow" TextWrapping="Wrap"/>
+
+    </Canvas>
+</Page>

@@ -10,6 +10,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas Width="1366" Height="696" x:Name="PaginaCombate">
+
+
+        <Image Height="180" Width="345"  Source="/Assets/logo.png" Canvas.Left="403" Canvas.Top="28"/>
         <Image x:Name="ImgPlayer" Height="436" Width="302"  Source="/Assets/stick.png" Canvas.Left="43" Canvas.Top="191"/>
         <Image x:Name="ImgMonstro" Height="436" Width="302" Source="/Assets/Aculo.png" Canvas.Left="765" Canvas.Top="191"/>
         <ComboBox x:Name="ListaI" Background="Red" BorderBrush="Black" BorderThickness="5" Canvas.Left="1176" Canvas.Top="347" Width="190" SelectionChanged="ComboBoxs_SelectionChanged_Inventario" />
@@ -48,13 +51,12 @@
         <TextBlock x:Name="TxtEnergiaM" Foreground="White" TextWrapping="Wrap" Text="Energia Monstro" Width="301" Height="26" FontSize="15" Canvas.Top="155" TextAlignment="Center" Canvas.Left="765"/>
         <TextBlock x:Name="TxtEnergiaJ" Foreground="White" TextWrapping="Wrap" Text="Energia Monstro" Width="301" Height="26" FontSize="15" Canvas.Top="155" TextAlignment="Center" Canvas.Left="43"/>
 
-
-
         <TextBlock x:Name="NomeJogador" FontWeight="Bold" TextWrapping="Wrap" Text="Nome jogador" Width="300" Height="44" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="43"/>
         <TextBlock x:Name="NomeMonstro" FontWeight="Bold" TextWrapping="Wrap" Text="Nome monstro" Width="300" Height="44" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="765"/>
         <TextBlock x:Name="DanoMonstro" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="363" TextAlignment="Center" Canvas.Left="683" Foreground="RED" RenderTransformOrigin="0.37,0.509"/>
         <TextBlock x:Name="DanoJogador" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="363" TextAlignment="Center" Canvas.Left="347" Foreground="RED"/>
-        <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="--" FontWeight="Bold" Height="50" Width="300" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="414"/>
+        <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="--" FontWeight="Bold" Height="121" Width="303" FontSize="25" Canvas.Top="210" TextAlignment="Center" Canvas.Left="403"/>
+
 
     </Canvas>
 </Page>

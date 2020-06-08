@@ -34,5 +34,11 @@ namespace ProjetoRPG_UWP
         {
             this.Frame.Navigate(typeof(Page2));
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+        }
+
     }
 }

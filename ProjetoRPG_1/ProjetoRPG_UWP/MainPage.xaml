@@ -14,8 +14,8 @@
         <Button x:Name="BtnStart" 
                 Content="START GAME" 
                 Height="49" Width="203" 
-                Canvas.Left="299" 
-                Canvas.Top="500" 
+                Canvas.Left="298" 
+                Canvas.Top="400" 
                 Background="White"
                 BorderBrush="Black"/>
     </Canvas>
