@@ -8,7 +8,25 @@ namespace ProjetoRPG
     public class Expert : PersonagemJogavel
     {
 
-
+        public Expert()
+        {
+            this.Nome = "Tais Fubica";
+            this.Descricao = "Uma estudante prodígio que demonstra uma grande perícia em sobrevivência. Ela possui muita persistência.";
+            this.Life = 400;
+            this.MaxLife = 400;
+            this.Energia = 400;
+            this.MaxEnergia = 400;
+            this.Animo = 15;
+            this.Persistencia = 20;
+            this.Conhecimento = 0;
+            this.Nivel = 1;
+            this.PosicaoX = 19;
+            this.PosicaoY = 2;
+            this.MenuCraft = new Craft();
+            this.inventario = new Inventario();
+            Habilidades = new List<Habilidade>();
+            this.StartHabilidade();
+        }
         public override void LevelUp()
         {
             if (this.Conhecimento >= 240 && this.Nivel <= 2)
@@ -16,7 +34,9 @@ namespace ProjetoRPG
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 240;
                 this.Life = 500;
+                this.MaxLife = 500;
                 this.Energia = 500;
+                this.MaxEnergia = 500;
                 this.Animo = 20;
                 this.Persistencia = 25;
                 this.ResolucaoSuprema();
@@ -26,7 +46,9 @@ namespace ProjetoRPG
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 408;
                 this.Life = 600;
+                this.MaxLife = 600;
                 this.Energia = 600;
+                this.MaxEnergia = 600;
                 this.Animo = 23;
                 this.Persistencia = 28;
             }
@@ -35,7 +57,9 @@ namespace ProjetoRPG
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 610;
                 this.Life = 700;
+                this.MaxLife = 700;
                 this.Energia = 700;
+                this.MaxEnergia = 700;
                 this.Animo = 25;
                 this.Persistencia = 30;
                 this.Concentracao();
@@ -45,7 +69,9 @@ namespace ProjetoRPG
                 this.Nivel++;
                 this.Conhecimento = this.Conhecimento - 852;
                 this.Life = 800;
+                this.MaxLife = 800;
                 this.Energia = 800;
+                this.MaxEnergia = 800;
                 this.Animo = 35;
                 this.Persistencia = 40;
             }
