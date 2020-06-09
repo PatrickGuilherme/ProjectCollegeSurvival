@@ -95,6 +95,19 @@ namespace ProjetoRPG
                     this.ItensPreRequesito = new List<ItemPrimario>();
                     iniciarItemPreRequisito();
                 break;
+                case 7:
+                    this.Nome = "Laser";
+                    this.Descricao = "Dispositivo encontrado após derrotar o magnifico inimigo T.O.E.S.T, sendo usado para causar dano em inimigos.";
+                    this.NivelRequerido = 3;
+                    this.BuffLife = 0;
+                    this.BuffEnergia = 0;
+                    this.BuffAnimo = 0;
+                    this.BuffPersistencia = 0;
+                    this.Dano = 25;
+                    //this.ListaAuxiliar = new List<ItemPrimario>();
+                    //this.ItensPreRequesito = new List<ItemPrimario>();
+                    //iniciarItemPreRequisito();
+                    break;
             }
         }
 
