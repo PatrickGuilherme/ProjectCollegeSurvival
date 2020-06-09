@@ -148,12 +148,17 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\10Mapa.png" />
+    <Content Include="Assets\11Mapa.png" />
     <Content Include="Assets\1Mapa.png" />
     <Content Include="Assets\2Mapa.png" />
     <Content Include="Assets\3Mapa.png" />
     <Content Include="Assets\4Mapa.png" />
     <Content Include="Assets\5Mapa.png" />
     <Content Include="Assets\6Mapa.png" />
+    <Content Include="Assets\7Mapa.png" />
+    <Content Include="Assets\8Mapa.png" />
+    <Content Include="Assets\9Mapa.png" />
     <Content Include="Assets\Aculo.png" />
     <Content Include="Assets\Atacar.png" />
     <Content Include="Assets\bag.png" />
