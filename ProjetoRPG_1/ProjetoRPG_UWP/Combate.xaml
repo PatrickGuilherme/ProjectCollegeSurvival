@@ -55,7 +55,7 @@
         <TextBlock x:Name="NomeMonstro" FontWeight="Bold" TextWrapping="Wrap" Text="Nome monstro" Width="300" Height="44" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="765"/>
         <TextBlock x:Name="DanoMonstro" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="363" TextAlignment="Center" Canvas.Left="683" Foreground="RED" RenderTransformOrigin="0.37,0.509"/>
         <TextBlock x:Name="DanoJogador" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="363" TextAlignment="Center" Canvas.Left="347" Foreground="RED"/>
-        <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="--" FontWeight="Bold" Height="121" Width="303" FontSize="25" Canvas.Top="210" TextAlignment="Center" Canvas.Left="403"/>
+        <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="" FontWeight="Bold" Height="121" Width="303" FontSize="25" Canvas.Top="210" TextAlignment="Center" Canvas.Left="403"/>
 
 
     </Canvas>

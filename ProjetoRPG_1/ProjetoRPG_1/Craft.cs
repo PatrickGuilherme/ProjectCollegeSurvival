@@ -9,6 +9,11 @@ namespace ProjetoRPG
     {
         public List<ItemSecundario> ItensCraftados { get; set; }
 
+        public Craft()
+        {
+            this.ItensCraftados = new List<ItemSecundario>();
+        }
+
         /// <summary>
         /// Metodo para gerar itens por combinações
         /// </summary>

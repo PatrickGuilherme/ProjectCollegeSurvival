@@ -41,6 +41,101 @@ namespace ProjetoRPG_UWP
             Frame.GoBack();
         }
 
+        private Image IgmItens(string nomeItem)
+        {
+            Image image = new Image();
+            string diretorio = "";
+            switch (nomeItem)
+            {
+                case "Garrafa Vazia":
+                    diretorio = "ItensPri/garrafavazia.png";
+                    break;
+                case "Água":
+                    diretorio = "ItensPri/agua.png";
+                    break;
+                case "Substância Química":
+                    diretorio = "ItensPri/substanciaquimica.png";
+                    break;
+                case "Pão":
+                    diretorio = "ItensPri/pao.png";
+                    break;
+                case "Pombo":
+                    diretorio = "ItensPri/pombo.png";
+                    break;
+                case "Pó":
+                    diretorio = "ItensPri/po.png";
+                    break;
+                case "Papel":
+                    diretorio = "ItensPri/papel.png";
+                    break;
+                case "Giz":
+                    diretorio = "ItensPri/giz.png";
+                    break;
+                case "Mecanismo Eletrônico":
+                    diretorio = "ItensPri/mecanismoeletronico.png";
+                    break;
+                case "Vidraria":
+                    diretorio = "ItensPri/vidraria.png";
+                    break;
+                case "Blue Bull":
+                    diretorio = "ItensSec/blueBull.png";
+                    break;
+                case "Sunbley":
+                    diretorio = "ItensSec/sunbley.png";
+                    break;
+                case "Café":
+                    diretorio = "ItensSec/cafe.png";
+                    break;
+                case "Notas de Aula":
+                    diretorio = "ItensSec/notasdeaula.png";
+                    break;
+                case "Calculadora":
+                    diretorio = "ItensSec/calculadora.png";
+                    break;
+                case "Mini Sol":
+                    diretorio = "ItensSec/minisol.png";
+                    break;
+                case "Agenda":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Caderno 1M":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Caderno 10M":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Enciclopédia":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Notebook":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Lápis":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Lápis Mecânico":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Caneta":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Borracha Branca":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Borracha Azul":
+                    diretorio = "mesa.jpg";
+                    break;
+                case "Borracha Duas Cores":
+                    diretorio = "mesa.jpg";
+                    break;
+                default:
+                    diretorio = "mesa.jpg";
+                    break;
+            }
+            image.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorio));
+            return image;
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -60,10 +155,10 @@ namespace ProjetoRPG_UWP
             {
                 ListItems.Add(item);
 
-                Image image = new Image();
+                Image image;
 
                 //Dependendo do item mudar a source da imagem
-                image.Source = new BitmapImage(new Uri("ms-appx:///Assets/mesa.jpg"));
+                image = IgmItens(item.Nome);
 
                 Button button = new Button();
                 button.Width = 216;
@@ -88,11 +183,7 @@ namespace ProjetoRPG_UWP
 
                 ToolTip toolTip = new ToolTip();
                 
-                if (item.GetType() == typeof(ItemPrimario)) 
-                {
-                    toolTip.Content = item.Nome + ":\n\n" + "Use esse bagulho pra fazer algo mais POTENTE.";
-                }
-                else toolTip.Content = item.Nome + ":\n\n" + item.Descricao;
+                toolTip.Content = item.Nome + ":\n\n" + item.Descricao;
 
                 ToolTipService.SetToolTip(button, toolTip);
 

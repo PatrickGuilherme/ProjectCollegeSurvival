@@ -121,7 +121,6 @@ namespace ProjetoRPG_UWP
                     InteligenciaMonstro();
                 }
 
-
                 //Atualizar os textos da tela
                 AtualizarTexto();
 
@@ -163,15 +162,6 @@ namespace ProjetoRPG_UWP
             var ListParametros = e.Parameter as List<Personagem>;
             jogador = ListParametros.ElementAt<Personagem>(0) as PersonagemJogavel;
             monstro = ListParametros.ElementAt<Personagem>(1) as Monstro;
-
-            /*AREA DE TESTE*/
-            monstro.ConhecimentoDrop = 250;
-            monstro.Animo = 10;
-            Item item = new ItemPrimario();
-            item.Nome = "EAI MEN!!!";
-            monstro.ItemDrop = item;
-            jogador.LevelUp();
-            /*-----------------*/
 
             //Iniciar preenchimento das progress bars do jogador e monstro 
             EnergiaP.Maximum = jogador.MaxEnergia;
@@ -215,7 +205,10 @@ namespace ProjetoRPG_UWP
             //Preenche na combobox os itens do jogador
             jogador.inventario.GetItemSecundarios().ForEach(delegate (ItemSecundario itemSecundario)
             {
-                ListaI.Items.Add(itemSecundario);
+                if(jogador.Nivel >= itemSecundario.NivelRequerido)
+                {
+                    ListaI.Items.Add(itemSecundario);
+                }
             });
         }
 

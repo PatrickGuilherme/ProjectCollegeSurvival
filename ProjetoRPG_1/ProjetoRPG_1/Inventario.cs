@@ -8,6 +8,11 @@ namespace ProjetoRPG
     {
         public List<Item> Itens{ get; set; }
 
+        public Inventario()
+        {
+            this.Itens = new List<Item>();
+        }
+
         //checar se o item existe no inventario
         public bool HasItem(Item item) => Itens.Equals(item) ? true : false;
 

@@ -220,13 +220,12 @@ namespace ProjetoRPG
         private GameObject[,] LoadingItensMapa(GameObject[,] Map)
         {
             //ISSO AQUI É UM TESTE !!
-            ItemPrimario item = new ItemPrimario();
-            item.Nome = "Agua";
+            ItemPrimario item = new ItemPrimario(2);//Água
             GameObject teste = new GameObject();
             teste.Item = item;
             Map[3, 3] = teste;
-            ItemPrimario item2 = new ItemPrimario();
-            item2.Nome = "Po";
+
+            ItemPrimario item2 = new ItemPrimario(6);//Pó
             GameObject teste2 = new GameObject();
             teste2.Item = item2;
             Map[3, 4] = teste2;

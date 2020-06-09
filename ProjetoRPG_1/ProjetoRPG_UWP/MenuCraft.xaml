@@ -9,9 +9,39 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas Width="1366" Height="696">
-        <Button x:Name="Voltar" Height="100" Width="100" Canvas.Left="10" Content="Voltar" FontSize="20" Canvas.Top="10"/>
-        <Button x:Name="Craftar"  Height="100" Width="100" Canvas.Left="633" Content="CRAFT" FontSize="20" Canvas.Top="483"/>
-        <ComboBox x:Name="ListaCraft" Height="60" Width="367" Canvas.Left="500" Canvas.Top="348"/>
+        <Button x:Name="Voltar" Background="#C00000" Foreground="White" FontWeight="Bold" Height="60" Width="124" Canvas.Left="678" Content="Voltar" FontSize="20" Canvas.Top="574"/>
+        <Button x:Name="Craftar" Background="#00B050" Foreground="White" FontWeight="Bold" Height="60" Width="279" Canvas.Left="822" Content="CRAFT" FontSize="20" Canvas.Top="574"/>
+        <ComboBox x:Name="ListaCraft" PlaceholderText="Selecione um item para criar" FontSize="20" Height="60" Width="367" BorderBrush="#44546A" BorderThickness="2" Canvas.Left="223" Canvas.Top="574" SelectionChanged="ListaCraft_SelectionChanged"/>
 
+        <TextBlock x:Name="TxtItemNome" Text="Nome" FontSize="35" FontWeight="Bold" Canvas.Left="520" Canvas.Top="116" Width="432" Height="48" Foreground="Black" />
+
+        <TextBlock x:Name="TxtItemDescricaoTitulo" FontSize="20" Canvas.Left="223" Text="Descrição" FontWeight="Bold" Canvas.Top="407" TextWrapping="Wrap"/>
+        <Border Width="878" Height="102" Canvas.Left="223" Canvas.Top="444">
+            <TextBlock x:Name="TxtItemDescricao" FontSize="20" Text="descricao do item selecionado exibindo sua descrição." TextWrapping="Wrap" Canvas.Left="363" Canvas.Top="418" Foreground="Black" Margin="6,6,5,4"/>
+        </Border>
+
+        <Border x:Name="borderImg" BorderThickness="4" Width="280" Height="278" Canvas.Left="223" Canvas.Top="116">
+            <Image x:Name="ItemImg" Source="/Assets/ItensSec/bluebull.png" Height="278" Width="280" Canvas.Left="596" Canvas.Top="25"/>
+        </Border>
+        <TextBlock x:Name="TxtItensPreRequisitoTitulo" FontSize="20" Canvas.Left="522" Text="Requisitos:" FontWeight="Bold" Canvas.Top="180" TextWrapping="Wrap"/>
+        <TextBlock x:Name="TxtItensPreRequisito" FontSize="20" Canvas.Left="636" Text="cafe,cha..." Canvas.Top="180" TextWrapping="Wrap" Height="27" Width="465"/>
+
+        <Canvas x:Name="CanvasItemParte1" Width="280" Height="157" Background="LightGray"  Canvas.Left="522" Canvas.Top="234">
+            <TextBlock x:Name="TxtItemBuffeLifeTitulo" FontSize="20" Canvas.Left="10" Text="Life: " Canvas.Top="10" TextWrapping="Wrap"/>
+            <TextBlock x:Name="TxtItemBuffeEnergiaTitulo" FontSize="20" Canvas.Left="10" Text="Energia: " Canvas.Top="62" TextWrapping="Wrap"/>
+            <TextBlock x:Name="TxtItemBuffeAnimoTitulo" FontSize="20" Canvas.Left="10" Text="Ânimo: " Canvas.Top="110" TextWrapping="Wrap"/>
+            <TextBlock x:Name="TxtItemBuffeLife" FontWeight="Bold" FontSize="20" Text="blife" Canvas.Left="52" Canvas.Top="10" Width="200" Height="25" Foreground="Green" />
+            <TextBlock x:Name="TxtItemBuffeEnergia" FontWeight="Bold" Text="benergia" FontSize="20" Canvas.Left="90" Canvas.Top="62" Width="172" Height="25" Foreground="Green" />
+            <TextBlock x:Name="TxtItemBuffeAnimo" FontWeight="Bold" FontSize="20" Text="banimo" Canvas.Left="93" Canvas.Top="110" Width="169" Height="25" Foreground="Green" />
+        </Canvas>
+
+        <Canvas x:Name="CanvasItemParte2" Width="279" Height="157" Background="#E7E6E6" Canvas.Left="822" Canvas.Top="234">
+            <TextBlock x:Name="TxtItemBuffePersistenciaTitulo" FontSize="20" Canvas.Left="10" Text="Persistência: " Canvas.Top="10" TextWrapping="Wrap"/>
+            <TextBlock x:Name="TxtItemNivelTitulo" FontSize="20" Canvas.Left="10" Text="Nível requerido: " Canvas.Top="62" TextWrapping="Wrap"/>
+            <TextBlock x:Name="TxtItemDanoTitulo" FontSize="20" Canvas.Left="10" Text="Dano: " Canvas.Top="110" TextWrapping="Wrap"/>
+            <TextBlock x:Name="TxtItemBuffePersistencia" FontWeight="Bold" FontSize="20" Text="bpersistencia" Canvas.Left="132" Canvas.Top="10" Width="133" Height="25" Foreground="Green" />
+            <TextBlock x:Name="TxtItemNivel" Text="nivel" FontWeight="Bold" FontSize="20" Canvas.Left="168" Canvas.Top="62" Width="102" Height="25" Foreground="Green" />
+            <TextBlock x:Name="TxtItemDano" FontSize="20" FontWeight="Bold" Text="dano total" Canvas.Left="75" Canvas.Top="110" Width="151" Height="25" Foreground="Red" />
+        </Canvas>
     </Canvas>
 </Page>
