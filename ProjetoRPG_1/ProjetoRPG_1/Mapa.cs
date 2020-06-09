@@ -31,7 +31,7 @@ namespace ProjetoRPG
 
             //Loading de elementos
             LoadingDeslocamentosMapa(Map);
-            //LoadingEnemiesMapa(Map);
+            LoadingEnemiesMapa(Map);
             LoadingItensMapa(Map);
             this.MapaJogo = Map;
         }

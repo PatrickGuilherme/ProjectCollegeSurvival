@@ -162,6 +162,8 @@
     <Content Include="Assets\Aculo.png" />
     <Content Include="Assets\Atacar.png" />
     <Content Include="Assets\bag.png" />
+    <Content Include="Assets\Cheater\Battle.gif" />
+    <Content Include="Assets\Expert\Battle.gif" />
     <Content Include="Assets\ItensPri\agua.png" />
     <Content Include="Assets\ItensPri\garrafavazia.png" />
     <Content Include="Assets\ItensPri\giz.png" />
@@ -208,6 +210,7 @@
     <Content Include="Assets\objeto.png" />
     <Content Include="Assets\stick.png" />
     <Content Include="Assets\ItensSec\sunbley.png" />
+    <Content Include="Assets\Worker\Battle.gif" />
     <Content Include="Assets\Worker\Down.gif" />
     <Content Include="Assets\Worker\Face.png" />
     <Content Include="Assets\Worker\IdleDown.png" />

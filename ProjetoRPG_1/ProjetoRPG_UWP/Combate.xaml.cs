@@ -224,15 +224,15 @@ namespace ProjetoRPG_UWP
             //Definir a imagem do personagem jogavel
             if (jogador.GetType() == typeof(Worker))
             {
-                diretorioJogador = "Worker/None.png";
+                diretorioJogador = "Worker/Battle.gif";
             }
             else if (jogador.GetType() == typeof(Expert))
             {
-                diretorioJogador = "Expert/Fubica.png";
+                diretorioJogador = "Expert/Battle.gif";
             }
             else
             {
-                diretorioJogador = "Cheater/Nobody.png";
+                diretorioJogador = "Cheater/Battle.gif";
             }
             ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioJogador));
         }
