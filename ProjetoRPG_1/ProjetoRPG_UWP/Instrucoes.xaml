@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page Height="696" Width="1366"
     x:Class="ProjetoRPG_UWP.Instrucoes"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas>
+    <Canvas Height="696" Width="1366">
         <Border Canvas.Left="352" Canvas.Top="155" BorderBrush="Black" BorderThickness="2" Width="155">
             <Image Height="100" Canvas.Left="322" Canvas.Top="155" Width="200" Source="/Assets/Teclas.png"/>
         </Border>
@@ -27,6 +27,6 @@
             <Image Height="100" Canvas.Left="380" Canvas.Top="630" Width="162" Source="/Assets/TeclaI.png"/>
         </Border>
         <TextBlock Canvas.Left="686" Canvas.Top="680" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto4" TextAlignment="center"/>
-        <Button Content="Voltar" Canvas.Left="121" Canvas.Top="720" x:Name="BtnVoltar"/>
+        <Button Content="Voltar" Canvas.Left="121" Canvas.Top="630" x:Name="BtnVoltar"/>
     </Canvas>
 </Page>
