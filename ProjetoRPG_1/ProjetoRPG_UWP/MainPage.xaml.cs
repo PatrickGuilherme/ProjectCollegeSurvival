@@ -28,11 +28,15 @@ namespace ProjetoRPG_UWP
         {
             this.InitializeComponent();
             BtnStart.Click += BtnStart_Click;
+            BtnInfo.Click += BtnInfo_Click;
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Page2));
+        }
+        private void BtnInfo_Click(object sender, RoutedEventArgs e) {
+            this.Frame.Navigate(typeof(Instrucoes));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

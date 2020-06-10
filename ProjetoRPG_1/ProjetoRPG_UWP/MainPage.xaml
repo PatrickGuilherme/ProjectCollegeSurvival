@@ -18,5 +18,12 @@
                 Canvas.Top="400" 
                 Background="White"
                 BorderBrush="Black"/>
+        <Button x:Name="BtnInfo" 
+                Content="Informações" 
+                Height="49" Width="203" 
+                Canvas.Left="298" 
+                Canvas.Top="500" 
+                Background="White"
+                BorderBrush="Black"/>
     </Canvas>
 </Page>
