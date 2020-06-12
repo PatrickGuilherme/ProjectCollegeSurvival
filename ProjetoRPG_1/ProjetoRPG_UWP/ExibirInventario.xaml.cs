@@ -211,7 +211,7 @@ namespace ProjetoRPG_UWP
                 if (jogador.EquipamentosEquipados.Contains(ListItems.ElementAt<Item>(int.Parse(btn.Name)))) 
                 {
                     btn.Background = new SolidColorBrush(Colors.White);
-                    jogador.EquipamentosEquipados.Remove(ListItems.ElementAt<Item>(int.Parse(btn.Name)) as Equipamento);
+                    jogador.DesequiparEquipamento(ListItems.ElementAt<Item>(int.Parse(btn.Name)) as Equipamento);
                 }
                 // Caso ele não tenha equipado, ele equipará o item e deixará o botão vermelho para sinalizar o jogador
                 else 

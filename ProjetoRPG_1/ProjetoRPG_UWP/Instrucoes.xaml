@@ -9,24 +9,24 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas Height="696" Width="1366">
-        <Border Canvas.Left="352" Canvas.Top="155" BorderBrush="Black" BorderThickness="2" Width="155">
+        <Border Canvas.Left="291" Canvas.Top="47" BorderBrush="Black" BorderThickness="2" Width="155">
             <Image Height="100" Canvas.Left="322" Canvas.Top="155" Width="200" Source="/Assets/Teclas.png"/>
         </Border>
-        <TextBlock Canvas.Left="750" Canvas.Top="35" Text="Instruções" TextWrapping="Wrap" FontSize="50" FontStyle="Oblique" TextAlignment="center" FontWeight="Bold"/>
-        <TextBlock FontSize="20" Canvas.Left="686" x:Name="Texto" Canvas.Top="155" Text="" TextWrapping="Wrap" Height="98" TextAlignment="center"/>
-        <Border Canvas.Left="352" Canvas.Top="320" BorderBrush="Black" BorderThickness="2">
+        <TextBlock Canvas.Left="798" Canvas.Top="47" Text="Instruções" TextWrapping="Wrap" FontSize="50" FontStyle="Oblique" TextAlignment="center" FontWeight="Bold"/>
+        <TextBlock FontSize="20" Canvas.Left="534" x:Name="Texto" Canvas.Top="47" Text="" TextWrapping="Wrap" Height="98" TextAlignment="center"/>
+        <Border Canvas.Left="291" Canvas.Top="212" BorderBrush="Black" BorderThickness="2">
             <Image Height="100" Width="150" Canvas.Left="352" Canvas.Top="320" Source="/Assets/TeclaZ.png"/>
         </Border>
 
-        <TextBlock Canvas.Left="686" Canvas.Top="350" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto2" TextAlignment="center"/>
-        <Border Canvas.Left="352" Canvas.Top="480" BorderBrush="Black" BorderThickness="2" Width="155">
+        <TextBlock Canvas.Left="534" Canvas.Top="236" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto2" TextAlignment="center"/>
+        <Border Canvas.Left="291" Canvas.Top="372" BorderBrush="Black" BorderThickness="2" Width="155">
             <Image Height="100" Canvas.Left="380" Canvas.Top="480" Width="100" Source="/Assets/TeclaC.png"/>
         </Border>
-        <TextBlock Canvas.Left="686" Canvas.Top="500" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto3" TextAlignment="center"/>
-        <Border Canvas.Left="352" Canvas.Top="630" BorderBrush="Black" BorderThickness="2" Width="155">
+        <TextBlock Canvas.Left="534" Canvas.Top="390" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto3" TextAlignment="center"/>
+        <Border Canvas.Left="291" Canvas.Top="522" BorderBrush="Black" BorderThickness="2" Width="155">
             <Image Height="100" Canvas.Left="380" Canvas.Top="630" Width="162" Source="/Assets/TeclaI.png"/>
         </Border>
-        <TextBlock Canvas.Left="686" Canvas.Top="680" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto4" TextAlignment="center"/>
-        <Button Content="Voltar" Canvas.Left="121" Canvas.Top="630" x:Name="BtnVoltar"/>
+        <TextBlock Canvas.Left="534" Canvas.Top="555" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto4" TextAlignment="center"/>
+        <Button BorderBrush="Black" Content="Voltar" Canvas.Left="1125" Canvas.Top="45" x:Name="BtnVoltar" Height="70" Width="76"/>
     </Canvas>
 </Page>

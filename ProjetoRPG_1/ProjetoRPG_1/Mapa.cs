@@ -243,7 +243,7 @@ namespace ProjetoRPG
             item3.Tipo = "LAPIS";
             GameObject teste3 = new GameObject();
             teste3.Item = item3;
-            Map[3, 5] = teste3;
+            Map[5, 129] = teste3;
             return Map;
         }
     }

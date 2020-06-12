@@ -466,7 +466,7 @@ namespace ProjetoRPG_UWP
         {
             int cont = (int)(jogador.PosicaoX - (jogador.PosicaoX - Math.Floor(jogador.PosicaoX / 12) * 12));
 
-            foreach(var image in ListImageItem) 
+            foreach (var image in ListImageItem)
             {
                 image.Source = null;
             }
@@ -487,7 +487,7 @@ namespace ProjetoRPG_UWP
                         canvas.Children.Add(ItemImage);
                         ListImageItem.Add(ItemImage);
 
-                        Canvas.SetLeft(ItemImage, 100 * (j - (i/12) * 12) + 1);
+                        Canvas.SetLeft(ItemImage, 100 * (j - (j/12) * 12) + 1);
                         Canvas.SetTop(ItemImage, 70 * i + 1);
                     }
                 }
