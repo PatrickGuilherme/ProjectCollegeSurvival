@@ -42,7 +42,7 @@ namespace ProjetoRPG_UWP {
                 player,
                 Mapa
             };
-            player.StartHabilidade();
+            //player.StartHabilidade();
             this.Frame.Navigate(typeof(Movimento), ListaParametros);
         }
 
@@ -59,7 +59,7 @@ namespace ProjetoRPG_UWP {
                     player,
                     Mapa
                 };
-            player.StartHabilidade();
+           // player.StartHabilidade();
             this.Frame.Navigate(typeof(Movimento), ListaParametros);
         }
 
@@ -75,7 +75,7 @@ namespace ProjetoRPG_UWP {
                     player,
                     Mapa
                 };
-            player.StartHabilidade();
+            //player.StartHabilidade();
             this.Frame.Navigate(typeof(Movimento), ListaParametros);
         }
     }
