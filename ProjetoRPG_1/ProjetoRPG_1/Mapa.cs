@@ -31,7 +31,7 @@ namespace ProjetoRPG
 
             //Loading de elementos
             LoadingDeslocamentosMapa(Map);
-            //LoadingEnemiesMapa(Map);
+            LoadingEnemiesMapa(Map);
             LoadingItensMapa(Map);
             this.MapaJogo = Map;
         }
@@ -110,16 +110,7 @@ namespace ProjetoRPG
 
                 //Instância o monstro
                 GameObject GridMonstro = new GameObject();
-                Gasefic GridGasefic = new Gasefic
-                {
-                    Nome = "Gasefic",
-                    Descricao = "Monstros servos do BOSS Atom.",
-                    Animo = 15,
-                    ConhecimentoDrop = 5,
-                    Life = 400,
-                    Energia = 150,
-                    Persistencia = 10
-                };
+                Gasefic GridGasefic = new Gasefic();
                 GridGasefic.Habilidades = new List<Habilidade>();
                 GridGasefic.StartHabilidade();
                 GridMonstro.Monstro = GridGasefic;
@@ -139,16 +130,7 @@ namespace ProjetoRPG
 
                 //Instância o monstro
                 GameObject GridMonstro = new GameObject();
-                Mintost GridMintost = new Mintost
-                {
-                    Nome = "MinTosta",
-                    Descricao = "Monstros servos do BOSS Toest.",
-                    Animo = 25,
-                    ConhecimentoDrop = 8,
-                    Life = 450,
-                    Energia = 200,
-                    Persistencia = 25
-                };
+                Mintost GridMintost = new Mintost();
                 GridMintost.Habilidades = new List<Habilidade>();
                 //GridMintost.StartHabilidade();
                 GridMonstro.Monstro = GridMintost;
@@ -168,16 +150,7 @@ namespace ProjetoRPG
 
                 //Instância o monstro
                 GameObject GridMonstro = new GameObject();
-                Minlapa GridMinlapa = new Minlapa
-                {
-                    Nome = "MinLapa",
-                    Descricao = "Monstros servos do BOSS Lapain.",
-                    Animo = 35,
-                    ConhecimentoDrop = 35,
-                    Life = 500,
-                    Energia = 250,
-                    Persistencia = 20
-                };
+                Minlapa GridMinlapa = new Minlapa();
                 GridMinlapa.Habilidades = new List<Habilidade>();
                 //GridMinlapa.StartHabilidade(); //Ativar quando a classe minlapa estiver pronta
                 GridMonstro.Monstro = GridMinlapa;
@@ -197,16 +170,7 @@ namespace ProjetoRPG
 
                 //Instância o monstro
                 GameObject GridMonstro = new GameObject();
-                Aculo GridAculo = new Aculo
-                {
-                    Nome = "Aculo",
-                    Descricao = "Monstros servos do BOSS Anaculo.",
-                    Animo = 40,
-                    ConhecimentoDrop = 171,
-                    Life = 550,
-                    Energia = 300,
-                    Persistencia = 25
-                };
+                Aculo GridAculo = new Aculo();
                 GridAculo.Habilidades = new List<Habilidade>();
                 //GridAculo.StartHabilidade();
                 GridMonstro.Monstro = GridAculo;
@@ -220,30 +184,37 @@ namespace ProjetoRPG
         /// </summary>
         private GameObject[,] LoadingItensMapa(GameObject[,] Map)
         {
-            //ISSO AQUI É UM TESTE !!
-            ItemPrimario item = new ItemPrimario(2);//Água
-            GameObject teste = new GameObject();
-            teste.Item = item;
-            Map[3, 3] = teste;
+            Equipamento equipamento = new Equipamento();
+            equipamento.adcionarEquipamento();
+            GameObject GOequip;
 
-            ItemPrimario item2 = new ItemPrimario(6);//Pó
-            GameObject teste2 = new GameObject();
-            teste2.Item = item2;
-            Map[3, 4] = teste2;
 
-            Equipamento item3 = new Equipamento();
-            item3.Nome = "Borracha";
-            item3.BuffAnimo = 0;
-            item3.BuffEnergia = 0;
-            item3.BuffLife = 0;
-            item3.BuffPersistencia = 0;
-            item3.Dano = 0;
-            item3.Descricao = "Esse equipamento salvará vidas.";
-            item3.NivelRequerido = 1;
-            item3.Tipo = "LAPIS";
-            GameObject teste3 = new GameObject();
-            teste3.Item = item3;
-            Map[2, 18] = teste3;
+            //equipamentos nivel 1
+
+            GameObject GOequip1 = new GameObject();
+            GOequip1.Item = equipamento.eq[0]; //agenda
+            Map[3, 5] = GOequip1;
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[5]; //lapis
+            Map[3, 4] = GOequip;
+
+            //equipamentos nivel 2
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[1]; //caderno 1M
+            Map[4, 129] = GOequip;
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[8]; //Borracha branca
+            Map[4, 106] = GOequip;
+
+            //equipamentos nivel 3
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[2]; //caderno 10M
+            Map[1, 85] = GOequip;
+
             return Map;
         }
     }
