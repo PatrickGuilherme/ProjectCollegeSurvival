@@ -30,6 +30,7 @@ namespace ProjetoRPG
             this.MenuCraft = new Craft();
             this.inventario = new Inventario();
             Habilidades = new List<Habilidade>();
+            EquipamentosEquipados = new List<Equipamento>();
             this.StartHabilidade();
         }
 

@@ -34,27 +34,7 @@ namespace ProjetoRPG_UWP {
         /// Metodo de de criar worker
         /// </summary>
         private void BtnWorker_Click(object sender, RoutedEventArgs e) {
-            Worker player = new Worker {
-                Nome = "João None",
-                Descricao = "",
-                Life = 300,
-                Energia = 500,
-                MenuCraft = new Craft(),
-                MaxEnergia = 500,
-                MaxLife = 300,
-                Animo = 20,
-                Nivel = 1,
-                Conhecimento = 0,
-                Persistencia = 15,
-                PosicaoX = 124,
-                PosicaoY = 6,
-                inventario = new Inventario() {
-                    Itens = new List<Item>()
-                },
-                Habilidades = new List<Habilidade>(),
-                EquipamentosEquipados = new List<Equipamento>()
-            };
-
+            Worker player = new Worker();
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];
             Mapa.ConstruirMapa();
@@ -71,25 +51,7 @@ namespace ProjetoRPG_UWP {
         /// Metodo de criar expert
         /// </summary>
         private void BtnExpert_Click(object sender, RoutedEventArgs e) {
-            Expert player = new Expert {
-                Nome = "Tais Fubica",
-                Life = 400,
-                Energia = 400,
-                Animo = 15,
-                MaxEnergia = 400,
-                MaxLife = 400,
-                MenuCraft = new Craft(),
-                Persistencia = 20,
-                PosicaoX = 124,
-                PosicaoY = 6,
-                Nivel = 1,
-                Conhecimento = 0,
-                inventario = new Inventario() {
-                    Itens = new List<Item>()
-                },
-                Habilidades = new List<Habilidade>(),
-                EquipamentosEquipados = new List<Equipamento>()
-            };
+            Expert player = new Expert();
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];
             Mapa.ConstruirMapa();
@@ -105,25 +67,7 @@ namespace ProjetoRPG_UWP {
         /// Metodo de criar cheater
         /// </summary>
         private void BtnCheater_Click(object sender, RoutedEventArgs e) {
-            Cheater player = new Cheater {
-                Nome = "Zé Nobody",
-                Life = 500,
-                Energia = 300,
-                MaxEnergia = 300,
-                MenuCraft = new Craft(),
-                MaxLife = 500,
-                Animo = 17,
-                Nivel = 1,
-                Conhecimento = 0,
-                PosicaoX = 124,
-                PosicaoY = 6,
-                Persistencia = 18,
-                inventario = new Inventario() {
-                    Itens = new List<Item>()
-                },
-                Habilidades = new List<Habilidade>(),
-                EquipamentosEquipados = new List<Equipamento>()
-            };
+            Cheater player = new Cheater();
             Mapa Mapa = new Mapa();
             Mapa.MapaJogo = new GameObject[9, 132];
             Mapa.ConstruirMapa();

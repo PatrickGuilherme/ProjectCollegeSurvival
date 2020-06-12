@@ -132,7 +132,7 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Mintost GridMintost = new Mintost();
                 GridMintost.Habilidades = new List<Habilidade>();
-                //GridMintost.StartHabilidade();
+                GridMintost.StartHabilidade();
                 GridMonstro.Monstro = GridMintost;
                 Map[posicaoY, posicaoX] = GridMonstro;
             }
@@ -152,7 +152,7 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Minlapa GridMinlapa = new Minlapa();
                 GridMinlapa.Habilidades = new List<Habilidade>();
-                //GridMinlapa.StartHabilidade(); //Ativar quando a classe minlapa estiver pronta
+                GridMinlapa.StartHabilidade(); //Ativar quando a classe minlapa estiver pronta
                 GridMonstro.Monstro = GridMinlapa;
                 Map[posicaoY, posicaoX] = GridMonstro;
             }
@@ -172,7 +172,7 @@ namespace ProjetoRPG
                 GameObject GridMonstro = new GameObject();
                 Aculo GridAculo = new Aculo();
                 GridAculo.Habilidades = new List<Habilidade>();
-                //GridAculo.StartHabilidade();
+                GridAculo.StartHabilidade();
                 GridMonstro.Monstro = GridAculo;
                 Map[posicaoY, posicaoX] = GridMonstro;
             }
