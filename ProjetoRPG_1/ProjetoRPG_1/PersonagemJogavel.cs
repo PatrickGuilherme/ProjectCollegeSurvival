@@ -129,28 +129,6 @@ namespace ProjetoRPG
         }
 
         /// <summary>
-        /// Metodo para desativar o efeito de um item
-        /// </summary>
-        public void DesativarEfeitoItem(Item item)
-        {
-            this.Animo -= item.BuffAnimo;
-            this.Energia -= item.BuffEnergia;
-            this.Life -= item.BuffLife;
-            this.Persistencia -= item.BuffPersistencia;
-        }
-
-        /// <summary>
-        /// Metodo para desativar o efeito de uma habilidade
-        /// </summary>
-        public void DesativarEfeitoHabilidade(Habilidade habilidade)//quando terminar de usar a habilidade chame essa funcao
-        {
-            this.Animo -= habilidade.BuffAnimo;
-            this.Life -= habilidade.BuffLife;
-            this.Persistencia -= habilidade.BuffPersistencia;
-            habilidade.Usada = false;
-        }
-
-        /// <summary>
         /// Verique se o personagem pode mover em uma determinada posição da matriz
         /// </summary>
         public bool PodeMover(GameObject[,] mapaJogo, double newPx, double newPy)

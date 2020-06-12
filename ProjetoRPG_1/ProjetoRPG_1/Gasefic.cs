@@ -6,7 +6,39 @@ namespace ProjetoRPG
 {
     public class Gasefic : Monstro
     {
+        /// <summary>
+        /// Construtor da classe para instância 
+        /// </summary>
+        public Gasefic()
+        {
+            this.Nome = "Gasefic";
+            this.Descricao = "Representação física de vários elementos químicos gasosos. Irrite esse inimigo e conseguirá a fúria de seu mestre ATOM.";
+            this.Life = 400 ;
+            this.MaxLife = 400;
+            this.Energia = 150;
+            this.MaxEnergia = 150;
+            this.Animo = 30;
+            this.Persistencia = 20;
+            this.ConhecimentoDrop = 10;
+            this.Habilidades = new List<Habilidade>();
+            this.StartHabilidade();
+        }
 
+        /// <summary>
+        /// Inicializa a habilidade de todos os níveis do personagem
+        /// </summary>
+        public override bool StartHabilidade()
+        {
+            fumaca();
+            ArremessoQuimico();
+            PoDaMorte();
+            return true;
+
+        }
+
+        /// <summary>
+        /// Habilidade do personagem 
+        /// </summary>
         public bool fumaca()
         {
             Habilidade habilidade = new Habilidade();
@@ -25,6 +57,9 @@ namespace ProjetoRPG
             return true;
         }
 
+        /// <summary>
+        /// Habilidade do personagem 
+        /// </summary>
         public bool ArremessoQuimico()
         {
             Habilidade habilidade = new Habilidade();
@@ -43,6 +78,9 @@ namespace ProjetoRPG
             return true;
         }
 
+        /// <summary>
+        /// Habilidade do personagem 
+        /// </summary>
         public bool PoDaMorte()
         {
             Habilidade habilidade = new Habilidade();
@@ -59,24 +97,6 @@ namespace ProjetoRPG
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
             return true;
-        }
-
-        public override bool UsarHabilidade(Habilidade habilidade)
-        {
-            this.Animo += habilidade.BuffAnimo;
-            this.Life += habilidade.BuffLife;
-            this.Persistencia += habilidade.BuffPersistencia;
-            habilidade.Usada = true;
-            return true;
-        }
-
-        public override bool StartHabilidade()
-        {
-            fumaca();
-            ArremessoQuimico();
-            PoDaMorte();
-            return true;
-            
         }
     }
 }

@@ -6,10 +6,6 @@ namespace ProjetoRPG
 {
     public class ItemPrimario: Item
     {
-        public ItemPrimario()
-        {
-            //Esta função foi deixada apenas para teste
-        }
         public ItemPrimario(int numItem)
         {
 
@@ -37,7 +33,7 @@ namespace ProjetoRPG
                 break;
                 case 3:
                     this.Nome = "Substância Química";
-                    this.Descricao = "Substância Química é um item encontrado perto de laboratórios, a substância pode ser utilizado para fabricar outros itens.";
+                    this.Descricao = "Substância Química é um item encontrado perto de laboratórios, a substância pode ser utilizada para fabricar outros itens.";
                     this.NivelRequerido = 0;
                     this.BuffEnergia = 0;
                     this.BuffAnimo = 0;
@@ -97,7 +93,7 @@ namespace ProjetoRPG
                 break;
                 case 9:
                     this.Nome = "Mecanismo Eletrônico";
-                    this.Descricao = "Mecanismo Eletrônico é um item encontrado em salas de robotica, o material pode ser utilizado para fabricar outros itens.";
+                    this.Descricao = "Mecanismo Eletrônico é um item encontrado em salas de robótica, o material pode ser utilizado para fabricar outros itens.";
                     this.NivelRequerido = 0;
                     this.BuffLife = 0;
                     this.BuffEnergia = 0;

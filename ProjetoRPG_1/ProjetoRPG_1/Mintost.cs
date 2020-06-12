@@ -4,11 +4,46 @@ using System.Text;
 
 namespace ProjetoRPG
 {
+    /// <summary>
+    /// Monstro - Mintost [Life: 450] [Energia: 200]
+    /// </summary>
     public class Mintost : Monstro
     {
+        /// <summary>
+        /// Construtor da classe para instância 
+        /// </summary>
+        public Mintost()
+        {
+            this.Nome = "Mintosta";
+            this.Descricao = "Seguidores implacáveis do mestre TOEST. O que eles não têm em força eles possuem em inteligência. Tome cuidado com seu mestre.";
+            this.Life = 450;
+            this.MaxLife = 450;
+            this.Energia = 200;
+            this.MaxEnergia = 200;
+            this.Animo = 25;
+            this.Persistencia = 25;
+            this.ConhecimentoDrop = 15;
+            this.Habilidades = new List<Habilidade>();
+            this.StartHabilidade();
+        }
+
+        /// <summary>
+        /// Inicializa a habilidade de todos os níveis do personagem
+        /// </summary>
+        public override bool StartHabilidade()
+        {
+            PiadaMortal();
+            LaserVerde();
+            AtaqueEstatistico();
+            return true;
+        }
+
+        /// <summary>
+        /// Habilidade do personagem 
+        /// </summary>
         public bool PiadaMortal() {
             Habilidade habilidade = new Habilidade();
-            habilidade.Nome = "Piada MOrtal";
+            habilidade.Nome = "Piada Mortal";
             habilidade.Descricao = "Piada que ao ser ouvida causa desconforto no inimigo.";
             habilidade.NivelRequerido = 1;
             habilidade.GastoEnergia = 0;
@@ -22,6 +57,10 @@ namespace ProjetoRPG
             this.Habilidades.Add(habilidade);
             return true;
         }
+
+        /// <summary>
+        /// Habilidade do personagem 
+        /// </summary>
         public bool LaserVerde() {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Laser Verde";
@@ -38,6 +77,10 @@ namespace ProjetoRPG
             this.Habilidades.Add(habilidade);
             return true;
         }
+
+        /// <summary>
+        /// Habilidade do personagem 
+        /// </summary>
         public bool AtaqueEstatistico() {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Ataque Estatístico";
@@ -52,22 +95,6 @@ namespace ProjetoRPG
             habilidade.Usada = false;
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
-            return true;
-        }
-        public override bool StartHabilidade()
-        {
-            PiadaMortal();
-            LaserVerde();
-            AtaqueEstatistico();
-            return true;
-        }
-
-        public override bool UsarHabilidade(Habilidade habilidade)
-        {
-            this.Animo += habilidade.BuffAnimo;
-            this.Life += habilidade.BuffLife;
-            this.Persistencia += habilidade.BuffPersistencia;
-            habilidade.Usada = true;
             return true;
         }
     }

@@ -4,12 +4,17 @@ using System.Text;
 
 namespace ProjetoRPG
 {
+    /// <summary>
+    /// Personagem jogavel - Cheater [Life: 500] [Energia: 300]
+    /// </summary>
     public class Cheater : PersonagemJogavel
     {
-
+        /// <summary>
+        /// Construtor da classe para instância 
+        /// </summary>
         public Cheater()
         {
-            this.Nome = "Nobody";
+            this.Nome = "No body Cheafer";
             this.Descricao = "Estudante que leva a vida acadêmica muito desleixada. Ele utiliza táticas “alternativas” para sobreviver, tendo grande life.";
             this.Life = 500;
             this.MaxLife = 500;
@@ -27,6 +32,9 @@ namespace ProjetoRPG
             this.StartHabilidade();
         }
 
+        /// <summary>
+        /// Verifica se o personagem subil de nível 
+        /// </summary>
         public override void LevelUp()
         {
             if (this.Conhecimento >= 240 && this.Nivel < 2)
@@ -51,7 +59,6 @@ namespace ProjetoRPG
                 this.MaxEnergia = 500;
                 this.Animo = 26;
                 this.Persistencia = 25;
-                Colar();
             }
             else if (this.Conhecimento >= 610 && this.Nivel < 4)
             {
@@ -63,6 +70,7 @@ namespace ProjetoRPG
                 this.MaxEnergia = 600;
                 this.Animo = 27;
                 this.Persistencia = 28;
+                Colar();
             }
             else if (this.Conhecimento >= 852 && this.Nivel < 5)
             {
@@ -77,11 +85,14 @@ namespace ProjetoRPG
             }
         }
 
+        /// <summary>
+        /// Inicializa a habilidade de nivel 1 do personagem
+        /// </summary>
         public override bool StartHabilidade()
         {
             Habilidade habilidade = new Habilidade();
-            habilidade.Nome = "Canetada";
-            habilidade.Descricao = "Ataque normal do personagem, utiliza uma arma em sua mão(ou sua própria mão) para desferir um golpe no inimigo.";
+            habilidade.Nome = "Estocada";
+            habilidade.Descricao = "Ataque normal do personagem, utiliza uma arma em sua mão(ou sua própria mão) para desferir um golpe na barriga do inimigo.";
             habilidade.NivelRequerido = 1;
             habilidade.GastoEnergia = 0;
             habilidade.Dano = 10;
@@ -95,11 +106,14 @@ namespace ProjetoRPG
             return true;
         }
 
+        /// <summary>
+        /// Habilidade do personagem N2
+        /// </summary>
         private void Migue()
         {
             Habilidade habilidade = new Habilidade();
-            habilidade.Nome = "Migué";
-            habilidade.Descricao = "Aura roxa emana do personagem e ele desabilita durante uma rodada uma habilidade aleatória do inimigo (exceto o ataque normal)";
+            habilidade.Nome = "Migue";
+            habilidade.Descricao = "Ataque especial que utiliza lábia para enganar o inimigo fazendo pensar que ele já atacou.";
             habilidade.NivelRequerido = 2;
             habilidade.GastoEnergia = 60;
             habilidade.Dano = 0;
@@ -110,37 +124,27 @@ namespace ProjetoRPG
             habilidade.Usada = false;
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
-        }// NIVEL 2
+        }
 
+        /// <summary>
+        /// Habilidade do personagem N4
+        /// </summary>
         private void Colar()
         {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Colar";
-            habilidade.Descricao = "Rouba o ânimo do inimigo para si (se o inimigo não tiver animo o suficiente será descontado o valor restante em seu Life.";
-            habilidade.NivelRequerido = 3;
-            habilidade.GastoEnergia = 25;
-            habilidade.Dano = 0;
+            habilidade.Descricao = "Ataque especial que aumenta sua persistência, deixando o personagem pronto para colar em provas afetando os sentidos do inimigo.";
+            habilidade.NivelRequerido = 4;
+            habilidade.GastoEnergia = 120;
+            habilidade.Dano = 15;
             habilidade.BuffLife = 0;
-            habilidade.BuffAnimo = 15;
-            habilidade.BuffPersistencia = 0;
+            habilidade.BuffAnimo = 0;
+            habilidade.BuffPersistencia = 5;
             habilidade.DesativaHabilidade = false;
             habilidade.Usada = false;
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
-        }//NIVEL 3
-
-        public override bool UsarHabilidade(Habilidade habilidade)
-        {
-            if (habilidade.GastoEnergia <= this.Energia)
-            {
-                this.Animo += habilidade.BuffAnimo;
-                this.Life += habilidade.BuffLife;
-                if (this.MaxLife < this.Life) this.Life = this.MaxLife;
-                this.Persistencia += habilidade.BuffPersistencia;
-                habilidade.Usada = true;
-                return true;
-            }
-            return false;
         }
+
     }
 }

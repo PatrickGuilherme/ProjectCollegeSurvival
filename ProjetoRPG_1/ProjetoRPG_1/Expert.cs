@@ -4,13 +4,17 @@ using System.Xml;
 
 namespace ProjetoRPG
 {
-
+    /// <summary>
+    /// Personagem jogavel - Expert [Life: 400] [Energia: 400]
+    /// </summary>
     public class Expert : PersonagemJogavel
     {
-
+        /// <summary>
+        /// Construtor da classe para instância 
+        /// </summary>
         public Expert()
         {
-            this.Nome = "Tais Fubica";
+            this.Nome = "Tais Fubica Expers";
             this.Descricao = "Uma estudante prodígio que demonstra uma grande perícia em sobrevivência. Ela possui muita persistência.";
             this.Life = 400;
             this.MaxLife = 400;
@@ -27,6 +31,10 @@ namespace ProjetoRPG
             Habilidades = new List<Habilidade>();
             this.StartHabilidade();
         }
+
+        /// <summary>
+        /// Verifica se o personagem subil de nível 
+        /// </summary>
         public override void LevelUp()
         {
             if (this.Conhecimento >= 240 && this.Nivel <= 2)
@@ -77,14 +85,17 @@ namespace ProjetoRPG
             }
         }
 
+        /// <summary>
+        /// Inicializa a habilidade de nivel 1 do personagem
+        /// </summary>
         public override bool StartHabilidade()
         {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Resolução";
-            habilidade.Descricao = "Ataque normal do personagem. Utiliza uma arma em sua mão (ou sua propria mão) para escrever uma resolução para um problema lançado pelo inimigo.";
+            habilidade.Descricao = "Ataque normal do personagem, utiliza uma arma em sua mão(ou sua própria mão) para calcular rapidamente uma formula de destruição do inimigo.";
             habilidade.NivelRequerido = 1;
             habilidade.GastoEnergia = 0;
-            habilidade.Dano = 13;
+            habilidade.Dano = 10;
             habilidade.BuffLife = 0;
             habilidade.BuffAnimo = 0;
             habilidade.BuffPersistencia = 0;
@@ -94,50 +105,42 @@ namespace ProjetoRPG
             return true;
         }
 
+        /// <summary>
+        /// Habilidade do personagem N2
+        /// </summary>
+        private void Concentracao()
+        {
+            Habilidade habilidade = new Habilidade();
+            habilidade.Nome = "Concentração";
+            habilidade.Descricao = "Foque na situação. O personagem recebe um aumento de sua persistência.";
+            habilidade.NivelRequerido = 2;
+            habilidade.GastoEnergia = 100;
+            habilidade.Dano = 15;
+            habilidade.BuffLife = 0;
+            habilidade.BuffAnimo = 0;
+            habilidade.BuffPersistencia = 10;
+            habilidade.Usada = false;
+            habilidade.Ativa = false;
+            this.Habilidades.Add(habilidade);
+        }
+
+        /// <summary>
+        /// Habilidade do personagem N3
+        /// </summary>
         private void ResolucaoSuprema()
         {
             Habilidade habilidade = new Habilidade();
-            habilidade.Nome = "Resolução SUPREMA";
+            habilidade.Nome = "Resolução Suprema";
             habilidade.Descricao = "Ataque especial do personagem. Utiliza sua capacidade mental máxima para alcançar o a resolução final.";
-            habilidade.NivelRequerido = 2;
-            habilidade.GastoEnergia = 45;
-            habilidade.Dano = 18;
+            habilidade.NivelRequerido = 3;
+            habilidade.GastoEnergia = 120;
+            habilidade.Dano = 25;
             habilidade.BuffLife = 0;
             habilidade.BuffAnimo = 0;
             habilidade.BuffPersistencia = 0;
             habilidade.Usada = false;
             habilidade.Ativa = false;
             this.Habilidades.Add(habilidade);
-        } //NIVEL 2
-
-        private void Concentracao()
-        {
-            Habilidade habilidade = new Habilidade();
-            habilidade.Nome = "Concentração";
-            habilidade.Descricao = "Foque na situação. O personagem recebe um aumento de sua persistência.";
-            habilidade.NivelRequerido = 4;
-            habilidade.GastoEnergia = 30;
-            habilidade.Dano = 0;
-            habilidade.BuffLife = 0;
-            habilidade.BuffAnimo = 0;
-            habilidade.BuffPersistencia = 15;
-            habilidade.Usada = false;
-            habilidade.Ativa = false;
-            this.Habilidades.Add(habilidade);
-        } //NIVEL 4
-
-        public override bool UsarHabilidade(Habilidade habilidade)
-        {
-            if (habilidade.GastoEnergia <= this.Energia)
-            {
-                this.Animo += habilidade.BuffAnimo;
-                this.Life += habilidade.BuffLife;
-                if (this.MaxLife < this.Life) this.Life = this.MaxLife;
-                this.Persistencia += habilidade.BuffPersistencia;
-                habilidade.Usada = true;
-                return true;
-            }
-            return false;
         }
     }
 }

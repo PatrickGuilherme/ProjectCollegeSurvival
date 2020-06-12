@@ -75,8 +75,23 @@ namespace ProjetoRPG
         }
 
         public abstract bool StartHabilidade();
-        
-        public abstract bool UsarHabilidade(Habilidade habilidade);
-        
+
+        /// <summary>
+        /// Aplica os buffers de habilidades no status do personagem
+        /// </summary>
+        public bool UsarHabilidade(Habilidade habilidade)
+        {
+            if (habilidade.GastoEnergia <= this.Energia)
+            {
+                this.Animo += habilidade.BuffAnimo;
+                this.Life += habilidade.BuffLife;
+                if (this.MaxLife < this.Life) this.Life = this.MaxLife;
+                this.Persistencia += habilidade.BuffPersistencia;
+                this.Energia -= habilidade.GastoEnergia;
+                habilidade.Usada = true;
+                return true;
+            }
+            return false;
+        }
     }
 }

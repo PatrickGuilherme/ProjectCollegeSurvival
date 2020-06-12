@@ -5,12 +5,18 @@ using System.Text;
 
 namespace ProjetoRPG
 {
+    /// <summary>
+    /// Personagem jogavel - Worker [Life: 300] [Energia: 500]
+    /// </summary>
     public class Worker : PersonagemJogavel
     {
+        /// <summary>
+        /// Construtor da classe para instância 
+        /// </summary>
         public Worker()
         {
             this.Nome = "João None Workefield";
-            this.Descricao = "Um aluno esforçado que se dedica a ser melhor no que faz";
+            this.Descricao = "Um aluno esforçado que se dedica a ser melhor no que faz, o personagem tem como destaque sua imensa energia";
             this.Life = 300;
             this.MaxLife = 300;
             this.Energia = 500;
@@ -25,8 +31,11 @@ namespace ProjetoRPG
             this.inventario = new Inventario();
             Habilidades = new List<Habilidade>();
             this.StartHabilidade();
-
         }
+
+        /// <summary>
+        /// Verifica se o personagem subil de nível 
+        /// </summary>
         public override void LevelUp()
         {
             if (this.Conhecimento >= 240 && this.Nivel < 2)
@@ -51,7 +60,6 @@ namespace ProjetoRPG
                 this.MaxEnergia = 700;
                 this.Animo = 28;
                 this.Persistencia = 23;
-                Persuadir();
             }
             else if (this.Conhecimento >= 610 && this.Nivel < 4)
             {
@@ -63,6 +71,7 @@ namespace ProjetoRPG
                 this.MaxEnergia = 800;
                 this.Animo = 30;
                 this.Persistencia = 25;
+                Persuadir();
             }
             else if (this.Conhecimento >= 852 && this.Nivel < 5)
             {
@@ -77,14 +86,17 @@ namespace ProjetoRPG
             }
         }
 
+        /// <summary>
+        /// Inicializa a habilidade de nivel 1 do personagem
+        /// </summary>
         public override bool StartHabilidade()
         {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Corte de papel";
-            habilidade.Descricao = "Ataque normal do personagem, utiliza folhas de papel afiadas e atira elas no inimigo.";
+            habilidade.Descricao = "Ataque utiliza folhas de papel afiadas contra o inimigo.";
             habilidade.NivelRequerido = 1;
             habilidade.GastoEnergia = 0;
-            habilidade.Dano = 10;
+            habilidade.Dano = 5;
             habilidade.BuffLife = 0;
             habilidade.BuffAnimo = 0;
             habilidade.BuffPersistencia = 0;
@@ -95,29 +107,35 @@ namespace ProjetoRPG
             return true;
         }
 
+        /// <summary>
+        /// Habilidade do personagem N2
+        /// </summary>
         private void ForcaDoOdio()
         {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Força do Ódio";
-            habilidade.Descricao = "Aumenta o status de ânimo durante 1 turno em combate.";
+            habilidade.Descricao = "Ataque especial que aumenta o ânimo do personagem após uma situação muito estressante.";
             habilidade.NivelRequerido = 2;
-            habilidade.GastoEnergia = 50;
+            habilidade.GastoEnergia = 120;
             habilidade.Dano = 0;
             habilidade.BuffLife = 100;
-            habilidade.BuffAnimo = 15;
+            habilidade.BuffAnimo = 10;
             habilidade.BuffPersistencia = 0;
             habilidade.DesativaHabilidade = false;
             habilidade.Usada = false;
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
         }
-
+       
+        /// <summary>
+        /// Habilidade do personagem N4
+        /// </summary>
         private void Persuadir()
         {
             Habilidade habilidade = new Habilidade();
             habilidade.Nome = "Persuadir";
-            habilidade.Descricao = "Pule um turno e zoe a cara do inimigo com um blue bull.";
-            habilidade.NivelRequerido = 3;
+            habilidade.Descricao = "Ataque especial que utiliza lábia do personagem para enganar o inimigo fazendo pensar que ele já atacou.";
+            habilidade.NivelRequerido = 4;
             habilidade.GastoEnergia = this.MaxEnergia / 2;
             habilidade.Dano = 0;
             habilidade.BuffLife = 0;
@@ -127,21 +145,6 @@ namespace ProjetoRPG
             habilidade.Usada = false;
             habilidade.Ativa = true;
             this.Habilidades.Add(habilidade);
-        }
-
-        public override bool UsarHabilidade(Habilidade habilidade)// se for atacar com uma habilidade chame essa funcao depois chama a funcao de ataque
-        {
-            if (habilidade.GastoEnergia <= this.Energia)
-            {
-                this.Animo += habilidade.BuffAnimo;
-                this.Life += habilidade.BuffLife;
-                if (this.MaxLife < this.Life) this.Life = this.MaxLife;
-                this.Persistencia += habilidade.BuffPersistencia;
-                this.Energia -= habilidade.GastoEnergia;
-                habilidade.Usada = true;
-                return true;
-            }
-            return false;
         }
     }
 }
