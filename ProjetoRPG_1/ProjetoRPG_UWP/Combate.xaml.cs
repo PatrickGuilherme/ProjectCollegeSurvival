@@ -47,51 +47,42 @@ namespace ProjetoRPG_UWP
             Lancar_Habilidade.Click += Btn_Habilidade;
             Inventario.Click += Btn_Inventario;
             Defesa.Click += Btn_Defesa;
+
         }
 
         /// <summary>
-        /// Metodo de exibição de descrição de itens (Em construção)
+        /// Metodo de utilização da habilidade mais basica do personagem
         /// </summary>
-        private void ComboBoxs_SelectionChanged_Habilidade(object sender, SelectionChangedEventArgs e)
+        private void Btn_Ataque(object sender, RoutedEventArgs e)
         {
-            string descricao;
+            int dano = jogador.Atacar(monstro, null, jogador.Habilidades.ElementAt<Habilidade>(0));
 
-            if (ListaH.SelectedItem != null)
-            {
-                ToolTip toolTip = new ToolTip(); 
-                
-                Habilidade hbl = ListaH.SelectedItem as Habilidade;
-                descricao = "Dano: -" + hbl.Dano + "\n" +
-                            "Gato energia: -" + hbl.GastoEnergia + "\n" +
-                            "Descrição: " + hbl.Descricao + "\n" +
-                            "Buffer Life: +" + hbl.BuffLife + "\n" +
-                            "Buffer Animo: +" + hbl.BuffAnimo + "\n" +
-                            "Buffer Persistência: " + hbl.BuffPersistencia;
-                toolTip.Content = descricao;
-                ToolTipService.SetToolTip(ListaH, toolTip);
-              //DescricaoHabilidade.Text = descricao;
-            }
+            _ = ExibeDanoCombateAsync(dano, 1);
+
+            //mostro ataca
+            InteligenciaMonstro();
+
+            AtualizarTexto();
+            //verifica quem morreu
+            checkLife();
         }
-        
-        private void ComboBoxs_SelectionChanged_Inventario(object sender, SelectionChangedEventArgs e)
+
+        /// <summary>
+        /// Metodo para aumentar a persistencia (defesa) do personagem para 
+        /// </summary> 
+        private void Btn_Defesa(object sender, RoutedEventArgs e)
         {
-            string descricao;
+            //Aumenta a defesa do jogador
+            jogador.Persistencia += 5;
 
-            if (ListaI.SelectedItem != null)
-            {
-                ToolTip toolTip = new ToolTip();
+            //Monstro ataca jogador 
+            InteligenciaMonstro();
 
-                Item item = ListaI.SelectedItem as Item;
-                descricao = "Dano: -" + item.Dano + "\n" +
-                            "Buffer energia: -" + item.BuffEnergia + "\n" +
-                            "Descrição: " + item.Descricao + "\n" +
-                            "Buffer Life: +" + item.BuffLife + "\n" +
-                            "Buffer Animo: +" + item.BuffAnimo + "\n" +
-                            "Buffer Persistência: " + item.BuffPersistencia;
-                toolTip.Content = descricao;
-                ToolTipService.SetToolTip(ListaI, toolTip);
-                //DescricaoHabilidade.Text = descricao;
-            }
+            AtualizarTexto();
+
+            checkLife();
+            //tirar a defesa do jogador
+            jogador.Persistencia -= 5;
         }
 
         /// <summary>
@@ -110,7 +101,6 @@ namespace ProjetoRPG_UWP
                 {
                     //Atacar o monstro
                     int dano = jogador.Atacar(monstro, item, null);
-                    monstro.Life -= dano;
 
 
                     //exibir marcador de dano do monstro
@@ -134,51 +124,43 @@ namespace ProjetoRPG_UWP
         }
 
         /// <summary>
-        /// Metodo para aumentar a persistencia (defesa) do personagem para 
-        /// </summary> 
-        private void Btn_Defesa(object sender, RoutedEventArgs e)
-        {
-            //Aumenta a defesa do jogador
-            jogador.Persistencia += 5;
-
-            //Monstro ataca jogador 
-            InteligenciaMonstro();
-
-            AtualizarTexto();
-
-            checkLife();
-            //tirar a defesa do jogador
-            jogador.Persistencia -= 5;
-        }
-
-        /// <summary>
-        /// Metodo para transição de telas
+        /// Metodo para utilizar uma habilidade selecionada no combobox do jogador
         /// </summary>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void Btn_Habilidade(object sender, RoutedEventArgs e)
         {
-            //base.OnNavigatedTo(e);
+            if (ListaH.SelectedValue != null)
+            {
+                Habilidade hbl = ListaH.SelectedItem as Habilidade;
+                //verificar se o usuario tem a energia para usar a habilidade
+                if (jogador.UsarHabilidade(hbl))
+                {
 
-            //Captura os personagens vindos de outra tela (movimento) 
-            var ListParametros = e.Parameter as List<Personagem>;
-            jogador = ListParametros.ElementAt<Personagem>(0) as PersonagemJogavel;
-            monstro = ListParametros.ElementAt<Personagem>(1) as Monstro;
+                    //armazena os buffes para tirar no fim da rodada
+                    contAnimo += hbl.BuffAnimo;
+                    contPersistencia += hbl.BuffPersistencia;
 
-            //Iniciar preenchimento das progress bars do jogador e monstro 
-            EnergiaP.Maximum = jogador.MaxEnergia;
-            VidaP.Maximum = jogador.MaxLife;
-            EnergiaP.Value = jogador.MaxEnergia;
-            VidaP.Value = jogador.Life;
-            EnergiaM.Maximum = monstro.Energia;
-            EnergiaM.Value = monstro.Energia;
-            VidaM.Maximum = monstro.Life;
-            VidaM.Value = monstro.Life;
+                    if (hbl.Dano > 0)
+                    {
+                        //ataque do jogador
+                        int dano = jogador.Atacar(monstro, null, hbl);
 
-            //Chamada de metodos[
-            ImgJogadorCombate();
-            ImgMonstroCombate();
-            PreencherCBHabilidades();
-            PreencherCBItens();
-            AtualizarTexto();
+                        //exibir marcador de dano do monstro
+                        _ = ExibeDanoCombateAsync(dano, 1);
+                    }
+
+                    //habilidade de passar a vez
+                    if (!hbl.DesativaHabilidade)
+                    {
+                        InteligenciaMonstro();
+                    }
+                }
+                else
+                {
+                    Mensagem("Você não possui energia o suficiente para usar a habilidade", "Aviso");
+                }
+                AtualizarTexto();
+                checkLife();
+            }
         }
 
         /// <summary>
@@ -205,135 +187,66 @@ namespace ProjetoRPG_UWP
             //Preenche na combobox os itens do jogador
             jogador.inventario.GetItemSecundarios().ForEach(delegate (ItemSecundario itemSecundario)
             {
-                if(jogador.Nivel >= itemSecundario.NivelRequerido)
+                if (jogador.Nivel >= itemSecundario.NivelRequerido)
                 {
                     ListaI.Items.Add(itemSecundario);
                 }
             });
         }
 
-
-        /// <summary>
-        /// Define a imagem do jogador na tela de combate
-        /// </summary>
-        private void ImgJogadorCombate()
+        private void ExibeDescricaoMonstro()
         {
+            ToolTip toolTip = new ToolTip();
+            toolTip.Content = monstro.Nome + "\n\n" + monstro.Descricao;
+            ToolTipService.SetToolTip(ImgMonstro, toolTip);
+        }
+        
+        /// <summary>
+        /// Metodo de exibição de descrição de habilidades
+        /// </summary>
+        private void ComboBoxs_SelectionChanged_Habilidade(object sender, SelectionChangedEventArgs e)
+        {
+            string descricao;
 
-            string diretorioJogador;
-
-            //Definir a imagem do personagem jogavel
-            if (jogador.GetType() == typeof(Worker))
+            if (ListaH.SelectedItem != null)
             {
-                diretorioJogador = "Worker/Battle.gif";
+                ToolTip toolTip = new ToolTip(); 
+                
+                Habilidade hbl = ListaH.SelectedItem as Habilidade;
+                descricao = "Dano: -" + hbl.Dano + "\n" +
+                            "Gato energia: -" + hbl.GastoEnergia + "\n" +
+                            "Descrição: " + hbl.Descricao + "\n" +
+                            "Buffer Life: +" + hbl.BuffLife + "\n" +
+                            "Buffer Animo: +" + hbl.BuffAnimo + "\n" +
+                            "Buffer Persistência: " + hbl.BuffPersistencia;
+                toolTip.Content = descricao;
+                ToolTipService.SetToolTip(ListaH, toolTip);
+              //DescricaoHabilidade.Text = descricao;
             }
-            else if (jogador.GetType() == typeof(Expert))
-            {
-                diretorioJogador = "Expert/Battle.gif";
-            }
-            else
-            {
-                diretorioJogador = "Cheater/Battle.gif";
-            }
-            ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioJogador));
         }
 
         /// <summary>
-        /// Define a imagem do monstro na tela de combate
+        /// Metodo de exibição de descrição dos itens
         /// </summary>
-        private void ImgMonstroCombate()
+        private void ComboBoxs_SelectionChanged_Inventario(object sender, SelectionChangedEventArgs e)
         {
-            string diretorioMonstro;
+            string descricao;
 
-            //Definir a imagem do mosntro
-            if (monstro.GetType() == typeof(Aculo))
+            if (ListaI.SelectedItem != null)
             {
-                diretorioMonstro = "Aculo.png";
-            }
-            else if (monstro.GetType() == typeof(Anaculo))
-            {
-                diretorioMonstro = "Aculo.png";
-            }
-            else if (monstro.GetType() == typeof(Atom))
-            {
-                diretorioMonstro = "Aculo.png";
-            }
-            else if (monstro.GetType() == typeof(Gasefic))
-            {
-                diretorioMonstro = "gasefic.png";
-            }
-            else if (monstro.GetType() == typeof(Lapain))
-            {
-                diretorioMonstro = "Aculo.png";
-            }
-            else if (monstro.GetType() == typeof(Minlapa))
-            {
-                diretorioMonstro = "Aculo.png";
-            }
-            else if (monstro.GetType() == typeof(Mintost))
-            {
-                diretorioMonstro = "Aculo.png";
-            }
-            else //Toest
-            {
-                diretorioMonstro = "Aculo.png";
-            }
-            ImgMonstro.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioMonstro));
-        }
+                ToolTip toolTip = new ToolTip();
 
-        /// <summary>
-        /// Exibição na tela do dano infligido no monstro
-        /// </summary>
-        private async Task ExibeDanoCombateAsync(int dano, int personagem)
-        {
-
-            //exibir o numero em negativo
-            if (dano > 0)
-            {
-                dano *= -1;
+                Item item = ListaI.SelectedItem as Item;
+                descricao = "Dano: -" + item.Dano + "\n" +
+                            "Buffer energia: -" + item.BuffEnergia + "\n" +
+                            "Descrição: " + item.Descricao + "\n" +
+                            "Buffer Life: +" + item.BuffLife + "\n" +
+                            "Buffer Animo: +" + item.BuffAnimo + "\n" +
+                            "Buffer Persistência: " + item.BuffPersistencia;
+                toolTip.Content = descricao;
+                ToolTipService.SetToolTip(ListaI, toolTip);
+                //DescricaoHabilidade.Text = descricao;
             }
-
-            //dano no monstro
-            if (personagem == 1)
-            {
-                //exibir marcação de dano que o monstro levou
-                DanoMonstro.Text = "" + dano;
-                await Task.Delay(200);
-                DanoMonstro.Text = " ";
-            }
-            //dano no jogador
-            else
-            {
-                //exibir marcação de dano que o monstro levou
-                DanoJogador.Text = "" + dano;
-                await Task.Delay(200);
-                DanoJogador.Text = " ";
-            }
-        }
-
-        private async Task ExibirAcaoCombatentesAsync(string acaoUtilizada)
-        {
-
-                //ação utilizada pelo monstro 
-                AcaoCombate.Text = monstro.Nome + " usou " + acaoUtilizada;
-                await Task.Delay(1000);
-                AcaoCombate.Text = "";
-        }
-
-        /// <summary>
-        /// Metodo de utilização da habilidade mais basica do personagem
-        /// </summary>
-        private void Btn_Ataque(object sender, RoutedEventArgs e)
-        {
-            int dano = jogador.Atacar(monstro, null, jogador.Habilidades.ElementAt<Habilidade>(0));
-            monstro.Life -= dano;
-            _ = ExibeDanoCombateAsync(dano,1);
-
-            //mostro ataca
-            InteligenciaMonstro();
-
-            AtualizarTexto();
-            //verifica quem morreu
-            checkLife();
         }
 
         /// <summary>
@@ -363,80 +276,10 @@ namespace ProjetoRPG_UWP
         }
 
         /// <summary>
-        /// Metodo para utilizar uma habilidade selecionada no combobox do jogador
-        /// </summary>
-        private void Btn_Habilidade(object sender, RoutedEventArgs e)
-        {
-            if (ListaH.SelectedValue != null)
-            {
-                Habilidade hbl = ListaH.SelectedItem as Habilidade;
-                //verificar se o usuario tem a energia para usar a habilidade
-                if (jogador.UsarHabilidade(hbl))
-                {
-
-                    //armazena os buffes para tirar no fim da rodada
-                    contAnimo += hbl.BuffAnimo;
-                    contPersistencia += hbl.BuffPersistencia;
-
-                    if (hbl.Dano > 0)
-                    {
-                        //ataque do jogador
-                        int dano = jogador.Atacar(monstro, null, hbl);
-                        monstro.Life -= dano;
-
-                        //exibir marcador de dano do monstro
-                        _ = ExibeDanoCombateAsync(dano, 1);
-                    }
-
-                    //habilidade de passar a vez
-                    if (!hbl.DesativaHabilidade)
-                    {
-                        InteligenciaMonstro();
-                    }
-                }
-                else
-                {
-                    Mensagem("Você não possui energia o suficiente para usar a habilidade", "Aviso");
-                }
-                AtualizarTexto();
-                checkLife();
-            }
-        }
-
-        /// <summary>
-        /// Exibição de mensagens de aviso
-        /// </summary>
-        private async void Mensagem(string Mensagem, string Titulo)
-        {
-            var dialog = new MessageDialog(Mensagem, Titulo);
-            var result = await dialog.ShowAsync();
-        }
-
-        /// <summary>
-        /// Atualiza os texto de exibição da pagina
-        /// </summary>
-        private void AtualizarTexto()
-        {
-            TxtVidaJ.Text = jogador.Life + " / " + jogador.MaxLife;
-            TxtEnergiaJ.Text = + jogador.Energia + " / " + jogador.MaxEnergia;
-            TxtVidaM.Text = monstro.Life + " / " + monstro.MaxLife;
-            TxtEnergiaM.Text = monstro.Energia + " / " + monstro.MaxEnergia;
-            
-            VidaP.Value = jogador.Life;
-            EnergiaP.Value = jogador.Energia;
-            VidaM.Value = monstro.Life;
-            EnergiaM.Value = monstro.Energia;
-            NomeJogador.Text = jogador.Nome;
-            NomeMonstro.Text = monstro.Nome;
-        }
-
-        /// <summary>
         /// Metodo para descrever a inteligencia do personagem
         /// </summary>
         private void InteligenciaMonstro()
         {
-            _ = Task.Delay(700);
-
             //Retira a persistencia quando o mosntro se defendeu
             if (defesaMonstro)
             {
@@ -480,8 +323,8 @@ namespace ProjetoRPG_UWP
                     //Usar a habilidade
                     monstro.UsarHabilidade(monstro.Habilidades[numhabilidade]);
                     int dano = monstro.Atacar(jogador, null, monstro.Habilidades[numhabilidade]);
-                    jogador.Life -= dano;
                     _ = ExibirAcaoCombatentesAsync(monstro.Habilidades[numhabilidade].Nome);
+                    _ = Task.Delay(900);
                     _ = ExibeDanoCombateAsync(dano, 2);
                 }
                 //Defende
@@ -524,7 +367,6 @@ namespace ProjetoRPG_UWP
                         //Ataca com a habilidade
                         monstro.UsarHabilidade(maiorHabilidade);
                         int dano = monstro.Atacar(jogador, null, maiorHabilidade);
-                        jogador.Life -= dano;
                         _ = ExibirAcaoCombatentesAsync(maiorHabilidade.Nome);
                         _ = ExibeDanoCombateAsync(dano, 2);
                     }
@@ -560,7 +402,6 @@ namespace ProjetoRPG_UWP
                         //Usar a habilidade
                         _ = monstro.UsarHabilidade(monstro.Habilidades[numhabilidade]);
                         int dano = monstro.Atacar(jogador, null, monstro.Habilidades[numhabilidade]);
-                        jogador.Life -= dano;
                         _ = ExibirAcaoCombatentesAsync(monstro.Habilidades[numhabilidade].Nome);
                         _ = ExibeDanoCombateAsync(dano, 2);
                     }
@@ -588,7 +429,6 @@ namespace ProjetoRPG_UWP
                         //Ataca com a habilidade
                         _ = monstro.UsarHabilidade(maiorHabilidade);
                         int dano = monstro.Atacar(jogador, null, maiorHabilidade);
-                        jogador.Life -= dano;
                         _ = ExibirAcaoCombatentesAsync(maiorHabilidade.Nome);
                         _ = ExibeDanoCombateAsync(dano, 2);
                     }
@@ -603,5 +443,187 @@ namespace ProjetoRPG_UWP
                 }
             }
         }
+
+        /// <summary>
+        /// Define a imagem do jogador na tela de combate
+        /// </summary>
+        private void ImgJogadorCombate()
+        {
+
+            string diretorioJogador;
+
+            //Definir a imagem do personagem jogavel
+            if (jogador.GetType() == typeof(Worker))
+            {
+                diretorioJogador = "Worker/Battle.gif";
+            }
+            else if (jogador.GetType() == typeof(Expert))
+            {
+                diretorioJogador = "Expert/Battle.gif";
+            }
+            else
+            {
+                diretorioJogador = "Cheater/Battle.gif";
+            }
+            ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioJogador));
+        }
+
+        /// <summary>
+        /// Define a imagem do monstro na tela de combate
+        /// </summary>
+        private void ImgMonstroCombate()
+        {
+            string diretorioMonstro;
+            //TESTE
+            
+            //Definir a imagem do mosntro
+            if (monstro.GetType() == typeof(Aculo))
+            {
+                diretorioMonstro = "monstros/aculo.png";
+            }
+            else if (monstro.GetType() == typeof(Anaculo))
+            {
+                diretorioMonstro = "monstros/anaculo.png";
+            }
+            else if (monstro.GetType() == typeof(Atom))
+            {
+                diretorioMonstro = "monstros/atom.png";
+            }
+            else if (monstro.GetType() == typeof(Gasefic))
+            {
+                diretorioMonstro = "monstros/gasefic.png";
+            }
+            else if (monstro.GetType() == typeof(Lapain))
+            {
+                diretorioMonstro = "monstros/lapain.png";
+            }
+            else if (monstro.GetType() == typeof(Minlapa))
+            {
+                diretorioMonstro = "monstros/minlapa.png";
+            }
+            else if (monstro.GetType() == typeof(Mintost))
+            {
+                diretorioMonstro = "monstros/mintost.png";
+            }
+            else //Toest
+            {
+                diretorioMonstro = "monstros/toest.png";
+            }
+            ImgMonstro.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioMonstro));
+        }
+
+        /// <summary>
+        /// Exibição na tela do dano infligido no monstro
+        /// </summary>
+        private async Task ExibeDanoCombateAsync(int dano, int personagem)
+        {
+
+            //exibir o numero em negativo
+            if (dano > 0)
+            {
+                dano *= -1;
+            }
+
+            //dano no monstro
+            if (personagem == 1)
+            {
+                await Task.Delay(200);
+
+                //exibir gif do dano
+                ImgDanoMonstro.Visibility = Visibility.Visible;
+                
+                //exibir marcação de dano que o monstro levou 
+                DanoMonstro.Text = "" + dano;
+                await Task.Delay(200);
+
+                //apagar o gif e o dano monstro
+                ImgDanoMonstro.Visibility = Visibility.Collapsed;
+                DanoMonstro.Text = " ";
+            }
+            //dano no jogador
+            else
+            {
+                await Task.Delay(600);
+
+                //exibir gif do dano
+                ImgDanoJogador.Visibility = Visibility.Visible;
+
+                //exibir marcação de dano que o monstro levou
+                DanoJogador.Text = "" + dano;
+                await Task.Delay(200);
+
+                //apagar o gif e o dano monstro
+                DanoJogador.Text = " ";
+                ImgDanoJogador.Visibility = Visibility.Collapsed;
+            }
+        }
+        private async Task ExibirAcaoCombatentesAsync(string acaoUtilizada)
+        {
+
+            await Task.Delay(600);
+            //ação utilizada pelo monstro 
+            AcaoCombate.Text = monstro.Nome + " usou " + acaoUtilizada;
+            await Task.Delay(700);
+            AcaoCombate.Text = "";
+        }
+
+        /// <summary>
+        /// Exibição de mensagens de aviso
+        /// </summary>
+        private async void Mensagem(string Mensagem, string Titulo)
+        {
+            var dialog = new MessageDialog(Mensagem, Titulo);
+            var result = await dialog.ShowAsync();
+        }
+
+        /// <summary>
+        /// Atualiza os texto de exibição da pagina
+        /// </summary>
+        private void AtualizarTexto()
+        {
+            TxtVidaJ.Text = jogador.Life + " / " + jogador.MaxLife;
+            TxtEnergiaJ.Text = + jogador.Energia + " / " + jogador.MaxEnergia;
+            TxtVidaM.Text = monstro.Life + " / " + monstro.MaxLife;
+            TxtEnergiaM.Text = monstro.Energia + " / " + monstro.MaxEnergia;
+            
+            VidaP.Value = jogador.Life;
+            EnergiaP.Value = jogador.Energia;
+            VidaM.Value = monstro.Life;
+            EnergiaM.Value = monstro.Energia;
+            NomeJogador.Text = jogador.Nome;
+            NomeMonstro.Text = monstro.Nome;
+        }
+
+        /// <summary>
+        /// Metodo para transição de telas
+        /// </summary>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //base.OnNavigatedTo(e);
+
+            //Captura os personagens vindos de outra tela (movimento) 
+            var ListParametros = e.Parameter as List<Personagem>;
+            jogador = ListParametros.ElementAt<Personagem>(0) as PersonagemJogavel;
+            monstro = ListParametros.ElementAt<Personagem>(1) as Monstro;
+
+            //Iniciar preenchimento das progress bars do jogador e monstro 
+            EnergiaP.Maximum = jogador.MaxEnergia;
+            VidaP.Maximum = jogador.MaxLife;
+            EnergiaP.Value = jogador.MaxEnergia;
+            VidaP.Value = jogador.Life;
+            EnergiaM.Maximum = monstro.Energia;
+            EnergiaM.Value = monstro.Energia;
+            VidaM.Maximum = monstro.Life;
+            VidaM.Value = monstro.Life;
+
+            //Chamada de metodos
+            ImgJogadorCombate();
+            ImgMonstroCombate();
+            PreencherCBHabilidades();
+            PreencherCBItens();
+            AtualizarTexto();
+            ExibeDescricaoMonstro();
+        }
+
     }
 }

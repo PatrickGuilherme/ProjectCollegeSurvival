@@ -32,6 +32,7 @@ namespace ProjetoRPG_UWP
         {
             this.Frame.Navigate(typeof(MainPage), null);
         }
+        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var monstroVencedor = e.Parameter as Monstro;
@@ -40,42 +41,46 @@ namespace ProjetoRPG_UWP
                 ImgMonstroCombate(monstroVencedor);
             }
         }
-        private void ImgMonstroCombate(Monstro monstroVencedor)
+
+        /// <summary>
+        /// Define a imagem do monstro na tela de combate
+        /// </summary>
+        private void ImgMonstroCombate(Monstro monstro)
         {
             string diretorioMonstro;
 
             //Definir a imagem do mosntro
-            if (monstroVencedor.GetType() == typeof(Aculo))
+            if (monstro.GetType() == typeof(Aculo))
             {
-                diretorioMonstro = "Aculo.png";
+                diretorioMonstro = "monstros/aculo.png";
             }
-            else if (monstroVencedor.GetType() == typeof(Anaculo))
+            else if (monstro.GetType() == typeof(Anaculo))
             {
-                diretorioMonstro = "Aculo.png";
+                diretorioMonstro = "monstros/anaculo.png";
             }
-            else if (monstroVencedor.GetType() == typeof(Atom))
+            else if (monstro.GetType() == typeof(Atom))
             {
-                diretorioMonstro = "Aculo.png";
+                diretorioMonstro = "monstros/atom.png";
             }
-            else if (monstroVencedor.GetType() == typeof(Gasefic))
+            else if (monstro.GetType() == typeof(Gasefic))
             {
-                diretorioMonstro = "gasefic.png";
+                diretorioMonstro = "monstros/gasefic.png";
             }
-            else if (monstroVencedor.GetType() == typeof(Lapain))
+            else if (monstro.GetType() == typeof(Lapain))
             {
-                diretorioMonstro = "Aculo.png";
+                diretorioMonstro = "monstros/lapain.png";
             }
-            else if (monstroVencedor.GetType() == typeof(Minlapa))
+            else if (monstro.GetType() == typeof(Minlapa))
             {
-                diretorioMonstro = "Aculo.png";
+                diretorioMonstro = "monstros/minlapa.png";
             }
-            else if (monstroVencedor.GetType() == typeof(Mintost))
+            else if (monstro.GetType() == typeof(Mintost))
             {
-                diretorioMonstro = "Aculo.png";
+                diretorioMonstro = "monstros/mintost.png";
             }
             else //Toest
             {
-                diretorioMonstro = "Aculo.png";
+                diretorioMonstro = "monstros/toest.png";
             }
             ImgMonstro.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioMonstro));
         }

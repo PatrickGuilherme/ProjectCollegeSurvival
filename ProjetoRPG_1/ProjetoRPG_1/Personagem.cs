@@ -49,6 +49,7 @@ namespace ProjetoRPG
                 //Se houve dano este deve ser retornado
                 if (danoInfligido > 0)
                 {
+                    inimigo.Life -= danoInfligido;
                     return danoInfligido;
                 }
             }

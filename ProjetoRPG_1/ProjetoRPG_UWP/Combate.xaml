@@ -13,8 +13,8 @@
 
 
         <Image Height="180" Width="345"  Source="/Assets/logo.png" Canvas.Left="403" Canvas.Top="28"/>
-        <Image x:Name="ImgPlayer" Height="436" Width="302"  Source="/Assets/stick.png" Canvas.Left="43" Canvas.Top="191"/>
-        <Image x:Name="ImgMonstro" Height="436" Width="302" Source="/Assets/Aculo.png" Canvas.Left="765" Canvas.Top="191"/>
+        <Image x:Name="ImgPlayer" Height="495" Width="441"  Source="/Assets/Expert/Battle.gif" Canvas.Top="191"/>
+        <Image x:Name="ImgMonstro" Height="495" Width="532" Source="/Assets/monstros/aculo.png" Canvas.Left="639" Canvas.Top="191"/>
         <ComboBox x:Name="ListaI" Background="Red" BorderBrush="Black" BorderThickness="5" Canvas.Left="1176" Canvas.Top="347" Width="190" SelectionChanged="ComboBoxs_SelectionChanged_Inventario" />
         <ComboBox x:Name="ListaH" Background="Purple" BorderBrush="Black" BorderThickness="5" Canvas.Left="1176" Canvas.Top="517" Width="190" SelectionChanged="ComboBoxs_SelectionChanged_Habilidade"/>
 
@@ -53,10 +53,12 @@
 
         <TextBlock x:Name="NomeJogador" FontWeight="Bold" TextWrapping="Wrap" Text="Nome jogador" Width="300" Height="44" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="43"/>
         <TextBlock x:Name="NomeMonstro" FontWeight="Bold" TextWrapping="Wrap" Text="Nome monstro" Width="300" Height="44" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="765"/>
-        <TextBlock x:Name="DanoMonstro" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="363" TextAlignment="Center" Canvas.Left="683" Foreground="RED" RenderTransformOrigin="0.37,0.509"/>
+        <TextBlock x:Name="DanoMonstro" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="363" TextAlignment="Center" Canvas.Left="639" Foreground="RED" RenderTransformOrigin="0.37,0.509"/>
         <TextBlock x:Name="DanoJogador" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="363" TextAlignment="Center" Canvas.Left="347" Foreground="RED"/>
         <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="" FontWeight="Bold" Height="121" Width="303" FontSize="25" Canvas.Top="210" TextAlignment="Center" Canvas.Left="403"/>
 
+        <Image x:Name="ImgDanoJogador" Height="198" Width="232" Visibility="Collapsed" Source="/Assets/explosaoatk.gif" Canvas.Top="185" Canvas.Left="83" RenderTransformOrigin="0.112,0.577"/>
+        <Image x:Name="ImgDanoMonstro" Height="398" Width="232" Visibility="Collapsed"  Source="/Assets/explosaoatk.gif" Canvas.Top="87" Canvas.Left="789" RenderTransformOrigin="0.112,0.577"/>
 
     </Canvas>
 </Page>
