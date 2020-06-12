@@ -487,8 +487,8 @@ namespace ProjetoRPG_UWP
                         canvas.Children.Add(ItemImage);
                         ListImageItem.Add(ItemImage);
 
-                        Canvas.SetLeft(ItemImage, 100 * (j - (j/12) * 12) + 1);
-                        Canvas.SetTop(ItemImage, 70 * i + 1);
+                        Canvas.SetLeft(ItemImage, 109 * (j - (j/12) * 12) + 1);
+                        Canvas.SetTop(ItemImage, 78 * i + 1);
                     }
                 }
             }

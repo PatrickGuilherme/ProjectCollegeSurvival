@@ -5,7 +5,7 @@ using System.Text;
 namespace ProjetoRPG {
     public class Equipamento : Item {
         public string Tipo { get; set; }
-        List<Equipamento> eq = new List<Equipamento>();
+        public List<Equipamento> eq = new List<Equipamento>();
         
         /// <summary>
         ///  Calculo de boost dos equipamentos
@@ -36,27 +36,27 @@ namespace ProjetoRPG {
         public void adcionarEquipamento() { 
             Equipamento[] e = new Equipamento[11];
             e[0] = new Equipamento("Agenda", "A agenda é um equipamento para aumentar o nivel de energia do personagem.",
-                "Equipavel",5,0,0,0);
+                "Caderno",5,0,0,0,1);
             e[1] = new Equipamento("Caderno 1M", "O caderno 1M é um equipamento para aumentar o nivel de energia do personagem, possuindo 1 matéria para portar anotações.",
-             "Equipavel",10,0,0,0);
+                "Caderno", 10,0,0,0,2);
             e[2] = new Equipamento("Caderno 10M", "O caderno 10M é um equipamento para aumentar o nivel de energia do personagem, possuindo 10 matéria para portar anotações.",
-                "Equipavel",15,0,0,0);
+                "Caderno", 15,0,0,0,3);
             e[3] = new Equipamento("Enciclopedia", "A enciclopédia é um equipamento para aumentar o nivel de energia do personagem, possuindo uma variação imensa de informações.",
-               "Equipavel",20,0,0,0);
+                "Caderno", 20,0,0,0,4);
             e[4] = new Equipamento("Notebook", "O notebook é um equipamento para aumentar o nivel de energia do personagem, possuindo uma fonte ilimitada de informações",
-                "Equipavel",25,0,0,0);
+                "Caderno", 25,0,0,0,5);
             e[5] = new Equipamento("Lapis", "O lápis é um equipamento para aumentar o animo do personagem e utiliza-lo contra inimigos.",
-                "Equipavel",0,0,0,0);
+                "Lapis",0,0,5,0,1);
             e[6] = new Equipamento("Lapis Mecanico", "O lápis Mecânico é um equipamento para aumentar o animo do personagem e utiliza-lo contra inimigos.",
-                "Equipavel",0,0,0,0);
+                "Lapis", 0,0,10,0,3);
             e[7] = new Equipamento("Caneta", "A caneta é um equipamento para aumentar o animo do personagem e utiliza-lo contra inimigos.",
-            "Equipavel",0,0,0,0);
+                "Lapis", 0,0,15,0,5);
             e[8] = new Equipamento("Borracha Branca", "A borracha branca é um equipamento para a persistência do personagem.",
-            "Equipavel",0,0,0,5);
+                "Borracha", 0,0,0,5,2);
             e[9] = new Equipamento("Borracha Azul", "A borracha azul é um equipamento para a persistência do personagem.",
-            "Equipavel",0,0,0,8);
+                "Borracha", 0,0,0,8,3);
             e[10] = new Equipamento("Borracha Duas Cores", "A borracha duas cores é um equipamento para a persistência do personagem.",
-            "Equipavel",0,0,0,13);
+                "Borracha", 0,0,0,13,5);
             foreach (var item in e) {
                 eq.Add(item);
             }
@@ -66,7 +66,7 @@ namespace ProjetoRPG {
         /// <summary>
         /// Metodo construtor de equipamento 
         /// </summary>
-        public Equipamento(string Nome, string Descricao,string Tipo, int BuffEnergia, int BuffLife,int BuffAnimo, int BuffPersistencia) {
+        public Equipamento(string Nome, string Descricao,string Tipo, int BuffEnergia, int BuffLife,int BuffAnimo, int BuffPersistencia, int nivelRequerido) {
             this.Nome = Nome;
             this.Descricao = Descricao;
             this.Tipo = Tipo;
@@ -74,6 +74,7 @@ namespace ProjetoRPG {
             this.BuffLife = BuffLife;
             this.BuffAnimo = BuffAnimo;
             this.BuffPersistencia = BuffPersistencia;
+            this.NivelRequerido = nivelRequerido;
         }
 
         /// <summary>
