@@ -501,10 +501,9 @@ namespace ProjetoRPG_UWP
             if(jogador.inventario.Itens.Count < 18) 
             {
                 jogador.ColetarItem(Mapa.MapaJogo[x, y].Item);
-                int cont = (int)(y - (y / 12) * 12);
                 foreach (var image in ListImageItem)
                 {
-                    if (image.Name == (x * cont).ToString())
+                    if (image.Name == (x * y).ToString())
                     {
                         image.Source = null;
                     }

@@ -31,7 +31,7 @@ namespace ProjetoRPG
 
             //Loading de elementos
             LoadingDeslocamentosMapa(Map);
-            LoadingEnemiesMapa(Map);
+            //LoadingEnemiesMapa(Map);
             LoadingItensMapa(Map);
             this.MapaJogo = Map;
         }
@@ -243,7 +243,7 @@ namespace ProjetoRPG
             item3.Tipo = "LAPIS";
             GameObject teste3 = new GameObject();
             teste3.Item = item3;
-            Map[5, 129] = teste3;
+            Map[2, 18] = teste3;
             return Map;
         }
     }
