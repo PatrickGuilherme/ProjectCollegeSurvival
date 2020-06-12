@@ -124,7 +124,7 @@ namespace ProjetoRPG
                 while (true)
                 {
                     posicaoY = random.Next(9);
-                    posicaoX = random.Next(83, 107);
+                    posicaoX = random.Next(75, 95);
                     if (Map[posicaoY, posicaoX] == null) break;
                 }
 
@@ -144,7 +144,7 @@ namespace ProjetoRPG
                 while (true)
                 {
                     posicaoY = random.Next(9);
-                    posicaoX = random.Next(59, 83);
+                    posicaoX = random.Next(36, 71);
                     if (Map[posicaoY, posicaoX] == null) break;
                 }
 
@@ -164,7 +164,7 @@ namespace ProjetoRPG
                 while (true)
                 {
                     posicaoY = random.Next(9);
-                    posicaoX = random.Next(35, 59);
+                    posicaoX = random.Next(0, 22);
                     if (Map[posicaoY, posicaoX] == null) break;
                 }
 

@@ -24,8 +24,8 @@ namespace ProjetoRPG
             this.Persistencia = 18;
             this.Conhecimento = 0;
             this.Nivel = 1;
-            this.PosicaoX = 19;
-            this.PosicaoY = 2;
+            this.PosicaoX = 124;
+            this.PosicaoY = 6;
             this.MenuCraft = new Craft();
             this.inventario = new Inventario();
             Habilidades = new List<Habilidade>();

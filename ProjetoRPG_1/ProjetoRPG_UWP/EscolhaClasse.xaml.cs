@@ -46,8 +46,8 @@ namespace ProjetoRPG_UWP {
                 Nivel = 1,
                 Conhecimento = 0,
                 Persistencia = 15,
-                PosicaoX = 19,
-                PosicaoY = 2,
+                PosicaoX = 124,
+                PosicaoY = 6,
                 inventario = new Inventario() {
                     Itens = new List<Item>()
                 },
@@ -80,8 +80,8 @@ namespace ProjetoRPG_UWP {
                 MaxLife = 400,
                 MenuCraft = new Craft(),
                 Persistencia = 20,
-                PosicaoX = 19,
-                PosicaoY = 2,
+                PosicaoX = 124,
+                PosicaoY = 6,
                 Nivel = 1,
                 Conhecimento = 0,
                 inventario = new Inventario() {
@@ -115,8 +115,8 @@ namespace ProjetoRPG_UWP {
                 Animo = 17,
                 Nivel = 1,
                 Conhecimento = 0,
-                PosicaoX = 19,
-                PosicaoY = 2,
+                PosicaoX = 124,
+                PosicaoY = 6,
                 Persistencia = 18,
                 inventario = new Inventario() {
                     Itens = new List<Item>()
