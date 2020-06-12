@@ -47,8 +47,6 @@ namespace ProjetoRPG
                         this.Persistencia += equipamento.BuffPersistencia;
                         this.Animo += equipamento.BuffAnimo;
                         this.Energia += equipamento.BuffEnergia;
-                        this.MaxEnergia += equipamento.BuffEnergia;
-                        this.MaxLife += equipamento.BuffLife;
                         this.Life += equipamento.BuffLife;
                         return true;
                     }
@@ -68,8 +66,6 @@ namespace ProjetoRPG
                 this.Persistencia -= equipamento.BuffPersistencia;
                 this.Animo -= equipamento.BuffAnimo;
                 this.Energia -= equipamento.BuffEnergia;
-                this.MaxEnergia -= equipamento.BuffEnergia;
-                this.MaxLife -= equipamento.BuffLife;
                 this.Life -= equipamento.BuffLife;
                 this.EquipamentosEquipados.Remove(equipamento);
                 return true;
