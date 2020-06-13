@@ -128,6 +128,15 @@
     <Compile Include="GameOver.xaml.cs">
       <DependentUpon>GameOver.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Historia.xaml.cs">
+      <DependentUpon>Historia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Historia2.xaml.cs">
+      <DependentUpon>Historia2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Historia3.xaml.cs">
+      <DependentUpon>Historia3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Instrucoes.xaml.cs">
       <DependentUpon>Instrucoes.xaml</DependentUpon>
     </Compile>
@@ -217,12 +226,14 @@
     <Content Include="Assets\monstros\mintost.png" />
     <Content Include="Assets\monstros\toest.png" />
     <Content Include="Assets\objeto.png" />
+    <Content Include="Assets\Quadro.png" />
     <Content Include="Assets\stick.png" />
     <Content Include="Assets\ItensSec\sunbley.png" />
     <Content Include="Assets\TeclaC.png" />
     <Content Include="Assets\TeclaI.png" />
     <Content Include="Assets\Teclas.png" />
     <Content Include="Assets\TeclaZ.png" />
+    <Content Include="Assets\Versus.png" />
     <Content Include="Assets\Worker\Battle.gif" />
     <Content Include="Assets\Worker\Down.gif" />
     <Content Include="Assets\Worker\Face.png" />
@@ -259,6 +270,18 @@
     <Page Include="GameOver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Historia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Historia2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Historia3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Instrucoes.xaml">
       <Generator>MSBuild:Compile</Generator>

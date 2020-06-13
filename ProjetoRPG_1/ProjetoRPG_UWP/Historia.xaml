@@ -1,0 +1,29 @@
+﻿<Page Height="696" Width="1366"
+    x:Class="ProjetoRPG_UWP.Historia"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetoRPG_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Canvas Height="696" Width="1366" Background="Black">
+        <Image Height="696" Width="1366" Canvas.Left="0" Canvas.Top="0" Source="/Assets/Quadro.png"/>
+        <TextBlock Canvas.Left="654" Canvas.Top="44" Text="História" TextWrapping="Wrap" FontSize="40" Foreground="White" FontWeight="ExtraBold" FontFamily="Teachers Student"/>
+        <TextBlock Canvas.Left="350" Canvas.Top="140" Text="Aqui está você calouro do curso de engenharia da computação.
+A sua grande missão nesse jogo é enfrentar os grandes inimigos de todo o novato do curso, sendo eles:" TextWrapping="Wrap" Height="111" Width="672"
+                   TextAlignment="Center" Foreground="White" FontSize="30" FontWeight="Bold" FontFamily="Teachers Student"/>
+        <Image Height="100" Width="100" Canvas.Left="210" Canvas.Top="298"  Source="ms-appx:///Assets/Monstro/gasefic.png"/>
+        <TextBlock Canvas.Left="350" Canvas.Top="333" Text="Representação física de vários elementos químicos gasosos. Irrite esse inimigo
+e conseguirá a fúria de seu mestre ATOM." TextWrapping="Wrap" Height="59" Width="596" Foreground="White" TextAlignment="Center"
+                  FontSize="30" FontFamily="Teachers Student" />
+        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="491"  Source="ms-appx:///Assets/Monstro/atom.png" />
+        <TextBlock Canvas.Left="350" Canvas.Top="520" Text="ATOM, é o monstro que inferniza os estudantes com seus experimentos que
+envolviam contaminação e redução de tempo de vida, fazendo aulas muito
+cansativas e mortais." FontFamily="Teachers Student" TextWrapping="Wrap" Height="89" Width="596" Foreground="White" TextAlignment="Center"
+                  FontSize="30" />
+        <Button Content="Próximo" Canvas.Left="1032" Canvas.Top="575" Foreground="Black" FontSize="20" BorderBrush="White"
+                Background="white" x:Name="btn1"/>
+    </Canvas>
+</Page>

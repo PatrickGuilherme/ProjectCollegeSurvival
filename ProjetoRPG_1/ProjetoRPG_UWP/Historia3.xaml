@@ -1,0 +1,30 @@
+﻿<Page Height="696" Width="1366"
+    x:Class="ProjetoRPG_UWP.Historia3"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetoRPG_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Canvas Height="696" Width="1366" Background="Black">
+        <Image Height="696" Width="1366" Canvas.Left="0" Canvas.Top="0" Source="/Assets/Quadro.png"/>
+        <Image Height="136" Width="132" Canvas.Left="228" Canvas.Top="441" Source="ms-appx:///Assets/Worker/Battle.gif"/>
+        <Image Height="136" Width="132" Canvas.Left="228" Canvas.Top="75" Source="ms-appx:///Assets/Cheater/Battle.gif"/>
+        <Image Height="136" Width="132" Canvas.Left="228" Canvas.Top="243" Source="ms-appx:///Assets/Expert/Battle.gif"/>
+        <Image Height="136" Canvas.Left="683" Canvas.Top="373" Width="132" Source="ms-appx:///Assets/Monstro/aculo.png"/>
+        <Image Height="136" Canvas.Left="680" Canvas.Top="175" Width="132" Source="ms-appx:///Assets/Monstro/anaculo.png"/>
+        <Image Height="136" Canvas.Left="830" Canvas.Top="248" Width="132" Source="ms-appx:///Assets/Monstro/atom.png"/>
+        <Image Height="136" Canvas.Left="830" Canvas.Top="473" Width="132" Source="ms-appx:///Assets/Monstro/gasefic.png"/>
+        <Image Height="136" Canvas.Left="830" Canvas.Top="75" Width="132" Source="ms-appx:///Assets/Monstro/lapain.png"/>
+        <Image Height="136" Canvas.Left="1010" Canvas.Top="255" Width="132" Source="ms-appx:///Assets/Monstro/mintost.png"/>
+        <Image Height="136" Canvas.Left="1010" Canvas.Top="75" Width="132" Source="ms-appx:///Assets/Monstro/minlapa.png"/>
+        <Image Height="136" Canvas.Left="1010" Canvas.Top="473" Width="132" Source="ms-appx:///Assets/Monstro/toest.png"/>
+
+
+        <Button Content="" Canvas.Left="488" Canvas.Top="334" Name="btn3"/>
+        <TextBlock Canvas.Left="420" Canvas.Top="60" Text="Agora vai lá e passe no curso, parça" TextWrapping="Wrap" Height="116" Width="368"
+                   Foreground="White" FontSize="30" FontFamily="Teachers Student"/>
+    </Canvas>
+</Page>
