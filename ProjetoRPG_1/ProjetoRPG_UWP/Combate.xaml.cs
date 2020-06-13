@@ -312,6 +312,8 @@ namespace ProjetoRPG_UWP
             //jogador morto monstro vivo
             else if (jogador.Life <= 0)
             {
+                musicBattle.Pause();
+                musicBattle = null;
                 this.Frame.Navigate(typeof(GameOver), monstro);
                 //criar tela ou mensagem de personagem morto (game over)
             }
