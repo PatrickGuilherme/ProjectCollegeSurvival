@@ -25,7 +25,6 @@ using Windows.UI.Xaml.Media.Imaging;
 using System.Drawing;
 using Windows.UI.Popups;
 
-
 namespace ProjetoRPG_UWP
 {
     /// <summary>
@@ -44,6 +43,7 @@ namespace ProjetoRPG_UWP
         private bool MoveLeft;
         private bool MoveRight;
         private List<Image> ListImageItem;
+        private List<Image> ListImageBoss;
         private bool ImagemDown = false, ImagemUp = false, ImagemLeft = false, ImagemRight = false;
         private Timer MovementTimer = new Timer { Interval = 20 };
         
@@ -458,6 +458,7 @@ namespace ProjetoRPG_UWP
             //Altera a posição Y do jogador na matriz
             jogador.PosicaoY = PosicaoAux;
             ExibirItemTela();
+            ExibirChefeTela();
             //Atualiza a imagem do personagem de acordo com a direção que ele vai
             AtualizarImagem();
         }
@@ -489,6 +490,66 @@ namespace ProjetoRPG_UWP
 
                         Canvas.SetLeft(ItemImage, 109 * (j - (j/12) * 12) + 1);
                         Canvas.SetTop(ItemImage, 78 * i + 1);
+                    }
+                }
+            }
+        }
+        private void ExibirChefeTela() 
+        {
+            int cont = (int)(jogador.PosicaoX - (jogador.PosicaoX - Math.Floor(jogador.PosicaoX / 12) * 12));
+            string diretorio = "";
+            bool permissaoImagem = false;
+            int width = 100, height = 70;
+
+            foreach (var image in ListImageBoss)
+            {
+                image.Source = null;
+            }
+
+            ListImageBoss.Clear();
+
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = cont; j < cont + 12; j++)
+                {
+                    if (Mapa.MapaJogo[i, j] != null && Mapa.MapaJogo[i, j].Monstro != null)
+                    {
+                        switch (Mapa.MapaJogo[i, j].Monstro.Nome) 
+                        {
+                            case "Anaculo":
+                                diretorio = "Anaculo";
+                                width = 87;
+                                height = 222;
+                                permissaoImagem = true;
+                                break;
+                            case "Toest":
+                                diretorio = "Toest";
+                                permissaoImagem = true;
+                                break;
+                            case "ATOM":
+                                diretorio = "Atom";
+                                permissaoImagem = true;
+                                break;
+                            case "Lapain":
+                                diretorio = "Lapain";
+                                permissaoImagem = true;
+                                break;
+                        }
+                        if (permissaoImagem) 
+                        {
+                            Image BossImage = new Image();
+                            BossImage.Name = (i * j).ToString();
+                            BossImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/monstros/GridSprites/Grid" + diretorio + ".png"));
+                            BossImage.Width = width;
+                            BossImage.Height = height;
+                            canvas.Children.Add(BossImage);
+                            ListImageBoss.Add(BossImage);
+
+
+                            Canvas.SetLeft(BossImage, 109 * (j - (j / 12) * 12) + BossImage.ActualWidth/2);
+                            Canvas.SetTop(BossImage, 78 * i - BossImage.ActualHeight/2);
+                            permissaoImagem = false;
+                        }
                     }
                 }
             }
@@ -593,7 +654,9 @@ namespace ProjetoRPG_UWP
             PlayerFace.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Face.png"));
             ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + Diretorio + "/Down.gif"));
             ListImageItem = new List<Image>();
+            ListImageBoss = new List<Image>();
             ExibirItemTela();
+            ExibirChefeTela();
 
             AtualizarImagem();
             /*AREA DE TESTE*/

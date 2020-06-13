@@ -226,6 +226,10 @@
     <Content Include="Assets\monstros\anaculo.png" />
     <Content Include="Assets\monstros\atom.png" />
     <Content Include="Assets\monstros\gasefic.png" />
+    <Content Include="Assets\monstros\GridSprites\GridAnaculo.png" />
+    <Content Include="Assets\monstros\GridSprites\GridAtom.png" />
+    <Content Include="Assets\monstros\GridSprites\GridLapain.png" />
+    <Content Include="Assets\monstros\GridSprites\GridToest.png" />
     <Content Include="Assets\monstros\lapain.png" />
     <Content Include="Assets\monstros\minlapa.png" />
     <Content Include="Assets\monstros\mintost.png" />

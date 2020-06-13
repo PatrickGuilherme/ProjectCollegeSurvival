@@ -176,6 +176,22 @@ namespace ProjetoRPG
                 GridMonstro.Monstro = GridAculo;
                 Map[posicaoY, posicaoX] = GridMonstro;
             }
+
+            GameObject GridBossLapain = new GameObject();
+            GameObject GridBossToest = new GameObject();
+            GameObject GridBossAnaculo = new GameObject();
+            GameObject GridBossAtom = new GameObject();
+
+            GridBossAnaculo.Monstro = new Anaculo();
+            GridBossAtom.Monstro = new Atom();
+            GridBossLapain.Monstro = new Lapain();
+            GridBossToest.Monstro = new Toest();
+
+            Map[4, 102] = GridBossAtom;
+            Map[2, 77] = GridBossToest;
+            Map[3, 29] = GridBossLapain;
+            Map[4, 5] = GridBossAnaculo;
+
             return Map;
         }
 
