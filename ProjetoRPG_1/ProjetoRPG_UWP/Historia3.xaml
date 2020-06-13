@@ -13,14 +13,14 @@
         <Image Height="136" Width="132" Canvas.Left="228" Canvas.Top="441" Source="ms-appx:///Assets/Worker/Battle.gif"/>
         <Image Height="136" Width="132" Canvas.Left="228" Canvas.Top="75" Source="ms-appx:///Assets/Cheater/Battle.gif"/>
         <Image Height="136" Width="132" Canvas.Left="228" Canvas.Top="243" Source="ms-appx:///Assets/Expert/Battle.gif"/>
-        <Image Height="136" Canvas.Left="683" Canvas.Top="373" Width="132" Source="ms-appx:///Assets/Monstro/aculo.png"/>
-        <Image Height="136" Canvas.Left="680" Canvas.Top="175" Width="132" Source="ms-appx:///Assets/Monstro/anaculo.png"/>
-        <Image Height="136" Canvas.Left="830" Canvas.Top="248" Width="132" Source="ms-appx:///Assets/Monstro/atom.png"/>
-        <Image Height="136" Canvas.Left="830" Canvas.Top="473" Width="132" Source="ms-appx:///Assets/Monstro/gasefic.png"/>
-        <Image Height="136" Canvas.Left="830" Canvas.Top="75" Width="132" Source="ms-appx:///Assets/Monstro/lapain.png"/>
-        <Image Height="136" Canvas.Left="1010" Canvas.Top="255" Width="132" Source="ms-appx:///Assets/Monstro/mintost.png"/>
-        <Image Height="136" Canvas.Left="1010" Canvas.Top="75" Width="132" Source="ms-appx:///Assets/Monstro/minlapa.png"/>
-        <Image Height="136" Canvas.Left="1010" Canvas.Top="473" Width="132" Source="ms-appx:///Assets/Monstro/toest.png"/>
+        <Image Height="136" Canvas.Left="683" Canvas.Top="373" Width="132" Source="ms-appx:///Assets/monstros/aculo.png"/>
+        <Image Height="136" Canvas.Left="680" Canvas.Top="175" Width="132" Source="ms-appx:///Assets/monstros/anaculo.png"/>
+        <Image Height="136" Canvas.Left="830" Canvas.Top="248" Width="132" Source="ms-appx:///Assets/monstros/atom.png"/>
+        <Image Height="136" Canvas.Left="830" Canvas.Top="473" Width="132" Source="ms-appx:///Assets/monstros/gasefic.png"/>
+        <Image Height="136" Canvas.Left="830" Canvas.Top="75" Width="132" Source="ms-appx:///Assets/monstros/lapain.png"/>
+        <Image Height="136" Canvas.Left="1010" Canvas.Top="255" Width="132" Source="ms-appx:///Assets/monstros/mintost.png"/>
+        <Image Height="136" Canvas.Left="1010" Canvas.Top="75" Width="132" Source="ms-appx:///Assets/monstros/minlapa.png"/>
+        <Image Height="136" Canvas.Left="1010" Canvas.Top="473" Width="132" Source="ms-appx:///Assets/monstros/toest.png"/>
 
 
         <Button Content="" Canvas.Left="488" Canvas.Top="334" Name="btn3"/>

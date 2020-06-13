@@ -1,4 +1,4 @@
-﻿<Page 
+﻿<Page Height="696" Width="1366"
 
     x:Class="ProjetoRPG_UWP.Historia2"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -11,21 +11,21 @@
 
     <Canvas Height="696" Width="1366" Background="Black">
         <Image Height="696" Width="1366" Canvas.Left="0" Canvas.Top="0" Source="/Assets/Quadro.png"/>
-        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="30"  Source="ms-appx:///Assets/Monstro/mintost.png" />
+        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="30"  Source="ms-appx:///Assets/monstros/mintost.png" />
         <TextBlock Canvas.Left="350" Canvas.Top="45" Text="Seguidores implacáveis do mestre TOEST. O que eles não têm em força eles
 possuem em inteligência. Tome cuidado com seu mestre." TextWrapping="Wrap" Height="85" Width="610" Foreground="White" TextAlignment="Center"
                   FontSize="20" />
-        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="170"  Source="ms-appx:///Assets/Monstro/toest.png"/>
+        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="170"  Source="ms-appx:///Assets/monstros/toest.png"/>
         <TextBlock Canvas.Left="350" Canvas.Top="185" Text="Um monstro que em momentos pode ser seu inimigo e em outros pode ser
 neutro, ele é muito brincalhão e irá testar a paciência de seu adversário, suas
 origens ligam-se a uma divindade antiga chamada Tosta." TextWrapping="Wrap" Height="85" Width="610" Foreground="White" TextAlignment="Center"
                   FontSize="20" />
-        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="310"  Source="ms-appx:///Assets/Monstro/minlapa.png"/>
+        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="310"  Source="ms-appx:///Assets/monstros/minlapa.png"/>
         <TextBlock Canvas.Left="350" Canvas.Top="325" Text="Lapain ao derrotar um inimigo o transforma em seus súditos, os guerreiros
 derrotados tornam-se Minlapas que contaminam a mente de seus adversários
 com pogs computacionais." TextWrapping="Wrap" Height="85" Width="610" Foreground="White" TextAlignment="Center"
                   FontSize="20" />
-        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="450"  Source="ms-appx:///Assets/Monstro/lapain.png"/>
+        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="450"  Source="ms-appx:///Assets/monstros/lapain.png"/>
         <TextBlock Canvas.Left="350" Canvas.Top="465" Text="A potência em programação, especialista em confusão logica. Ele é rival mortal
 de um monstro chamado J.S referenciar ele em batalha, deixará LAPA-IN
 furioso." TextWrapping="Wrap" Height="85" Width="610" Foreground="White" TextAlignment="Center"

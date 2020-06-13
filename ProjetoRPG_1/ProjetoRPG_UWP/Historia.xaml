@@ -14,11 +14,11 @@
         <TextBlock Canvas.Left="350" Canvas.Top="140" Text="Aqui está você calouro do curso de engenharia da computação.
 A sua grande missão nesse jogo é enfrentar os grandes inimigos de todo o novato do curso, sendo eles:" TextWrapping="Wrap" Height="111" Width="672"
                    TextAlignment="Center" Foreground="White" FontSize="30" FontWeight="Bold" FontFamily="Teachers Student"/>
-        <Image Height="100" Width="100" Canvas.Left="210" Canvas.Top="298"  Source="ms-appx:///Assets/Monstro/gasefic.png"/>
+        <Image Height="100" Width="100" Canvas.Left="210" Canvas.Top="298"  Source="ms-appx:///Assets/monstros/gasefic.png"/>
         <TextBlock Canvas.Left="350" Canvas.Top="333" Text="Representação física de vários elementos químicos gasosos. Irrite esse inimigo
 e conseguirá a fúria de seu mestre ATOM." TextWrapping="Wrap" Height="59" Width="596" Foreground="White" TextAlignment="Center"
                   FontSize="30" FontFamily="Teachers Student" />
-        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="491"  Source="ms-appx:///Assets/Monstro/atom.png" />
+        <Image Height="112" Width="100" Canvas.Left="210" Canvas.Top="491"  Source="ms-appx:///Assets/monstros/atom.png" />
         <TextBlock Canvas.Left="350" Canvas.Top="520" Text="ATOM, é o monstro que inferniza os estudantes com seus experimentos que
 envolviam contaminação e redução de tempo de vida, fazendo aulas muito
 cansativas e mortais." FontFamily="Teachers Student" TextWrapping="Wrap" Height="89" Width="596" Foreground="White" TextAlignment="Center"
