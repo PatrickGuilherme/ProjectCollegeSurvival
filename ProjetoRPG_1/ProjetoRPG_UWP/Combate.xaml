@@ -9,56 +9,121 @@
     Width="1366" Height="696"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas Width="1366" Height="696" x:Name="PaginaCombate">
+    <Canvas x:Name="PaginaCombate" Width="1366" Height="696">
 
+        <Image Source="" Height="786" Canvas.Top="-90" Width="1405" />
+        <Image Source="/Assets/Combate/versus.gif" Width="214" Height="217" Canvas.Left="576" Canvas.Top="11"/>
 
-        <Image Height="180" Width="345"  Source="/Assets/logo.png" Canvas.Left="403" Canvas.Top="28"/>
-        <Image x:Name="ImgPlayer" Height="495" Width="441"  Source="/Assets/Expert/Battle.gif" Canvas.Top="191"/>
-        <Image x:Name="ImgMonstro" Height="495" Width="532" Source="/Assets/monstros/aculo.png" Canvas.Left="639" Canvas.Top="191"/>
-        <ComboBox x:Name="ListaI" Background="Red" BorderBrush="Black" BorderThickness="5" Canvas.Left="1176" Canvas.Top="347" Width="190" SelectionChanged="ComboBoxs_SelectionChanged_Inventario" />
-        <ComboBox x:Name="ListaH" Background="Purple" BorderBrush="Black" BorderThickness="5" Canvas.Left="1176" Canvas.Top="517" Width="190" SelectionChanged="ComboBoxs_SelectionChanged_Habilidade"/>
+        <!--Imagens dos personagens-->
+        <Image x:Name="ImgPlayer" Height="407" Width="366"  Source="/Assets/Expert/Battle.gif" Canvas.Top="176" Canvas.Left="78"/>
+        <Image x:Name="ImgMonstro" Height="369" Width="429" Source="/Assets/monstros/aculo.png" Canvas.Left="911" Canvas.Top="176"/>
 
-        <Button x:Name ="Ataque" Background="Blue" BorderBrush="Black" BorderThickness="5" Height="174" Width="190" Canvas.Left="1176">
-            <Image Source="/Assets/Atacar.png" Margin="-1,14,1,12" />
-        </Button>
-        <Button x:Name="Lancar_Habilidade" Background="Purple" BorderBrush="Black" BorderThickness="5" Height="147" Width="190"  Canvas.Left="1176" Canvas.Top="545">
-            <Image Source="/Assets/habilidade.png" />
-        </Button>
-        <Button x:Name="Inventario" Background="Red" BorderBrush="Black" BorderThickness="5" Height="143
-                " Width="190" Canvas.Left="1176" Canvas.Top="374">
-            <Image Source="/Assets/bag.png" Margin="0,11,0,9" />
-        </Button>
-        <Button x:Name="Defesa" Background="Green" BorderBrush="Black" BorderThickness="5" Canvas.Left="1176" Canvas.Top="174" Height="174" Width="190">
-            <Image Source="/Assets/defesa.png" />
-        </Button>
+        <!---Medidor de dano-->
+        <TextBlock x:Name="DanoMonstro" TextWrapping="Wrap" FontWeight="Bold" Text="" Foreground="RED" Height="53" Width="81" FontSize="30" Canvas.Top="283" TextAlignment="Center" Canvas.Left="876"/>
+        <TextBlock x:Name="DanoJogador" TextWrapping="Wrap" FontWeight="Bold" Text="" Foreground="RED" Height="53" Width="81" FontSize="30" Canvas.Top="283" TextAlignment="Center" Canvas.Left="346"/>
+        
+        <!---Imagem dano infligido e Txt ação combate-->
+        <Image x:Name="ImgDanoJogador" Height="198" Width="232" Visibility="Collapsed" Source="/Assets/explosaoatk.gif" Canvas.Top="212" Canvas.Left="145" RenderTransformOrigin="0.112,0.577"/>
+        <Image x:Name="ImgDanoMonstro" Height="398" Width="232" Visibility="Collapsed"  Source="/Assets/explosaoatk.gif" Canvas.Top="85" Canvas.Left="1010" RenderTransformOrigin="0.112,0.577"/>
+        <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="" Foreground="White"  FontWeight="Bold" Height="91" Width="361" FontSize="25" Canvas.Top="225" TextAlignment="Center" Canvas.Left="502"/>
 
-        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="43" Canvas.Top="121">
-            <ProgressBar x:Name="VidaP" Width="300" Height="20" Foreground="Red" Canvas.Left="69" Canvas.Top="64" VerticalAlignment="Top"/>
-        </Border>
-        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="43" Canvas.Top="154">
-            <ProgressBar x:Name="EnergiaP" Width="300" Height="20" Foreground="Blue" Canvas.Left="70" Canvas.Top="96" VerticalAlignment="Top"/>
-        </Border>
+        <!--Barra de status do monstro-->
+        <Canvas Width="500" Height="138" Background="#363636" Canvas.Left="864" Canvas.Top="47">
+            <TextBlock x:Name="NomeMonstro" Foreground="White" TextWrapping="Wrap" TextAlignment="Left" FontWeight="Bold" FontSize="23" Text="Nome monstro" Width="330" Height="34" Canvas.Top="4" Canvas.Left="137"/>
+            <ProgressBar x:Name="EnergiaM" Width="338" Height="20"  Background="#708090"  Foreground="DarkBlue" Canvas.Left="137" Canvas.Top="77"/>
+            <ProgressBar x:Name="VidaM" Width="338" Height="20" Background="#708090" Foreground="DarkRed" Canvas.Left="137" Canvas.Top="42"/>
+            <TextBlock x:Name="TxtVidaM" Foreground="White" TextWrapping="Wrap" Text="Life Monstro" Width="301" Height="21" FontSize="15" Canvas.Top="42" TextAlignment="Center" Canvas.Left="160"/>
+            <TextBlock x:Name="TxtEnergiaM" Foreground="White" TextWrapping="Wrap" Text="Energia Monstro" Width="301" Height="21" FontSize="15" Canvas.Top="77" TextAlignment="Center" Canvas.Left="170"/>
+            <Image x:Name="ImgMonstroFace" Height="112" Source="/Assets/monstros/rostos/aculo_r.png" Canvas.Top="16" Width="116" Canvas.Left="10"/>
+            <Image Source="/Assets/Combate/forcaIcon.png" Height="23" Canvas.Top="105" Width="25" Canvas.Left="137" />
+            <TextBlock x:Name="TxtAnimoM" Foreground="White" TextWrapping="Wrap" Text="Persistência" Width="138" Height="22" FontSize="15" Canvas.Top="105" TextAlignment="Left" Canvas.Left="165"/>
+            <Image Source="/Assets/Combate/defesaIcon.png" Height="23" Canvas.Top="105" Width="25" Canvas.Left="307" />
+            <TextBlock x:Name="TxtDefesaM" Foreground="White" TextWrapping="Wrap" Text="Defesa" Width="138" Height="22" FontSize="15" Canvas.Top="105" TextAlignment="Left" Canvas.Left="337"/>
+        </Canvas>
+        
+        <!---Barra de status do jogador-->
+        <Canvas Width="500" Height="138" Canvas.Top="47" Background="#363636">
+            <ProgressBar x:Name="VidaP" Width="338" Height="20" Background="#708090" Foreground="Red" Canvas.Left="138" Canvas.Top="42"/>
+            <TextBlock x:Name="TxtVidaJ" Foreground="White" TextWrapping="Wrap" Text="Life jogador" Width="301" Height="26" FontSize="15" Canvas.Top="40" TextAlignment="Center" Canvas.Left="151"/>
+            <ProgressBar x:Name="EnergiaP" Width="338" Height="20" Background="#708090" Foreground="Blue" Canvas.Left="138" Canvas.Top="77"/>
+            <TextBlock x:Name="TxtEnergiaJ" Foreground="White" TextWrapping="Wrap" Text="Energia jogador" Width="301" Height="26" FontSize="15" Canvas.Top="75" TextAlignment="Center" Canvas.Left="150"/>
+            <TextBlock x:Name="NomeJogador" FontWeight="Bold" Foreground="White" TextWrapping="Wrap" Text="Nome jogador" Width="337" Height="33" FontSize="23" Canvas.Top="4" TextAlignment="Left" Canvas.Left="138"/>
+            <Image x:Name="ImgJogadorFace" Height="112" Source="/Assets/Worker/Face.png" Canvas.Top="16" Width="116" Canvas.Left="9"/>
+            <Image Source="/Assets/Combate/forcaIcon.png" Height="23" Canvas.Top="105" Width="25" Canvas.Left="138" />
+            <TextBlock x:Name="TxtAnimoJ" Foreground="White" TextWrapping="Wrap" Text="Persistência" Width="138" Height="22" FontSize="15" Canvas.Top="106" TextAlignment="Left" Canvas.Left="168"/>
+            <Image Source="/Assets/Combate/defesaIcon.png" Height="23" Canvas.Top="105" Width="25" Canvas.Left="307" />
+            <TextBlock x:Name="TxtDefesaJ" Foreground="White" TextWrapping="Wrap" Text="Defesa" Width="138" Height="22" FontSize="15" Canvas.Top="106" TextAlignment="Left" Canvas.Left="337"/>
+        </Canvas>
 
-        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="765" Canvas.Top="121">
-            <ProgressBar x:Name="VidaM" Width="300" Height="20" Foreground="DarkRed" Canvas.Top="64"/>
-        </Border>
-        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="765" Canvas.Top="154">
-            <ProgressBar x:Name="EnergiaM" Width="300" Height="20" Foreground="DarkBlue" Canvas.Top="96"/>
-        </Border>
+        <!--Barra de ações do jogador-->
+        <Canvas  Background="Black" Width="1366" Height="146" Canvas.Top="550">
+            <Button x:Name="Ataque" BorderThickness="5" BorderBrush="Blue" Canvas.Left="292" Content="Atacar" FontSize="25" FontWeight="Bold" Foreground="Blue" Canvas.Top="38" Height="70" Width="156">
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Dark">
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="DarkBlue"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="DarkBlue"/>
+                            </ResourceDictionary>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="DarkBlue"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="DarkBlue"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="Defesa" BorderThickness="5" BorderBrush="DarkGreen" Canvas.Left="474" Content="Defender" FontSize="25" FontWeight="Bold" Foreground="DarkGreen" Canvas.Top="38" Height="70" Width="156">
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Dark">
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Green"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Green"/>
+                            </ResourceDictionary>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Green"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Green"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </Button.Resources>
+            </Button>
 
-        <TextBlock x:Name="TxtVidaJ" Foreground="White" TextWrapping="Wrap" Text="Life jogador" Width="301" Height="26" FontSize="15" Canvas.Top="122" TextAlignment="Center" Canvas.Left="43"/>
-        <TextBlock x:Name="TxtVidaM" Foreground="White" TextWrapping="Wrap" Text="Life Monstro" Width="301" Height="26" FontSize="15" Canvas.Top="122" TextAlignment="Center" Canvas.Left="765"/>
-        <TextBlock x:Name="TxtEnergiaM" Foreground="White" TextWrapping="Wrap" Text="Energia Monstro" Width="301" Height="26" FontSize="15" Canvas.Top="155" TextAlignment="Center" Canvas.Left="765"/>
-        <TextBlock x:Name="TxtEnergiaJ" Foreground="White" TextWrapping="Wrap" Text="Energia Monstro" Width="301" Height="26" FontSize="15" Canvas.Top="155" TextAlignment="Center" Canvas.Left="43"/>
-
-        <TextBlock x:Name="NomeJogador" FontWeight="Bold" TextWrapping="Wrap" Text="Nome jogador" Width="300" Height="44" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="43"/>
-        <TextBlock x:Name="NomeMonstro" FontWeight="Bold" TextWrapping="Wrap" Text="Nome monstro" Width="300" Height="44" FontSize="25" Canvas.Top="54" TextAlignment="Center" Canvas.Left="765"/>
-        <TextBlock x:Name="DanoMonstro" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="363" TextAlignment="Center" Canvas.Left="639" Foreground="RED" RenderTransformOrigin="0.37,0.509"/>
-        <TextBlock x:Name="DanoJogador" TextWrapping="Wrap" Text="" Height="53" Width="81" FontSize="30" Canvas.Top="363" TextAlignment="Center" Canvas.Left="347" Foreground="RED"/>
-        <TextBlock x:Name="AcaoCombate" TextWrapping="Wrap" Text="" FontWeight="Bold" Height="121" Width="303" FontSize="25" Canvas.Top="210" TextAlignment="Center" Canvas.Left="403"/>
-
-        <Image x:Name="ImgDanoJogador" Height="198" Width="232" Visibility="Collapsed" Source="/Assets/explosaoatk.gif" Canvas.Top="185" Canvas.Left="83" RenderTransformOrigin="0.112,0.577"/>
-        <Image x:Name="ImgDanoMonstro" Height="398" Width="232" Visibility="Collapsed"  Source="/Assets/explosaoatk.gif" Canvas.Top="87" Canvas.Left="789" RenderTransformOrigin="0.112,0.577"/>
-
+            <Button x:Name="Lancar_Habilidade" BorderThickness="5" BorderBrush="Purple" FontSize="25" FontWeight="Bold" Foreground="Purple" Content="Habilidade" Canvas.Left="661" Canvas.Top="38" Height="70" Width="180">
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Dark">
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Purple"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Purple"/>
+                            </ResourceDictionary>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Purple"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Purple"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="Inventario"  BorderThickness="5" BorderBrush="DarkRed" FontSize="25" FontWeight="Bold" Foreground="DarkRed" Content="Itens" Canvas.Left="903" Height="70" Width="180" Canvas.Top="38">
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Dark">
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Red"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Red"/>
+                            </ResourceDictionary>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Red"/>
+                                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Red"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </Button.Resources>
+            </Button>
+            <ComboBox x:Name="ListaH" Background="Purple" Canvas.Left="839" Width="39" Height="74" SelectionChanged="ComboBoxs_SelectionChanged_Habilidade" Canvas.Top="36"/>
+            <ComboBox x:Name="ListaI" Background="DarkRed" Canvas.Left="1081" Canvas.Top="36" Width="39" Height="74" SelectionChanged="ComboBoxs_SelectionChanged_Inventario" />
+        </Canvas>
     </Canvas>
 </Page>

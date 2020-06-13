@@ -9,6 +9,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Core;
+using Windows.Media.Playback;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -30,6 +33,7 @@ namespace ProjetoRPG_UWP
         private PersonagemJogavel jogador;
         private Monstro monstro;
         private int contPersistencia, contAnimo;
+        private MediaPlayer musicBattle;
         private bool defesaMonstro;
 
         /// <summary>
@@ -38,16 +42,55 @@ namespace ProjetoRPG_UWP
         public Combate()
         {
             this.InitializeComponent();
+
             defesaMonstro = false;
             contPersistencia = 0;
             contAnimo = 0;
+
             Ataque.Click += Btn_Ataque;
-            ListaH.SelectionChanged += ComboBoxs_SelectionChanged_Habilidade;
-            ListaI.SelectionChanged += ComboBoxs_SelectionChanged_Inventario;
-            Lancar_Habilidade.Click += Btn_Habilidade;
             Inventario.Click += Btn_Inventario;
             Defesa.Click += Btn_Defesa;
+            Lancar_Habilidade.Click += Btn_Habilidade;
 
+            ListaH.SelectionChanged += ComboBoxs_SelectionChanged_Habilidade;
+            ListaI.SelectionChanged += ComboBoxs_SelectionChanged_Inventario;
+            
+        }
+
+        /// <summary>
+        /// Tocar musica durante a batalha
+        /// </summary>
+        private void InicarMusicaBatalha()
+        {
+            //Musica de inimigos normis
+            string music = "themeBattle.mp3";
+
+            //musica do boss final
+            if (monstro.GetType() == typeof(Anaculo))
+            {
+                music = "themeFinalBoss.mp3";
+            }
+            //Musica dos outros bosses
+            else if (monstro.GetType() == typeof(Atom) || monstro.GetType() == typeof(Lapain) || monstro.GetType() == typeof(Toest))
+            {
+                music = "themeBoss.mp3";
+            }
+
+            try
+            {
+                Uri pathUri = new Uri("ms-appx:///Assets/Musicas/" + music);
+                musicBattle = new MediaPlayer();
+                musicBattle.Source = MediaSource.CreateFromUri(pathUri);
+                musicBattle.Play();
+                Debug.Write("Som foi execultado");
+            }
+            catch (Exception ex)
+            {
+                if (ex is FormatException)
+                {
+                    Debug.Write("erro ao execultar som");
+                }
+            }
         }
 
         /// <summary>
@@ -56,7 +99,6 @@ namespace ProjetoRPG_UWP
         private void Btn_Ataque(object sender, RoutedEventArgs e)
         {
             int dano = jogador.Atacar(monstro, null, jogador.Habilidades.ElementAt<Habilidade>(0));
-
             _ = ExibeDanoCombateAsync(dano, 1);
 
             //mostro ataca
@@ -96,7 +138,6 @@ namespace ProjetoRPG_UWP
                 //Aplicar boost no personagem
                 jogador.UsarItem(item);
 
-
                 if (item.Dano > 0)
                 {
                     //Atacar o monstro
@@ -134,7 +175,6 @@ namespace ProjetoRPG_UWP
                 //verificar se o usuario tem a energia para usar a habilidade
                 if (jogador.UsarHabilidade(hbl))
                 {
-
                     //armazena os buffes para tirar no fim da rodada
                     contAnimo += hbl.BuffAnimo;
                     contPersistencia += hbl.BuffPersistencia;
@@ -265,6 +305,8 @@ namespace ProjetoRPG_UWP
                 jogador.Animo -= contAnimo;
                 jogador.Persistencia -= contPersistencia;
                 jogador.LevelUp();
+                musicBattle.Pause();
+                musicBattle = null;
                 Frame.GoBack();
             }
             //jogador morto monstro vivo
@@ -451,21 +493,26 @@ namespace ProjetoRPG_UWP
         {
 
             string diretorioJogador;
+            string diretorioImgFaceJogador;
 
             //Definir a imagem do personagem jogavel
             if (jogador.GetType() == typeof(Worker))
             {
                 diretorioJogador = "Worker/Battle.gif";
+                diretorioImgFaceJogador = "Worker/Face.png"; 
             }
             else if (jogador.GetType() == typeof(Expert))
             {
                 diretorioJogador = "Expert/Battle.gif";
+                diretorioImgFaceJogador = "Expert/Face.png";
             }
             else
             {
+                diretorioImgFaceJogador = "Cheater/Face.png";
                 diretorioJogador = "Cheater/Battle.gif";
             }
             ImgPlayer.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioJogador));
+            ImgJogadorFace.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioImgFaceJogador));
         }
 
         /// <summary>
@@ -474,42 +521,53 @@ namespace ProjetoRPG_UWP
         private void ImgMonstroCombate()
         {
             string diretorioMonstro;
+            string diretorioImgFaceMonstro;
             //TESTE
             
             //Definir a imagem do mosntro
             if (monstro.GetType() == typeof(Aculo))
             {
                 diretorioMonstro = "monstros/aculo.png";
+                diretorioImgFaceMonstro = "monstros/rostos/aculo_r.png";
             }
             else if (monstro.GetType() == typeof(Anaculo))
             {
+                diretorioImgFaceMonstro = "monstros/rostos/anaculo_r.png";
                 diretorioMonstro = "monstros/anaculo.png";
             }
             else if (monstro.GetType() == typeof(Atom))
             {
+                diretorioImgFaceMonstro = "monstros/rostos/atom_r.png";
                 diretorioMonstro = "monstros/atom.png";
             }
             else if (monstro.GetType() == typeof(Gasefic))
             {
+                diretorioImgFaceMonstro = "monstros/rostos/gasefic_r.png";
                 diretorioMonstro = "monstros/gasefic.png";
             }
             else if (monstro.GetType() == typeof(Lapain))
             {
+                diretorioImgFaceMonstro = "monstros/rostos/lapin_r.png";
                 diretorioMonstro = "monstros/lapain.png";
             }
             else if (monstro.GetType() == typeof(Minlapa))
             {
+                diretorioImgFaceMonstro = "monstros/rostos/minlapa_r.png";
                 diretorioMonstro = "monstros/minlapa.png";
             }
             else if (monstro.GetType() == typeof(Mintost))
             {
+                diretorioImgFaceMonstro = "monstros/rostos/mintost_r.png";
                 diretorioMonstro = "monstros/mintost.png";
             }
             else //Toest
             {
+                diretorioImgFaceMonstro = "monstros/rostos/toest_r.png";
                 diretorioMonstro = "monstros/toest.png";
             }
             ImgMonstro.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioMonstro));
+            ImgMonstroFace.Source = new BitmapImage(new Uri("ms-appx:///Assets/" + diretorioImgFaceMonstro));
+
         }
 
         /// <summary>
@@ -583,9 +641,13 @@ namespace ProjetoRPG_UWP
         {
             TxtVidaJ.Text = jogador.Life + " / " + jogador.MaxLife;
             TxtEnergiaJ.Text = + jogador.Energia + " / " + jogador.MaxEnergia;
+            TxtAnimoJ.Text = jogador.Animo.ToString();
+            TxtDefesaJ.Text = jogador.Persistencia.ToString();
             TxtVidaM.Text = monstro.Life + " / " + monstro.MaxLife;
             TxtEnergiaM.Text = monstro.Energia + " / " + monstro.MaxEnergia;
-            
+            TxtAnimoM.Text = monstro.Animo.ToString();
+            TxtDefesaM.Text = monstro.Persistencia.ToString();
+
             VidaP.Value = jogador.Life;
             EnergiaP.Value = jogador.Energia;
             VidaM.Value = monstro.Life;
@@ -599,8 +661,6 @@ namespace ProjetoRPG_UWP
         /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //base.OnNavigatedTo(e);
-
             //Captura os personagens vindos de outra tela (movimento) 
             var ListParametros = e.Parameter as List<Personagem>;
             jogador = ListParametros.ElementAt<Personagem>(0) as PersonagemJogavel;
@@ -617,13 +677,19 @@ namespace ProjetoRPG_UWP
             VidaM.Value = monstro.Life;
 
             //Chamada de metodos
+            InicarMusicaBatalha();
             ImgJogadorCombate();
             ImgMonstroCombate();
             PreencherCBHabilidades();
             PreencherCBItens();
             AtualizarTexto();
             ExibeDescricaoMonstro();
-        }
 
+            jogador.Animo = 200;
+            //Define o background 
+            ImageBrush ib = new ImageBrush();
+            ib.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Combate/backgroundBattle.gif"));
+            PaginaCombate.Background = ib;
+        }
     }
 }
