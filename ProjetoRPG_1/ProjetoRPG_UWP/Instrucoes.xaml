@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas Height="696" Width="1366" Background="Black">
-        <TextBlock Canvas.Left="527" Foreground="White" Canvas.Top="57" Text="Instruções" TextWrapping="Wrap" FontSize="50" FontStyle="Oblique" TextAlignment="center" FontWeight="Bold"/>
+        <TextBlock x:Name="Titulo" Canvas.Left="527" Foreground="White" Canvas.Top="57" Text="Instruções" TextWrapping="Wrap" FontSize="50" FontStyle="Oblique" TextAlignment="center" FontWeight="Bold"/>
 
         <TextBlock FontSize="25" Canvas.Left="312" Foreground="White" FontWeight="Bold" Canvas.Top="258" Text="Movimentação" TextWrapping="Wrap" Height="46" TextAlignment="center"/>
         <Image Height="150" Canvas.Left="284" Canvas.Top="319" Source="/Assets/Instrucoes/TeclasMovimentacao.png"/>

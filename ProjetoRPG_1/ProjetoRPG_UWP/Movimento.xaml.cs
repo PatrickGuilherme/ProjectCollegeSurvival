@@ -589,9 +589,10 @@ namespace ProjetoRPG_UWP
         private void IniciarCombate(int x, int y)
         {
             //Cria uma lista que contem o jogador e o monstro
-            var ListaParametros = new List<Personagem>() {
+            var ListaParametros = new List<object>() {
                     jogador,
-                    Mapa.MapaJogo[x, y].Monstro
+                    Mapa.MapaJogo[x, y].Monstro,
+                    Mapa
                 };
 
             //Elimina o monstro no mapa
@@ -667,6 +668,7 @@ namespace ProjetoRPG_UWP
             Debug.WriteLine("CONHECIMENTO: " + jogador.Conhecimento);
             Debug.WriteLine("NIVEL: " + jogador.Nivel);
             /*===========*/
+
         }
     }
 }

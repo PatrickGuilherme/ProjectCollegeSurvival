@@ -21,7 +21,7 @@ namespace ProjetoRPG
             this.MaxEnergia = 300;
             this.Animo = 30;
             this.Persistencia = 20;
-            this.ConhecimentoDrop = 60;
+            this.ConhecimentoDrop = 80;
             this.Habilidades = new List<Habilidade>();
             this.StartHabilidade();
             this.IniciarItemDrop();

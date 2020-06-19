@@ -32,6 +32,7 @@ namespace ProjetoRPG_UWP
     {
         private PersonagemJogavel jogador;
         private Monstro monstro;
+        private Mapa mapa;
         private int contPersistencia, contAnimo;
         private MediaPlayer musicBattle;
         private bool defesaMonstro;
@@ -289,6 +290,17 @@ namespace ProjetoRPG_UWP
             }
         }
 
+        private bool ChequeFimJogo()
+        {
+            //mapa.MapaJogo[4, 102] = null; mapa.MapaJogo[2, 77] = null; mapa.MapaJogo[3, 29] = null; mapa.MapaJogo[4, 5] = null;
+            if (mapa.MapaJogo[4, 102] == null && mapa.MapaJogo[2, 77] == null && mapa.MapaJogo[3, 29] == null && mapa.MapaJogo[4, 5] == null)
+            {
+                this.Frame.Navigate(typeof(Vitoria), jogador);
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Verifica se algum personagem morreu (jogador ou monstro)
         /// </summary>
@@ -307,7 +319,8 @@ namespace ProjetoRPG_UWP
                 jogador.LevelUp();
                 musicBattle.Pause();
                 musicBattle = null;
-                Frame.GoBack();
+                
+                if(!ChequeFimJogo()) Frame.GoBack();
             }
             //jogador morto monstro vivo
             else if (jogador.Life <= 0)
@@ -664,9 +677,10 @@ namespace ProjetoRPG_UWP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //Captura os personagens vindos de outra tela (movimento) 
-            var ListParametros = e.Parameter as List<Personagem>;
-            jogador = ListParametros.ElementAt<Personagem>(0) as PersonagemJogavel;
-            monstro = ListParametros.ElementAt<Personagem>(1) as Monstro;
+            var ListParametros = e.Parameter as List<object>;
+            jogador = ListParametros.ElementAt<object>(0) as PersonagemJogavel;
+            monstro = ListParametros.ElementAt<object>(1) as Monstro;
+            mapa = ListParametros.ElementAt<object>(2) as Mapa;
 
             //Iniciar preenchimento das progress bars do jogador e monstro 
             EnergiaP.Maximum = jogador.MaxEnergia;
@@ -691,6 +705,9 @@ namespace ProjetoRPG_UWP
             ImageBrush ib = new ImageBrush();
             ib.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Combate/backgroundBattle.gif"));
             PaginaCombate.Background = ib;
+
+            jogador.Animo = 6000;
+            jogador.Persistencia = 5001;
         }
     }
 }
