@@ -204,22 +204,21 @@ namespace ProjetoRPG
             equipamento.adcionarEquipamento();
             GameObject GOequip;
 
-
             //equipamentos nivel 1
 
             GameObject GOequip1 = new GameObject();
             GOequip1.Item = equipamento.eq[0]; //agenda
-            Map[3, 5] = GOequip1;
+            Map[7, 122] = GOequip1;
 
             GOequip = new GameObject();
             GOequip.Item = equipamento.eq[5]; //lapis
-            Map[3, 4] = GOequip;
+            Map[6, 122] = GOequip;
 
             //equipamentos nivel 2
 
             GOequip = new GameObject();
             GOequip.Item = equipamento.eq[1]; //caderno 1M
-            Map[4, 129] = GOequip;
+            Map[3, 106] = GOequip;
 
             GOequip = new GameObject();
             GOequip.Item = equipamento.eq[8]; //Borracha branca
@@ -228,8 +227,37 @@ namespace ProjetoRPG
             //equipamentos nivel 3
 
             GOequip = new GameObject();
-            GOequip.Item = equipamento.eq[2]; //caderno 10M
+            GOequip.Item = equipamento.eq[6]; //Lápis mecânico
             Map[1, 85] = GOequip;
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[9]; //borracha azul
+            Map[5, 79] = GOequip;
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[2]; //Caderno 10M
+            Map[2, 91] = GOequip;
+
+            //equipamentos nivel 4
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[3]; //ENCICLOPEDIA
+            Map[3, 55] = GOequip;
+
+            //equipamentos nivel 5
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[7]; //Caneta
+            Map[3, 33] = GOequip;
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[4]; //Notebook
+            Map[7, 20] = GOequip;
+
+            GOequip = new GameObject();
+            GOequip.Item = equipamento.eq[10]; //Borracha duas cores
+            Map[5, 3] = GOequip;
+
 
             return Map;
         }
