@@ -687,7 +687,6 @@ namespace ProjetoRPG_UWP
             AtualizarTexto();
             ExibeDescricaoMonstro();
 
-            jogador.Animo = 200;
             //Define o background 
             ImageBrush ib = new ImageBrush();
             ib.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Combate/backgroundBattle.gif"));

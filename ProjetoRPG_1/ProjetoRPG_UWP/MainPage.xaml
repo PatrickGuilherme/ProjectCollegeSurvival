@@ -6,24 +6,30 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Width="800" Height=" 800"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="800" d:DesignHeight="800">
+    Width="800" Height="800"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas Width="800" Height="800">
-
+    <Canvas Height="594" Margin="0,103,0,103">
+        <Image Source="/Assets/menuBackground.gif" Height="1104" Width="1512" Canvas.Left="-318" Canvas.Top="-255"/>
         <Button x:Name="BtnStart" 
-                Content="START GAME" 
+                Content="Iniciar"
+                FontWeight="Bold"
                 Height="49" Width="203" 
-                Canvas.Left="298" 
-                Canvas.Top="400" 
-                Background="White"
-                BorderBrush="Black"/>
+                Canvas.Left="214" 
+                Canvas.Top="369" 
+                Background="Black"
+                Foreground="White"/>
         <Button x:Name="BtnInfo" 
-                Content="Informações" 
+                Content="Controles" 
+                FontWeight="Bold"
                 Height="49" Width="203" 
-                Canvas.Left="298" 
-                Canvas.Top="500" 
-                Background="White"
-                BorderBrush="Black"/>
+                Canvas.Left="483" 
+                Canvas.Top="369" 
+                Background="Black"
+                Foreground="White"/>
+        <Image Height="291" Width="493" 
+               Canvas.Left="215"
+               Source="/Assets/logoBlack.png"
+               Canvas.Top="78"/>
     </Canvas>
 </Page>

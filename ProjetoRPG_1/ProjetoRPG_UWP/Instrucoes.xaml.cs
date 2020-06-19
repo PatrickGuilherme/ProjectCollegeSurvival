@@ -22,12 +22,11 @@ namespace ProjetoRPG_UWP {
     public sealed partial class Instrucoes : Page {
         public Instrucoes() {
             this.InitializeComponent();
-            Texto.FontSize = 15;
-            //Texto.FontFamily = "Century Gothic";
-            Texto.Text = "Movimentam o personagem:\n--W(cima)\n--S(baixo)\n   --A(Esquerda)\n--D(Direita)";
-            Texto2.Text = "Mostra os status atuais do personagem";
-            Texto3.Text = "Abre a tela de Craft";
-            Texto4.Text = "Abre a tela de Inventário";
+
+
+            TxtTeclaC.Text = "CRAFT\nCriação de itens";
+            TxtTeclaI.Text = "INVENTÁRIO\nMochila de itens e equipamentos";
+            TxtTeclaZ.Text = "STATUS\nAtributos do personagem";
             BtnVoltar.Click += BtnVoltar_Click;
 
         }

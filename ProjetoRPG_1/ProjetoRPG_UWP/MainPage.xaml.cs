@@ -33,16 +33,10 @@ namespace ProjetoRPG_UWP
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Historia));
+            this.Frame.Navigate(typeof(HistoriaGame));
         }
         private void BtnInfo_Click(object sender, RoutedEventArgs e) {
             this.Frame.Navigate(typeof(Instrucoes));
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-
-        }
-
     }
 }

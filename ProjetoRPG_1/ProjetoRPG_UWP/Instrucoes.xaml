@@ -8,25 +8,35 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas Height="696" Width="1366">
-        <Border Canvas.Left="291" Canvas.Top="47" BorderBrush="Black" BorderThickness="2" Width="155">
-            <Image Height="100" Canvas.Left="322" Canvas.Top="155" Width="200" Source="/Assets/Teclas.png"/>
-        </Border>
-        <TextBlock Canvas.Left="798" Canvas.Top="47" Text="Instruções" TextWrapping="Wrap" FontSize="50" FontStyle="Oblique" TextAlignment="center" FontWeight="Bold"/>
-        <TextBlock FontSize="20" Canvas.Left="534" x:Name="Texto" Canvas.Top="47" Text="" TextWrapping="Wrap" Height="98" TextAlignment="center"/>
-        <Border Canvas.Left="291" Canvas.Top="212" BorderBrush="Black" BorderThickness="2">
-            <Image Height="100" Width="150" Canvas.Left="352" Canvas.Top="320" Source="/Assets/TeclaZ.png"/>
-        </Border>
+    <Canvas Height="696" Width="1366" Background="Black">
+        <TextBlock Canvas.Left="527" Foreground="White" Canvas.Top="57" Text="Instruções" TextWrapping="Wrap" FontSize="50" FontStyle="Oblique" TextAlignment="center" FontWeight="Bold"/>
 
-        <TextBlock Canvas.Left="534" Canvas.Top="236" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto2" TextAlignment="center"/>
-        <Border Canvas.Left="291" Canvas.Top="372" BorderBrush="Black" BorderThickness="2" Width="155">
-            <Image Height="100" Canvas.Left="380" Canvas.Top="480" Width="100" Source="/Assets/TeclaC.png"/>
-        </Border>
-        <TextBlock Canvas.Left="534" Canvas.Top="390" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto3" TextAlignment="center"/>
-        <Border Canvas.Left="291" Canvas.Top="522" BorderBrush="Black" BorderThickness="2" Width="155">
-            <Image Height="100" Canvas.Left="380" Canvas.Top="630" Width="162" Source="/Assets/TeclaI.png"/>
-        </Border>
-        <TextBlock Canvas.Left="534" Canvas.Top="555" Text="TextBlock" TextWrapping="Wrap" x:Name="Texto4" TextAlignment="center"/>
-        <Button BorderBrush="Black" Content="Voltar" Canvas.Left="1125" Canvas.Top="45" x:Name="BtnVoltar" Height="70" Width="76"/>
+        <TextBlock FontSize="25" Canvas.Left="312" Foreground="White" FontWeight="Bold" Canvas.Top="258" Text="Movimentação" TextWrapping="Wrap" Height="46" TextAlignment="center"/>
+        <Image Height="150" Canvas.Left="284" Canvas.Top="319" Source="/Assets/Instrucoes/TeclasMovimentacao.png"/>
+
+        <TextBlock x:Name="TxtTeclaZ" FontSize="20" Canvas.Left="902" Foreground="White" Canvas.Top="265" Text="Tecla Z" TextWrapping="Wrap" Height="57" Width="328"/>
+        <Image Height="63" Width="81" Canvas.Left="809" Canvas.Top="260" Source="/Assets/Instrucoes/TeclaZ.png"/>
+
+        <TextBlock x:Name="TxtTeclaC" FontSize="20" Canvas.Left="902" Canvas.Top="349" Text="Tecla C" Foreground="White" TextWrapping="Wrap" Height="57" Width="318"/>
+        <Image Height="63" Width="81" Canvas.Left="811" Canvas.Top="349" Source="/Assets/Instrucoes/TeclaC.png"/>
+
+        <TextBlock x:Name="TxtTeclaI" FontSize="20" Canvas.Left="902" Canvas.Top="446" Text="Tecla I" Foreground="White" TextWrapping="Wrap" Height="53" Width="319"/>
+        <Image Height="63" Width="81" Canvas.Left="811" Canvas.Top="436" Source="/Assets/Instrucoes/TeclaI.png"/>
+        <Button Background="DarkRed" Foreground="White" Content="Voltar" Canvas.Left="592" Canvas.Top="599" x:Name="BtnVoltar" Height="60" Width="111">
+            <Button.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="DarkRed"/>
+                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Red"/>
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="DarkRed"/>
+                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Red"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </Button.Resources>
+        </Button>
     </Canvas>
 </Page>

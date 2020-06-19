@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="ProjetoRPG_UWP.HistoriaGame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetoRPG_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Width="1500" 
+    Height="1000"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Canvas Width="1500" Height="1000" Background="Black">
+        <TextBlock x:Name="TxtHistoria" TextWrapping="Wrap" Text="DDDD" Foreground="White" Height="414" Width="990" FontSize="25" TextAlignment="Justify" Canvas.Left="238" Canvas.Top="89"/>
+        <Image x:Name="ImgMonstros" Width="922" Height="562" Visibility="Collapsed" Source="/Assets/monstros/todosMonstros.png" Canvas.Left="313"/>
+
+        <Button x:Name="BtnMudarImagem" Click="BtnMudarImagem_Click" Background="DarkBlue" Content="Continuar"  FontSize="20" Foreground="White" Canvas.Left="639" Canvas.Top="526" Height="72" Width="217">
+            <Button.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Blue"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Blue"/>
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Blue"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Blue"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </Button.Resources>
+        </Button>
+
+        <Button x:Name="BtnAcao" Click="BtnAcao_Click" Visibility="Collapsed" Background="DarkRed" Foreground="White" Content="Continuar" FontSize="20" Canvas.Left="639" Canvas.Top="526"  Height="72" Width="217">
+            <Button.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Red"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Red"/>
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Red"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Red"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </Button.Resources>
+        </Button>
+
+        <Button x:Name="BtnVoltar" Background="Black" Click="BtnVoltar_Click" Content="Voltar" FontSize="20" Foreground="White" Canvas.Left="712" Canvas.Top="603" Width="76">
+            <Button.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Red"/>
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Red"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </Button.Resources>
+        </Button>
+    </Canvas>
+</Page>

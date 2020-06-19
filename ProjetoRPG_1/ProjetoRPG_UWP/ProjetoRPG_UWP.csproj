@@ -137,6 +137,9 @@
     <Compile Include="Historia3.xaml.cs">
       <DependentUpon>Historia3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HistoriaGame.xaml.cs">
+      <DependentUpon>HistoriaGame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Instrucoes.xaml.cs">
       <DependentUpon>Instrucoes.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,11 @@
     <Content Include="Assets\Combate\versus.gif" />
     <Content Include="Assets\Expert\Battle.gif" />
     <Content Include="Assets\explosaoatk.gif" />
+    <Content Include="Assets\Instrucoes\TeclaC.png" />
+    <Content Include="Assets\Instrucoes\tecladoCompleto.png" />
+    <Content Include="Assets\Instrucoes\TeclaI.png" />
+    <Content Include="Assets\Instrucoes\TeclasMovimentacao.png" />
+    <Content Include="Assets\Instrucoes\TeclaZ.png" />
     <Content Include="Assets\ItensPri\agua.png" />
     <Content Include="Assets\ItensPri\garrafavazia.png" />
     <Content Include="Assets\ItensPri\giz.png" />
@@ -218,6 +226,8 @@
     <Content Include="Assets\Expert\Up.gif" />
     <Content Include="Assets\habilidade.png" />
     <Content Include="Assets\logo.png" />
+    <Content Include="Assets\logoBlack.png" />
+    <Content Include="Assets\menuBackground.gif" />
     <Content Include="Assets\mesa.jpg" />
     <Content Include="Assets\ItensSec\minisol.png" />
     <Content Include="Assets\Monstro.png" />
@@ -241,6 +251,7 @@
     <Content Include="Assets\monstros\rostos\minlapa_r.png" />
     <Content Include="Assets\monstros\rostos\mintost_r.png" />
     <Content Include="Assets\monstros\rostos\toest_r.png" />
+    <Content Include="Assets\monstros\todosMonstros.png" />
     <Content Include="Assets\monstros\toest.png" />
     <Content Include="Assets\Musicas\acaoCombateEfeito.mp3" />
     <Content Include="Assets\Musicas\themeBattle.mp3" />
@@ -251,10 +262,7 @@
     <Content Include="Assets\Quadro.png" />
     <Content Include="Assets\stick.png" />
     <Content Include="Assets\ItensSec\sunbley.png" />
-    <Content Include="Assets\TeclaC.png" />
-    <Content Include="Assets\TeclaI.png" />
     <Content Include="Assets\Teclas.png" />
-    <Content Include="Assets\TeclaZ.png" />
     <Content Include="Assets\Versus.png" />
     <Content Include="Assets\Worker\Battle.gif" />
     <Content Include="Assets\Worker\Down.gif" />
@@ -304,6 +312,10 @@
     <Page Include="Historia3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HistoriaGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Instrucoes.xaml">
       <Generator>MSBuild:Compile</Generator>
