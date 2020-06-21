@@ -43,6 +43,7 @@ namespace ProjetoRPG_UWP {
                 Mapa
             };
             //player.StartHabilidade();
+            
             this.Frame.Navigate(typeof(Movimento), ListaParametros);
         }
 

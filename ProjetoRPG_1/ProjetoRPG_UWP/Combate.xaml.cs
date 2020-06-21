@@ -706,8 +706,8 @@ namespace ProjetoRPG_UWP
             ib.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/Combate/backgroundBattle.gif"));
             PaginaCombate.Background = ib;
 
-            jogador.Animo = 6000;
-            jogador.Persistencia = 5001;
+            //jogador.Animo = 6000;
+            //jogador.Persistencia = 5001;
         }
     }
 }

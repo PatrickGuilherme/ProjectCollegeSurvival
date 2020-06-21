@@ -20,8 +20,8 @@ namespace ProjetoRPG
             this.MaxLife = 400;
             this.Energia = 400;
             this.MaxEnergia = 400;
-            this.Animo = 15;
-            this.Persistencia = 20;
+            this.Animo = 40;
+            this.Persistencia = 45;
             this.Conhecimento = 0;
             this.Nivel = 1;
             this.PosicaoX = 124;
@@ -46,8 +46,8 @@ namespace ProjetoRPG
                 this.MaxLife = 500;
                 this.Energia = 500;
                 this.MaxEnergia = 500;
-                this.Animo = 20;
-                this.Persistencia = 25;
+                this.Animo = 45;
+                this.Persistencia = 50;
                 this.ResolucaoSuprema();
             }
             else if (this.Conhecimento >= 408 && this.Nivel <= 3)
@@ -58,8 +58,8 @@ namespace ProjetoRPG
                 this.MaxLife = 600;
                 this.Energia = 600;
                 this.MaxEnergia = 600;
-                this.Animo = 23;
-                this.Persistencia = 28;
+                this.Animo = 50;
+                this.Persistencia = 55;
             }
             else if (this.Conhecimento >= 610 && this.Nivel <= 4)
             {
@@ -69,8 +69,8 @@ namespace ProjetoRPG
                 this.MaxLife = 700;
                 this.Energia = 700;
                 this.MaxEnergia = 700;
-                this.Animo = 25;
-                this.Persistencia = 30;
+                this.Animo = 55;
+                this.Persistencia = 60;
                 this.Concentracao();
             }
             else if (this.Conhecimento >= 852 && this.Nivel <= 5)
@@ -81,8 +81,8 @@ namespace ProjetoRPG
                 this.MaxLife = 800;
                 this.Energia = 800;
                 this.MaxEnergia = 800;
-                this.Animo = 35;
-                this.Persistencia = 40;
+                this.Animo = 60;
+                this.Persistencia = 70;
             }
         }
 

@@ -19,7 +19,7 @@ namespace ProjetoRPG
             this.MaxLife = 700;
             this.Energia = 300;
             this.MaxEnergia = 300;
-            this.Animo = 30;
+            this.Animo = 50;
             this.Persistencia = 20;
             this.ConhecimentoDrop = 80;
             this.Habilidades = new List<Habilidade>();

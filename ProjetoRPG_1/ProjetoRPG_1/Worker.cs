@@ -21,8 +21,8 @@ namespace ProjetoRPG
             this.MaxLife = 300;
             this.Energia = 500;
             this.MaxEnergia = 500;
-            this.Animo = 20;
-            this.Persistencia = 15;
+            this.Animo = 45;
+            this.Persistencia = 40;
             this.Conhecimento = 0;
             this.Nivel = 1;
             this.PosicaoX = 124;
@@ -47,8 +47,8 @@ namespace ProjetoRPG
                 this.MaxLife = 400;
                 this.Energia = 600;
                 this.MaxEnergia = 600;
-                this.Animo = 25;
-                this.Persistencia = 20;
+                this.Animo = 50;
+                this.Persistencia = 45;
                 this.ForcaDoOdio();
             }
             else if (this.Conhecimento >= 408 && this.Nivel < 3)
@@ -59,8 +59,8 @@ namespace ProjetoRPG
                 this.MaxLife = 500;
                 this.Energia = 700;
                 this.MaxEnergia = 700;
-                this.Animo = 28;
-                this.Persistencia = 23;
+                this.Animo = 55;
+                this.Persistencia = 50;
             }
             else if (this.Conhecimento >= 610 && this.Nivel < 4)
             {
@@ -70,8 +70,8 @@ namespace ProjetoRPG
                 this.MaxLife = 600;
                 this.Energia = 800;
                 this.MaxEnergia = 800;
-                this.Animo = 30;
-                this.Persistencia = 25;
+                this.Animo = 60;
+                this.Persistencia = 55;
                 Persuadir();
             }
             else if (this.Conhecimento >= 852 && this.Nivel < 5)
@@ -82,8 +82,8 @@ namespace ProjetoRPG
                 this.MaxLife = 700;
                 this.Energia = 900;
                 this.MaxEnergia = 900;
-                this.Animo = 40;
-                this.Persistencia = 35;
+                this.Animo = 70;
+                this.Persistencia = 60;
             }
         }
 
