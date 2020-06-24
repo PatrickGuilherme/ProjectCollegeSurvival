@@ -119,7 +119,7 @@ namespace ProjetoRPG
             habilidade.NivelRequerido = 2;
             habilidade.GastoEnergia = 120;
             habilidade.Dano = 0;
-            habilidade.BuffLife = 100;
+            habilidade.BuffLife = 0;
             habilidade.BuffAnimo = 10;
             habilidade.BuffPersistencia = 0;
             habilidade.DesativaHabilidade = false;

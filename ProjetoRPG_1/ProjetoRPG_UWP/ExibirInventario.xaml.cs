@@ -1,4 +1,5 @@
-﻿using ProjetoRPG;
+﻿using OpenQA.Selenium.Interactions;
+using ProjetoRPG;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -168,8 +170,8 @@ namespace ProjetoRPG_UWP
                 button.Name = cont.ToString();
 
                 button.Content = image;
-                button.Click += Btn_Click;
-
+                button.Click += Btn_ClickEsquerdo;
+                button.PointerPressed += Btn_ClickDireito;
                 cont++;
 
                 //Adiciona o botão criado dentro do canvas
@@ -199,25 +201,24 @@ namespace ProjetoRPG_UWP
             }
         }
 
-        private async void Btn_Click(object sender, RoutedEventArgs e)
+        private async void Btn_ClickEsquerdo(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            //Debug.WriteLine(ListItems.ElementAt<Item>(int.Parse(btn.Name)).Nome);
 
             //Tratamento quando foi selecionado um equipamento
-            if (ListItems.ElementAt<Item>(int.Parse(btn.Name)).GetType() == typeof(Equipamento)) 
+            if (ListItems.ElementAt<Item>(int.Parse(btn.Name)).GetType() == typeof(Equipamento))
             {
                 // Caso ele já tenha equipado, selecionar de novo removerá o equipamento
-                if (jogador.EquipamentosEquipados.Contains(ListItems.ElementAt<Item>(int.Parse(btn.Name)))) 
+                if (jogador.EquipamentosEquipados.Contains(ListItems.ElementAt<Item>(int.Parse(btn.Name))))
                 {
                     btn.Background = new SolidColorBrush(Colors.White);
                     jogador.DesequiparEquipamento(ListItems.ElementAt<Item>(int.Parse(btn.Name)) as Equipamento);
                 }
                 // Caso ele não tenha equipado, ele equipará o item e deixará o botão vermelho para sinalizar o jogador
-                else 
+                else
                 {
                     // Outra verificação é feita para ver se o jogador tem os status necessários para equipar o item selecionado
-                    if(jogador.EquiparEquipamento(ListItems.ElementAt<Item>(int.Parse(btn.Name)) as Equipamento)) 
+                    if (jogador.EquiparEquipamento(ListItems.ElementAt<Item>(int.Parse(btn.Name)) as Equipamento))
                     {
                         btn.Background = new SolidColorBrush(Colors.Red);
                         AvisoEquipado.IsOpen = true;
@@ -226,13 +227,45 @@ namespace ProjetoRPG_UWP
                     }
                 }
             }
-            else if(ListItems.ElementAt<Item>(int.Parse(btn.Name)).GetType() == typeof(ItemSecundario)) 
+        }
+
+        private void RemoverItem(Inventario inventario, Item item)
+        {
+            int cont = 0;
+            foreach (var i in inventario.Itens.ToList())
             {
-                
+                if (i.Nome == item.Nome)
+                {
+                    inventario.Itens.RemoveAt(cont);
+                    break;
+                }
+                cont++;
             }
-            else 
+        }
+
+        private void Btn_ClickDireito(object sender, PointerRoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            Windows.UI.Xaml.Input.Pointer ptr = e.Pointer;
+            Windows.UI.Input.PointerPoint ptrPt = e.GetCurrentPoint(btn);
+            var properties = e.GetCurrentPoint(this).Properties;
+
+            if (ptrPt.Properties.IsRightButtonPressed)
             {
-                
+              
+                btn.Click -= Btn_ClickEsquerdo;
+                btn.PointerPressed -= Btn_ClickDireito;
+                btn.Visibility = Visibility.Collapsed;
+
+                //desequipar
+                if(ListItems.ElementAt<Item>(int.Parse(btn.Name)).GetType() == typeof(Equipamento) &&
+                    jogador.EquipamentosEquipados.Contains(ListItems.ElementAt<Item>(int.Parse(btn.Name))))
+                {
+                    jogador.DesequiparEquipamento(ListItems.ElementAt<Item>(int.Parse(btn.Name)) as Equipamento);
+                }
+
+                RemoverItem(jogador.inventario, ListItems.ElementAt<Item>(int.Parse(btn.Name)));
             }
         }
     }

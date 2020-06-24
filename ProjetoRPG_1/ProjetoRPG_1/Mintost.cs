@@ -22,7 +22,7 @@ namespace ProjetoRPG
             this.MaxEnergia = 200;
             this.Animo = 35;
             this.Persistencia = 25;
-            this.ConhecimentoDrop = 24;
+            this.ConhecimentoDrop = 54;
             this.Habilidades = new List<Habilidade>();
             this.StartHabilidade();
         }

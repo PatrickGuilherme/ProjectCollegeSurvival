@@ -311,7 +311,7 @@ namespace ProjetoRPG_UWP
             {
                 if (monstro.ItemDrop != null)
                 {
-                    jogador.ColetarItem(monstro.ItemDrop);
+                    if (jogador.ColetarItem(monstro.ItemDrop)) Mensagem("Item: " + monstro.ItemDrop.Nome, "Novo Item adquirido");
                 }
                 jogador.Conhecimento += monstro.ConhecimentoDrop;
                 jogador.Animo -= contAnimo;
@@ -632,7 +632,6 @@ namespace ProjetoRPG_UWP
         }
         private async Task ExibirAcaoCombatentesAsync(string acaoUtilizada)
         {
-
             await Task.Delay(600);
             //ação utilizada pelo monstro 
             AcaoCombate.Text = monstro.Nome + " usou " + acaoUtilizada;
@@ -671,6 +670,36 @@ namespace ProjetoRPG_UWP
             NomeMonstro.Text = monstro.Nome;
         }
 
+
+        /// <summary>
+        /// Item que vai ser dropado pelo monstro
+        /// </summary>
+        public void DropItem()
+        {
+            Random random = new Random();
+            ItemPrimario ip;
+            int randItem;
+
+            //se o jogador tiver passando perrengue 
+            if (jogador.Life <= jogador.MaxLife/2)
+            {
+                //rand dos itens de cura (sunbley)
+                randItem = random.Next(4,6);
+
+            }
+            else
+            {
+                //rand de todos os itens
+                randItem = random.Next(1, 11);
+
+                //Evita que o mecanismo eletronico sejá o item dropado (só quem dropa é o atom)
+                if (randItem == 9) randItem++;
+            }
+
+            ip = new ItemPrimario(randItem);
+            monstro.ItemDrop = ip;
+        }
+
         /// <summary>
         /// Metodo para transição de telas
         /// </summary>
@@ -700,6 +729,7 @@ namespace ProjetoRPG_UWP
             PreencherCBItens();
             AtualizarTexto();
             ExibeDescricaoMonstro();
+            if(monstro.ItemDrop == null) DropItem();
 
             //Define o background 
             ImageBrush ib = new ImageBrush();

@@ -33,10 +33,10 @@ namespace ProjetoRPG
                 case 2:
                     this.Nome = "Sunbley";
                     this.Descricao = "Sunbley é um poderoso sanduba criados por místicos estudantes graduados em engenharia, este item garante que o usuário sacie toda sua fome regenerando sua vida, a lendas que falam de está ser um item lendário temido por monstros do conhecimento.";
-                    this.NivelRequerido = 2;
+                    this.NivelRequerido = 1;
                     this.BuffEnergia = 0;
                     this.BuffAnimo = 0;
-                    this.BuffLife = 10;
+                    this.BuffLife = 150;
                     this.BuffPersistencia = 0;
                     this.Dano = 0;
                     this.ListaAuxiliar = new List<ItemPrimario>();

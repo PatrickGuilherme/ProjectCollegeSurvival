@@ -42,7 +42,11 @@ namespace ProjetoRPG
             int cont = 0;
             foreach(var i in inventario.Itens.ToList()) 
             {
-                if (i.Nome == item.Nome) inventario.Itens.RemoveAt(cont);
+                if (i.Nome == item.Nome) 
+                {
+                    inventario.Itens.RemoveAt(cont);
+                    break;
+                }
                 cont++;
             }
         }
