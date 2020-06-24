@@ -11,17 +11,21 @@
     <Canvas Height="696" Width="1366" Background="Black">
         <TextBlock x:Name="Titulo" Canvas.Left="527" Foreground="White" Canvas.Top="57" Text="Instruções" TextWrapping="Wrap" FontSize="50" FontStyle="Oblique" TextAlignment="center" FontWeight="Bold"/>
 
-        <TextBlock FontSize="25" Canvas.Left="312" Foreground="White" FontWeight="Bold" Canvas.Top="258" Text="Movimentação" TextWrapping="Wrap" Height="46" TextAlignment="center"/>
-        <Image Height="150" Canvas.Left="284" Canvas.Top="319" Source="/Assets/Instrucoes/TeclasMovimentacao.png"/>
+        <Image Height="150" Width="150" Source="/Assets/Instrucoes/mouse.png" Canvas.Left="189" Canvas.Top="332"/>
+        <TextBlock FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="269" Text="Equipar item do inventário" TextWrapping="Wrap" Height="69" TextAlignment="center" Width="173" Canvas.Left="49"/>
+        <TextBlock FontSize="25" Foreground="White" FontWeight="Bold" Canvas.Top="269" Text="Excluir item do inventário" TextWrapping="Wrap" Height="69" TextAlignment="center" Width="173" Canvas.Left="308"/>
 
-        <TextBlock x:Name="TxtTeclaZ" FontSize="20" Canvas.Left="902" Foreground="White" Canvas.Top="265" Text="Tecla Z" TextWrapping="Wrap" Height="57" Width="328"/>
-        <Image Height="63" Width="81" Canvas.Left="809" Canvas.Top="260" Source="/Assets/Instrucoes/TeclaZ.png"/>
+        <TextBlock FontSize="25" Canvas.Left="573" Foreground="White" FontWeight="Bold" Canvas.Top="269" Text="Movimentação" TextWrapping="Wrap" Height="46" TextAlignment="center"/>
+        <Image Height="150" Canvas.Left="545" Canvas.Top="330" Source="/Assets/Instrucoes/TeclasMovimentacao.png"/>
 
-        <TextBlock x:Name="TxtTeclaC" FontSize="20" Canvas.Left="902" Canvas.Top="349" Text="Tecla C" Foreground="White" TextWrapping="Wrap" Height="57" Width="318"/>
-        <Image Height="63" Width="81" Canvas.Left="811" Canvas.Top="349" Source="/Assets/Instrucoes/TeclaC.png"/>
+        <TextBlock x:Name="TxtTeclaZ" FontSize="20" Canvas.Left="1022" Foreground="White" Canvas.Top="263" Text="Tecla Z" TextWrapping="Wrap" Height="57" Width="328"/>
+        <Image Height="63" Width="81" Canvas.Left="929" Canvas.Top="258" Source="/Assets/Instrucoes/TeclaZ.png"/>
 
-        <TextBlock x:Name="TxtTeclaI" FontSize="20" Canvas.Left="902" Canvas.Top="446" Text="Tecla I" Foreground="White" TextWrapping="Wrap" Height="53" Width="319"/>
-        <Image Height="63" Width="81" Canvas.Left="811" Canvas.Top="436" Source="/Assets/Instrucoes/TeclaI.png"/>
+        <TextBlock x:Name="TxtTeclaC" FontSize="20" Canvas.Left="1022" Canvas.Top="347" Text="Tecla C" Foreground="White" TextWrapping="Wrap" Height="57" Width="318"/>
+        <Image Height="63" Width="81" Canvas.Left="931" Canvas.Top="347" Source="/Assets/Instrucoes/TeclaC.png"/>
+
+        <TextBlock x:Name="TxtTeclaI" FontSize="20" Canvas.Left="1022" Canvas.Top="444" Text="Tecla I" Foreground="White" TextWrapping="Wrap" Height="53" Width="319"/>
+        <Image Height="63" Width="81" Canvas.Left="931" Canvas.Top="434" Source="/Assets/Instrucoes/TeclaI.png"/>
         <Button Background="DarkRed" Foreground="White" Content="Voltar" Canvas.Left="592" Canvas.Top="599" x:Name="BtnVoltar" Height="60" Width="111">
             <Button.Resources>
                 <ResourceDictionary>

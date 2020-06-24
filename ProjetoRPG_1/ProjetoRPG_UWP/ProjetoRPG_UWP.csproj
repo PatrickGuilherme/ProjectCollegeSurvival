@@ -128,15 +128,6 @@
     <Compile Include="GameOver.xaml.cs">
       <DependentUpon>GameOver.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Historia.xaml.cs">
-      <DependentUpon>Historia.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Historia2.xaml.cs">
-      <DependentUpon>Historia2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Historia3.xaml.cs">
-      <DependentUpon>Historia3.xaml</DependentUpon>
-    </Compile>
     <Compile Include="HistoriaGame.xaml.cs">
       <DependentUpon>HistoriaGame.xaml</DependentUpon>
     </Compile>
@@ -187,6 +178,7 @@
     <Content Include="Assets\Combate\versus.gif" />
     <Content Include="Assets\Expert\Battle.gif" />
     <Content Include="Assets\explosaoatk.gif" />
+    <Content Include="Assets\Instrucoes\mouse.png" />
     <Content Include="Assets\Instrucoes\TeclaC.png" />
     <Content Include="Assets\Instrucoes\tecladoCompleto.png" />
     <Content Include="Assets\Instrucoes\TeclaI.png" />
@@ -303,18 +295,6 @@
     <Page Include="GameOver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Historia.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Historia2.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Historia3.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="HistoriaGame.xaml">
       <SubType>Designer</SubType>

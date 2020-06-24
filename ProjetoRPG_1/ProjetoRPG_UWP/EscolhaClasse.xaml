@@ -6,37 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Width="800" Height=" 800"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" d:DesignWidth="800" d:DesignHeight="800">
+    Height="696" 
+    Width="1431"
+    Background="Black"
+    d:DesignHeight="800">
 
-    <Canvas Width="800" Height="800">
-
-        <Border BorderBrush="Black" BorderThickness="4" Width="250" Height="400" Canvas.Left="-85" Canvas.Top="148">
-            <Image Source="/Assets/Expert/Fubica.png"/>
-        </Border>
-
-        <Border BorderBrush="Black" BorderThickness="4" Width="250" Height="400" Canvas.Left="640" Canvas.Top="148">
-            <Image Source="/Assets/Cheater/Nobody.png" Margin="4,17,-4,-17" />
-        </Border>
-
-        <Border BorderBrush="Black" BorderThickness="4" Width="250" Height="400" Canvas.Left="275" Canvas.Top="148">
-            <Image Source="/Assets/Worker/None.png" Margin="-6,0,6,0"/>
-        </Border>
-
+    <Canvas Height="696" Width="1543">
         <Button x:Name="BtnWorker"
-                Content= "Worker"
-                Background="White"
-                BorderBrush="Black" Canvas.Left="368" Canvas.Top="600"/>
+                Background="Purple"
+                Foreground="White"
+                BorderBrush="Black" 
+                Width="250" Height="400"
+                Canvas.Left="561" Canvas.Top="136">
+            <Image Source="/Assets/Worker/None.png" Margin="-6,0,6,0"/>
+        </Button>
 
         <Button x:Name="BtnCheater"
-                Content= "Cheater"
-                Background="White"
-                BorderBrush="Black" Canvas.Left="731" Canvas.Top="600"/>
+                Background="DarkBlue"
+                Foreground="White"
+                BorderBrush="Black" 
+                Width="250" Height="400"
+                Canvas.Left="926" Canvas.Top="136">
+            <Image Source="/Assets/Cheater/Nobody.png" Margin="0,16,-10,-16" />
+        </Button>
 
         <Button x:Name="BtnExpert"
-                Content= "Expert"
-                Background="White"
-                BorderBrush="Black" Canvas.Left="10" Canvas.Top="600"/>
-
+                Background="DarkOrange"
+                Width="250" Height="400"
+                Canvas.Left="201" Canvas.Top="136">
+            <Image Source="/Assets/Expert/Fubica.png"/>
+        </Button>
     </Canvas>
 </Page>
