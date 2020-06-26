@@ -176,6 +176,17 @@
     <Content Include="Assets\Combate\defesaIcon.png" />
     <Content Include="Assets\Combate\forcaIcon.png" />
     <Content Include="Assets\Combate\versus.gif" />
+    <Content Include="Assets\Equipamentos\agenda.png" />
+    <Content Include="Assets\Equipamentos\borrachaazul.png" />
+    <Content Include="Assets\Equipamentos\borrachabranca.png" />
+    <Content Include="Assets\Equipamentos\borrachaduascores.png" />
+    <Content Include="Assets\Equipamentos\caderno10m.png" />
+    <Content Include="Assets\Equipamentos\caderno1m.png" />
+    <Content Include="Assets\Equipamentos\caneta.png" />
+    <Content Include="Assets\Equipamentos\enciclopedia.png" />
+    <Content Include="Assets\Equipamentos\lapis.png" />
+    <Content Include="Assets\Equipamentos\lapismecanico.png" />
+    <Content Include="Assets\Equipamentos\notebook.png" />
     <Content Include="Assets\Expert\Battle.gif" />
     <Content Include="Assets\explosaoatk.gif" />
     <Content Include="Assets\Instrucoes\mouse.png" />

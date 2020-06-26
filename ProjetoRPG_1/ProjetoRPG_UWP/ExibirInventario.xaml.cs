@@ -98,37 +98,37 @@ namespace ProjetoRPG_UWP
                     diretorio = "ItensSec/minisol.png";
                     break;
                 case "Agenda":
-                    diretorio = "mesa.jpg";
+                    diretorio = "Equipamentos/agenda.png";
                     break;
                 case "Caderno 1M":
-                    diretorio = "mesa.jpg";
+                    diretorio = "Equipamentos/caderno1m.png";
                     break;
                 case "Caderno 10M":
-                    diretorio = "mesa.jpg";
+                    diretorio = "Equipamentos/caderno10m.png";
                     break;
-                case "Enciclopédia":
-                    diretorio = "mesa.jpg";
+                case "Enciclopedia":
+                    diretorio = "Equipamentos/enciclopedia.png";
                     break;
                 case "Notebook":
-                    diretorio = "mesa.jpg";
+                    diretorio = "Equipamentos/notebook.png";
                     break;
-                case "Lápis":
-                    diretorio = "mesa.jpg";
+                case "Lapis":
+                    diretorio = "Equipamentos/lapis.png";
                     break;
-                case "Lápis Mecânico":
-                    diretorio = "mesa.jpg";
+                case "Lapis Mecanico":
+                    diretorio = "Equipamentos/lapismecanico.png";
                     break;
                 case "Caneta":
-                    diretorio = "mesa.jpg";
+                    diretorio = "Equipamentos/caneta.png";
                     break;
                 case "Borracha Branca":
-                    diretorio = "mesa.jpg";
+                    diretorio = "Equipamentos/borrachabranca.png";
                     break;
                 case "Borracha Azul":
-                    diretorio = "mesa.jpg";
+                    diretorio = "Equipamentos/borrachaazul.png";
                     break;
                 case "Borracha Duas Cores":
-                    diretorio = "mesa.jpg";
+                    diretorio = "Equipamentos/borrachaduascores.png";
                     break;
                 default:
                     diretorio = "mesa.jpg";
