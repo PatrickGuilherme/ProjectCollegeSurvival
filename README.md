@@ -5,6 +5,8 @@ Jogo de RPG de perspectiva 2D focado no combate com NPCs (personagens controlado
 # Notas 
 > O jogo foi desenvolvido em UWP;
 
+> Foi implementado testes unitários utilizando NUnit;
+
 > Utilizou-se a biblioteca de classe .net standard;
 
 > Para executa-lo é necessário abrir a solução no visual studio e executa-lo;
