@@ -9,4 +9,4 @@ Jogo de RPG de perspectiva 2D focado no combate com NPCs (personagens controlado
 
 > Utilizou-se a biblioteca de classe .net standard;
 
-> Para executa-lo é necessário abrir a solução no visual studio e executa-lo;
+> Para executa-lo é necessário abrir a solução no visual studio;
