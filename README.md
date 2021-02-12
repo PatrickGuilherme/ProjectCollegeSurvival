@@ -38,9 +38,11 @@ Os danos ao usuário só são gerados em combate no qual o dano envolve os atrib
 
 Existem um total de 5 níveis, no qual inicia-se no nível 1 até o 5, para subir de nível utiliza-se do atributo conhecimento do personagem tendo quantidades de pontos necessários diferentes em cada nível. O conhecimento necessário para subir de nível é estipulada pela formula (conhecimento atual + 100 +((conhecimento atual + 100) * 0.2)), isso significa que a cada nível aumenta-se 20% de conhecimento necessário. A cada nível pode-se desbloquear uma habilidade e os atributos do personagem são aumentados.
 
-# TECNOLOGIAS E FERRAMENTAS
+# PRE-REQUISÍTOS E INSTALAÇÃO
+Para jogar o game é necessário que se tenha o visual studio 2019 ou posterior com os pacotes Universal Windows Plataform Development e .NET Desktop development. Apos abrir o jogo através do visual studio deve-se execultar e buildar a solução, com isso será iniciado o jogo em uma nova janela.   
 
-* O jogo foi desenvolvido em UWP;
-* Foi implementado testes unitários utilizando NUnit;
-* Utilizou-se a biblioteca de classe .net standard;
-* Para executa-lo é necessário abrir a solução no visual studio;
+# TECNOLOGIAS E FERRAMENTAS
+* Interface gráfica em UWP
+* Linguagem de programação C#
+* Testes unitários com NUnit
+* Biblioteca de classe .net standard
