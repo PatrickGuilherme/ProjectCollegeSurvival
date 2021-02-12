@@ -1,12 +1,46 @@
-# ProjectCollegeSurvival
+# COLLEGE SURVIVAL
 
-Jogo de RPG de perspectiva 2D focado no combate com NPCs (personagens controlados pelo programa) que representam uma visão abstrata dos maiores desafios de calouros na graduação. O jogador controla um estudante pra enfrentar estes monstros, existem 3 classes de personagens jogáveis disponíveis cada um com particularidades e objetos comuns como lapis, caneta e borracha serão suas armas nessa luta. Tendo o objetivo final derrotar todos os monstros chefes, existe apenas 1 chance sé o jogador perder todo o life ele terá que recomeçar tudo do início. 
+O projeto refere-se a um jogo de RPG de vista na segunda dimensão (2D) ambientado em uma instituição de graduação. O jogador deve derrotar todos os monstros da classe boss existentes no mapa.
 
-# Notas 
-> O jogo foi desenvolvido em UWP;
+# ENREDO DO JOGO
 
-> Foi implementado testes unitários utilizando NUnit;
+João None Workefield, Tais Fubica Expers e Zé Nobody Cheafer são estudante calouros na graduação de engenharia na instituição SENSE (Serviço Nacional de Sobrevivência Escolar). Como estudantes eles devem enfrentar os desafios da vida acadêmica, estes envolvem derrotar todos reis dos monstros do conhecimento  (Lapain, Toest, Atom e Anaculo) que farão de tudo para prender os estudantes em um looping infinito de repetição de acontecimentos, ou seja, a cada morte você irá reiniciar tudo. Cabe a você ajudar estes estudantes a enfrentarem estes desafios.
 
-> Utilizou-se a biblioteca de classe .net standard;
+# ESTRUTURA DOS PERSONAGENS DO JOGO
+| Atributo | Descrição do atributo |
+| --- | --- |
+| Nome | Nome do personagem em jogo |
+| Descrição | Informações sobre a história e características do personagem |
+| Life | São os pontos de vida do personagem |
+| Energia | São os pontos de “magia” do personagem |
+| Ânimo | São os pontos de força do personagem |
+| Persistência | São os pontos de resistência (defesa) do personagem |
+| Conhecimento | São os pontos de experiencia do personagem |
 
-> Para executa-lo é necessário abrir a solução no visual studio;
+
+# MECÂNICAS DO JOGO
+
+O jogo possui mecânicas de funcionamento baseadas nas questões de movimentação, combate, nível, dano, itens e equipamentos. 
+
+* Movimentação
+
+A movimentação é para as todas direções incluindo diagonais sob perspectiva 2D vista de cima. 
+
+* Combate
+
+O combate ocorre quando o usuário encontrar um monstro no mapa, no qual no combate baseado em turnos o jogador tem que utilizar habilidades e itens a sua disposição para derrotar o inimigo, sendo que ao fazer qualquer ação o turno muda para o monstro também executar ações de combate (Ataque e defesa).
+
+* Dano
+
+Os danos ao usuário só são gerados em combate no qual o dano envolve os atributos do personagem sendo eles: life, animo e persistência. O dano gerado por um personagem é dado pela formula (dano geral = animo + dano do item ou habilidade), entretanto o dano efetivo implementa a persistência dano geral = animo + dano do item ou habilidade - persistência)
+
+* Níveis dos personagens
+
+Existem um total de 5 níveis, no qual inicia-se no nível 1 até o 5, para subir de nível utiliza-se do atributo conhecimento do personagem tendo quantidades de pontos necessários diferentes em cada nível. O conhecimento necessário para subir de nível é estipulada pela formula (conhecimento atual + 100 +((conhecimento atual + 100) * 0.2)), isso significa que a cada nível aumenta-se 20% de conhecimento necessário. A cada nível pode-se desbloquear uma habilidade e os atributos do personagem são aumentados.
+
+# TECNOLOGIAS E FERRAMENTAS
+
+* O jogo foi desenvolvido em UWP;
+* Foi implementado testes unitários utilizando NUnit;
+* Utilizou-se a biblioteca de classe .net standard;
+* Para executa-lo é necessário abrir a solução no visual studio;
